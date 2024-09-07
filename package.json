@@ -1,0 +1,32 @@
+{
+	"name": "portfolio",
+	"version": "0.0.1",
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
+		"check": "svelte-kit sync && svelte-check --jsconfig ./jsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --jsconfig ./jsconfig.json --watch",
+		"lint": "prettier --check .",
+		"format": "prettier --write ."
+	},
+	"devDependencies": {
+		"@fontsource/fira-mono": "^5.0.0",
+		"@neoconfetti/svelte": "^2.0.0",
+		"@sveltejs/adapter-auto": "^3.0.0",
+		"@sveltejs/kit": "^2.0.0",
+		"@sveltejs/vite-plugin-svelte": "^3.0.0",
+		"prettier": "^3.1.1",
+		"prettier-plugin-svelte": "^3.1.2",
+		"sass-embedded": "^1.78.0",
+		"svelte": "^4.2.7",
+		"svelte-check": "^4.0.0",
+		"vite": "^5.0.3"
+	},
+	"type": "module",
+	"dependencies": {
+		"gsap": "^3.12.5",
+		"scss": "^0.2.4",
+		"typed.js": "^2.1.0"
+	}
+}
