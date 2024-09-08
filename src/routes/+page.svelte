@@ -61,7 +61,7 @@
       strings: ['Hey, I\'m', '你好，我叫', '初めまして、僕は'],
       backDelay: 0,
       loop: true,
-      showCursor: false,
+      // showCursor: false,
       preStringTyped: (arrayPos, self) => {
         isJyp = false;
         switch (arrayPos) {
@@ -141,6 +141,10 @@
   <div class='page'>
     
   </div>
+
+  <div id='page-3' class='page'>
+
+  </div>
 </div>
 
 <style lang='scss'>
@@ -153,7 +157,7 @@
 }
 
 #page-2 {
-  padding: 5rem;
+  padding-left: calc((100vw - 918.55px) / 2);
 }
 
 h2 {
@@ -171,9 +175,6 @@ h2 {
 }
 
 .bio-container {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
   width: 100%;
   height: 100%;
 }
@@ -181,6 +182,10 @@ h2 {
 .page-1 {
   background-color: $color-bg-1;
   color: $color-text-1;
+}
+
+#page-1 {
+  height: 100vh;
 }
 
 #desu {
@@ -249,11 +254,11 @@ h2 {
 
 .page {
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .page-divider {
-  height: 30vh;
+  height: 40vh;
 }
 
 .main-container {
