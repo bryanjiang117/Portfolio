@@ -1,18 +1,16 @@
 <script lang='js'>
 
-  import { onDestroy } from "svelte";
   import { onMount } from 'svelte';
   import Typed from 'typed.js';
   import gsap from "gsap";
 
-
-  // Start of Page 1
+  // --------------- Start of Page 1 --------------- //
 
   const name = 'BRYAN JIANG'
   let whichJob = true;
-  let isJyp = false;
   let sidePadding = 0;
   let greeting;
+  let desu;
   let typing = true;
 
   const changeJob = () => {
@@ -31,23 +29,31 @@
     changeGreeting();
   }, 3000);
 
-  // End of Page 1
+  // --------------- End of Page 1 --------------- //
 
 
-  // Start of Page 2
+
+  // --------------- Start of Page 2 --------------- //
 
   let isNameVisible = true;
   let nameElement;
+  let bio = 'Filler ChatGPT text: Bryan Jiang is a passionate software developer with a focus on web development, creating dynamic and engaging user experiences. He has a keen interest in building complex, scalable applications using modern tools such as React, TypeScript, and SvelteKit. With experience in both frontend and backend technologies. With experience in both frontend and backend technologies, Bryan enjoys tackling challenging problems, especially in areas like authentication, database integration, and real-time updates.';
 
-  // End of Page 2
+  // --------------- End of Page 2 --------------- //
 
-  onDestroy(() => {
-    clearInterval(intervalId);
-  });
+
+
+  // --------------- Start of Page 3 --------------- //
+
+  
+
+  // --------------- Start of Page 3 --------------- //
+
+
 
   onMount(() => {
 
-    // Start of Page 1
+    // --------------- Start of Page 1 --------------- //
 
     // Align text ref https://darraghmckay.com/blog/rect-text
     const canvas = document.createElement('canvas');
@@ -57,13 +63,11 @@
     sidePadding = metrics.actualBoundingBoxLeft;
 
     // Typing greeting animation
-    greeting = new Typed('#typedGreeting', {
+    greeting = new Typed('#greeting', {
       strings: ['Hey, I\'m', '你好，我叫', '初めまして、僕は'],
       backDelay: 0,
       loop: true,
-      // showCursor: false,
       preStringTyped: (arrayPos, self) => {
-        isJyp = false;
         switch (arrayPos) {
           case 0:
             self.typeSpeed = 30;
@@ -75,18 +79,31 @@
             self.typeSpeed = 100;
             break;
         }
+        if (desu) {
+          desu.destroy();
+        }
       },
       onStringTyped: (arrayPos, self) => {
         greeting.stop();
         typing = false;
-        isJyp = arrayPos === 2;
+        if (arrayPos === 2) {
+          self.cursor.style.display = 'none';
+          desu = new Typed('#desu', {
+            strings: ['です'],
+            typeSpeed: 100,
+          });
+        } else {
+           self.cursor.style.display = 'inline';
+        }
       }
     });
+    
 
-    // End of Page 1
+    // --------------- End of Page 1 --------------- //
 
 
-    // Start of Page 2
+
+    // --------------- Start of Page 2 --------------- //
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -96,9 +113,19 @@
 
     observer.observe(nameElement);
 
-    // End of Page 2
+    // --------------- End of Page 2 --------------- //
+
+
+
+    // --------------- Start of Page 3 --------------- //
+    
+
+
+    // --------------- End of Page 3 --------------- //
+    
 
     return () => {
+      clearInterval(intervalId);
       observer.disconnect();
     }
   });
@@ -112,14 +139,14 @@
       <div class='name-container no-select' bind:this={nameElement}>
         <div class='relative'>
           <div class='greeting' style='transform: translateX({Math.abs(sidePadding)}px)'>
-            <span id='typedGreeting'></span>
+            <span id='greeting'></span>
           </div>
           <h1 class='name'>{name}</h1>
-          {#if isJyp}
-            <span id='desu'>です</span>
-          {/if}
+          <div class='desu-wrapper'>
+            <span id='desu'></span>
+          </div>  
         </div>
-        <div class='job'>{whichJob ? 'web' : 'software'} developer</div>
+        <div class='job' style='transform: translateX({sidePadding}px)'>{whichJob ? 'web' : 'software'} developer</div>
       </div>
 
     </div>
@@ -128,11 +155,11 @@
   <div class='page-divider' />
 
   <div id='page-2' class='page'>
-    <div class='bio-container'>
+    <div class='bio-container' style='transform: translateX({Math.abs(sidePadding)}px)'>
       <div class='bio'>
         <h2>ABOUT ME</h2>
         <p>
-          &nbsp &nbsp &nbsp &nbsp Filler ChatGPT text: Bryan Jiang is a passionate software developer with a focus on web development, creating dynamic and engaging user experiences. He has a keen interest in building complex, scalable applications using modern tools such as React, TypeScript, and SvelteKit. With experience in both frontend and backend technologies. With experience in both frontend and backend technologies, Bryan enjoys tackling challenging problems, especially in areas like authentication, database integration, and real-time updates.
+          &nbsp &nbsp &nbsp &nbsp{bio}
         </p>
       </div>
     </div>
@@ -144,12 +171,24 @@
 
   <div id='page-3' class='page'>
 
+
   </div>
 </div>
 
 <style lang='scss'>
 
 @import '/src/global.scss';
+
+.typed-cursor {
+  display: inline-block; /* Keep cursor inline */
+  line-height: normal;   /* Make sure line-height doesn't affect the cursor's placement */
+  position: static;
+}
+
+.marquee-item {
+  display: flex;
+  gap: 1rem;
+}
 
 .page-2 {
   background-color: $color-bg-2;
@@ -188,11 +227,16 @@ h2 {
   height: 100vh;
 }
 
-#desu {
+.desu-wrapper {
+  width: 3rem;
   position: absolute;
   bottom: 2rem;
-  right: -2.5rem;
+  left: 930px;
 }
+#desu {
+
+}
+
 .job {
   font-size: 1.5rem;
   letter-spacing: 1px;
@@ -201,7 +245,7 @@ h2 {
 }
 
 .name {
-  margin: -1rem 0 0 0;
+  margin: -1rem 0 -1rem 0;
   font-size: 9rem;
   letter-spacing: -5px;
 }
