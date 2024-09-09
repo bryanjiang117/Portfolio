@@ -118,22 +118,22 @@
 <!-- HTML for Boxes -->
 <div class="wrapper">
 	<div class="box pronavigator">
-		<img class="b--marque-a__content__media" src="/src/lib/images/pronavigator-logo.png" alt="" />
+		<img class="b--marque-a__content__media" src="/lib/images/pronavigator-logo.png" alt="" />
 		<span class='text-container'>
 			<span class="box-text">P</span><span class='small-pronav-text'>RO</span><span class='box-text'>N</span><span class='small-pronav-text'>AVIGATOR</span>
 		</span>
 	</div>
 	<div class="box tectmind">
-		<img class="b--marque-a__content__media" src="/src/lib/images/tectmind.webp" alt="" />
+		<img class="b--marque-a__content__media" src="/lib/images/tectmind.webp" alt="" />
 	</div>
 	<div class="box pronavigator">
-		<img class="b--marque-a__content__media" src="/src/lib/images/pronavigator-logo.png" alt="" />
+		<img class="b--marque-a__content__media" src="/lib/images/pronavigator-logo.png" alt="" />
 		<span class='text-container'>
 			<span class="box-text">P</span><span class='small-pronav-text'>RO</span><span class='box-text'>N</span><span class='small-pronav-text'>AVIGATOR</span>
 		</span>
 	</div>
   <div class="box tectmind">
-		<img class="b--marque-a__content__media" src="/src/lib/images/tectmind.webp" alt="" />
+		<img class="b--marque-a__content__media" src="/lib/images/tectmind.webp" alt="" />
 	</div>
 </div>
 

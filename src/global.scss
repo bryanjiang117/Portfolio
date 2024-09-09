@@ -3,9 +3,9 @@
 @font-face {
 	font-family: 'kievit';
 	src:
-		url('./lib/fonts/kievit-serif-medium.woff2') format('woff2'),
-		url('./lib/fonts/kievit-serif-medium.woff') format('woff'),
-		url('./lib/fonts/kievit-serif-medium.otf') format('opentype');
+		url('/lib/fonts/kievit-serif-medium.woff2') format('woff2'),
+		url('/lib/fonts/kievit-serif-medium.woff') format('woff'),
+		url('/lib/fonts/kievit-serif-medium.otf') format('opentype');
 }
 
 // Define SCSS variables
