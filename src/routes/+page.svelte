@@ -45,9 +45,9 @@
 
   // --------------- Start of Page 3 --------------- //
 
-  
+  import HorizontalLoop from './HorizontalLoop.svelte';
 
-  // --------------- Start of Page 3 --------------- //
+  // --------------- End of Page 3 --------------- //
 
 
 
@@ -119,7 +119,7 @@
 
     // --------------- Start of Page 3 --------------- //
     
-
+    
 
     // --------------- End of Page 3 --------------- //
     
@@ -136,12 +136,12 @@
   <div id='page-1' class='page'>
     <div class='fill flex-col justify-center align-center'>
 
-      <div class='name-container no-select' bind:this={nameElement}>
+      <div class='name-container no-select'>
         <div class='relative'>
           <div class='greeting' style='transform: translateX({Math.abs(sidePadding)}px)'>
             <span id='greeting'></span>
           </div>
-          <h1 class='name'>{name}</h1>
+          <h1 class='name' bind:this={nameElement}>{name}</h1>
           <div class='desu-wrapper'>
             <span id='desu'></span>
           </div>  
@@ -165,12 +165,10 @@
     </div>
   </div>
 
-  <div class='page'>
-    
-  </div>
+  <div class='page-divider-lg' />
 
   <div id='page-3' class='page'>
-
+    <HorizontalLoop />
 
   </div>
 </div>
@@ -302,6 +300,10 @@ h2 {
 }
 
 .page-divider {
+  height: 30vh;
+}
+
+.page-divider-lg {
   height: 40vh;
 }
 
