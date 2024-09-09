@@ -20,7 +20,7 @@
 			entries.forEach((entry) => {
 				isNameVisible = entry.isIntersecting;
 			});
-		}, { threshold: 0.1 });
+		}, { threshold: 0.2 });
 
     // Go to top of page when reloading
     window.onbeforeunload = function () {

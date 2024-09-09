@@ -117,7 +117,7 @@
 				>
 					{name}
 				</h1>
-				<div class="desu-wrapper" style={isNameHovered ? 'left: 948px;' : ''}>
+				<div class="desu-wrapper" style={isNameHovered ? 'left: 1178px;' : ''}>
 					<span id="desu"></span>
 				</div>
 			</div>
@@ -162,7 +162,7 @@
 		width: 3rem;
 		position: absolute;
 		bottom: 2rem;
-		left: 925px;
+		left: 1150px;
 		transition: all 0.15s ease;
 	}
 
@@ -178,7 +178,7 @@
 
 	.name {
 		margin: -1rem 0 -1rem 0;
-		font-size: 9rem;
+		font-size: 11rem;
 		letter-spacing: -5px;
 		transition: all 0.25s ease;
 	}
