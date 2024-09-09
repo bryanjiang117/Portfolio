@@ -18,36 +18,29 @@
 		}
 	};
 
-	const changeJob = () => {
+	const initializeJob = () => {
 		const words = gsap.utils.toArray('.rotating-word');
-		const tl = gsap.timeline({
-			repeat: -1
-		});
 		gsap.set(words, {
-			yPercent: (i) => i && 100,
+			yPercent: (i) => i && 100, // Set initial state for all except the first word
 			opacity: 1
 		});
-		words.forEach((word, i) => {
-			const next = words[i + 1];
-			if (next) {
-				tl.to(word, { yPercent: -100, duration: 0.25 }, '+=3.125').to(next, { yPercent: 0 }, '<');
-			} else {
-				// Final word
-				tl.to(word, { yPercent: -100, duration: 0.25 }, '+=3.125').fromTo(
-					words[0],
-					{
-						yPercent: 100
-					},
-					{
-						yPercent: 0,
-						duration: 0.25,
-						immediateRender: false
-					},
-					'<'
-				);
-			}
+	}
+
+	let i = 0;
+	const changeJob = () => {
+		const words = gsap.utils.toArray('.rotating-word');
+		const next = words[i + 1] ? i + 1 : 0;
+
+		gsap.set(words, {
+			yPercent: (j) => j === next ? 100 : 0
 		});
+
+		// Animate the current word up and the next word in
+		gsap.to(words[i], { yPercent: -100, duration: 0.25 });
+		gsap.to(words[next], { yPercent: 0, duration: 0.25 });
+		i = next;
 	};
+
 
 	onMount(() => {
 		// Align text ref https://darraghmckay.com/blog/rect-text
@@ -93,11 +86,11 @@
 			}
 		});
 
+		initializeJob();
 		const greetingInterval = setInterval(() => {
 			changeGreeting();
+			changeJob();
 		}, 3500);
-
-		setTimeout(changeJob, 375);
 
 		return () => {
 			clearInterval(greetingInterval);

@@ -12,7 +12,7 @@
 	let isNameVisible = true;
 	let observer;
 
-	onMount(() => {
+	onMount(() => { 
 
 		if (!nameElement) return;
 
@@ -21,6 +21,13 @@
 				isNameVisible = entry.isIntersecting;
 			});
 		});
+
+    // Go to top of page when reloading
+    window.onbeforeunload = function () {
+      window.scrollTo(0, 0);
+    }
+
+   
 
 		return () => {
 			observer.disconnect();
