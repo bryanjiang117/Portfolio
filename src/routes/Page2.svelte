@@ -46,7 +46,7 @@
 		lines.forEach((line) => {
 			// set styles for line because doing it in stylesheet doesnt apply
 			line.style.overflow = 'hidden';
-			
+
 			// add a span inside each line
 			const span = document.createElement('span');
 			span.style.display = 'inline-block';
@@ -99,7 +99,7 @@
 	h2 {
 		font-size: 3.5rem;
 		font-weight: bold;
-		letter-spacing: -5px;
+		letter-spacing: -3px;
 	}
 
 	.bio {
