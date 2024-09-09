@@ -27,7 +27,9 @@
 	"dependencies": {
 		"debug": "^4.3.7",
 		"gsap": "^3.12.5",
+		"lodash.debounce": "^4.0.8",
 		"scss": "^0.2.4",
+		"split-type": "^0.3.4",
 		"typed.js": "^2.1.0"
 	}
 }
