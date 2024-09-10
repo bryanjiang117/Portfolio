@@ -94,4 +94,8 @@
 	.page-divider-lg {
 		height: 40vh;
 	}
+
+	.main-container {
+		transition: background-color 0.5s ease;
+	}
 </style>
