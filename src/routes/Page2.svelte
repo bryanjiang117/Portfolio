@@ -92,6 +92,7 @@
 </div>
 
 <style lang="scss">	
+	@import '/src/global.scss';
 	#page-2 {
 		padding-left: calc((100vw - 918.55px) / 2);
 	}

@@ -24,7 +24,7 @@
 			yPercent: (i) => i && 100, // Set initial state for all except the first word
 			opacity: 1
 		});
-	}
+	};
 
 	let i = 0;
 	const changeJob = () => {
@@ -32,7 +32,7 @@
 		const next = words[i + 1] ? i + 1 : 0;
 
 		gsap.set(words, {
-			yPercent: (j) => j === next ? 100 : 0
+			yPercent: (j) => (j === next ? 100 : 0)
 		});
 
 		// Animate the current word up and the next word in
@@ -40,7 +40,6 @@
 		gsap.to(words[next], { yPercent: 0, duration: 0.25 });
 		i = next;
 	};
-
 
 	onMount(() => {
 		// Align text ref https://darraghmckay.com/blog/rect-text
@@ -98,11 +97,11 @@
 	});
 </script>
 
-<div id="page-1" class="page">
+<div data-scroll-section id="page-1" class="page">
 	<div class="fill flex-col justify-center align-center">
-		<div class="name-container no-select">
+		<div data-scroll data-scroll-speed="-10" class="name-container no-select">
 			<div class="relative">
-				<div class="greeting" style="transform: translateX({Math.abs(sidePadding)}px)">
+				<div data-scroll class="greeting" style="transform: translateX({Math.abs(sidePadding)}px)">
 					<span id="greeting"></span>
 				</div>
 				<h1
@@ -117,11 +116,11 @@
 				>
 					{name}
 				</h1>
-				<div class="desu-wrapper" style={isNameHovered ? 'left: 1178px;' : ''}>
+				<div data-scroll class="desu-wrapper" style={isNameHovered ? 'left: 1168px;' : ''}>
 					<span id="desu"></span>
 				</div>
 			</div>
-			<div class="job" style="transform: translateX({sidePadding}px)">
+			<div data-scroll class="job" style="transform: translateX({sidePadding}px)">
 				<span class="word-container">
 					<div class="rotating-word">Web</div>
 					<div class="rotating-word">Software</div>
@@ -133,6 +132,8 @@
 </div>
 
 <style lang="scss">
+	@import '/src/global.scss';
+
 	.rotating-word {
 		position: absolute;
 		top: 0;
@@ -162,7 +163,7 @@
 		width: 3rem;
 		position: absolute;
 		bottom: 2rem;
-		left: 1150px;
+		left: 1140px;
 		transition: all 0.15s ease;
 	}
 
@@ -180,7 +181,8 @@
 		margin: -1rem 0 -1rem 0;
 		font-size: 11rem;
 		letter-spacing: -5px;
-		transition: all 0.25s ease;
+		transition: transform 0.25s ease;
+		will-change: transform
 	}
 
 	.name:hover {

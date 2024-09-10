@@ -11,31 +11,37 @@
 	let nameElement;
 	let isNameVisible = true;
 	let observer;
-
-	onMount(() => { 
-
+	
+	onMount(async () => {
 		if (!nameElement) return;
 
-		observer = new IntersectionObserver((entries) => {
-			entries.forEach((entry) => {
-				isNameVisible = entry.isIntersecting;
-			});
-		}, { threshold: 0.2 });
+		observer = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((entry) => {
+					isNameVisible = entry.isIntersecting;
+				});
+			},
+			{ threshold: 0.2 }
+		);
 
-    // Go to top of page when reloading
-    window.onbeforeunload = function () {
-      window.scrollTo(0, 0);
-    }
+		// Go to top of page when reloading
+		window.onbeforeunload = function () {
+			window.scrollTo(0, 0);
+		};
 
-   
+		// smooth and parallax scrolling
+		const LocomotiveScroll = (await import('locomotive-scroll')).default;
+		const scroll = new LocomotiveScroll({
+			el: document.querySelector('[data-scroll-container]'),
+			smooth: true
+		});
 
 		return () => {
 			observer.disconnect();
 		};
-
 	});
 
-  // $ makes a reactive expression 
+	// $ makes a reactive expression
 	$: if (observer && nameElement) {
 		observer.observe(nameElement);
 	}
@@ -50,7 +56,7 @@
 	<meta property="og:description" content={description} />
 </svelte:head>
 
-<div class="main-container {isNameVisible ? 'page-1' : 'page-2'}">
+<div data-scroll-container class="main-container {isNameVisible ? 'page-1' : 'page-2'}">
 	<Page1 bind:nameElement />
 
 	<div class="page-divider" />
@@ -59,13 +65,12 @@
 
 	<div class="page-divider-lg" />
 
-  <Page3 />
+	<Page3 />
 
-  <div class='page-divider' />
+	<div class="page-divider" />
 </div>
 
 <style lang="scss">
-
 	@import '/src/global.scss';
 
 	.page-2 {
@@ -78,12 +83,11 @@
 		color: $color-text-1;
 	}
 
-  .page-divider {
+	.page-divider {
 		height: 30vh;
 	}
 
 	.page-divider-lg {
 		height: 40vh;
 	}
-
 </style>
