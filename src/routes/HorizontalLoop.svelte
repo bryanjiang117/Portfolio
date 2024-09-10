@@ -116,7 +116,7 @@
 </script>
 
 <!-- HTML for Boxes -->
-<div class="wrapper">
+<div class="wrapper no-select">
 	<div class="box pronavigator">
 		<img class="b--marque-a__content__media" src="/lib/images/pronavigator-logo.png" alt="" />
 		<span class='text-container'>

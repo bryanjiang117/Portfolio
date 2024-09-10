@@ -55,7 +55,7 @@
 			line.innerHTML = ''; // Clear the content
 			line.appendChild(span); // Append the span with content inside each line
 		});
-		
+
 		// resize observer
 		const resizeObserver = new ResizeObserver(debounce(handleResize, 500));
 		resizeObserver.observe(bioContainer);
@@ -91,7 +91,7 @@
 	</div>
 </div>
 
-<style lang="scss">	
+<style lang="scss">
 	@import '/src/global.scss';
 	#page-2 {
 		padding-left: calc((100vw - 918.55px) / 2);
@@ -114,5 +114,16 @@
 	.bio-container {
 		width: 100%;
 		height: 100%;
+	}
+
+	:global(::-moz-selection) {
+		/* Code for Firefox */
+		color: $color-bg-2;
+		background: $color-text-2;
+	}
+
+	:global(::selection) {
+		color: $color-bg-2;
+		background: $color-text-2;
 	}
 </style>
