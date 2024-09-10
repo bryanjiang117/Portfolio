@@ -3,6 +3,8 @@
 	import Page1 from './Page1.svelte';
 	import Page2 from './Page2.svelte';
 	import Page3 from './Page3.svelte';
+	import Page4 from './Page4.svelte';
+	import HorizontalLoop from './HorizontalLoop.svelte';
 
 	// meta data
 	const title = 'Bryan Jiang';
@@ -65,9 +67,11 @@
 
 	<div class="page-divider-lg" />
 
+	<HorizontalLoop />
+
 	<Page3 />
 
-	<div class="page-divider" />
+	<!-- <div class="page-divider" /> -->
 </div>
 
 <style lang="scss">

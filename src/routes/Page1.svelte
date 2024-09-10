@@ -45,7 +45,7 @@
 		// Align text ref https://darraghmckay.com/blog/rect-text
 		const canvas = document.createElement('canvas');
 		const context = canvas.getContext('2d');
-		context.font = '9rem Arial';
+		context.font = '11rem Arial';
 		const metrics = context.measureText(name);
 		sidePadding = metrics.actualBoundingBoxLeft;
 

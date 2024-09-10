@@ -7,7 +7,7 @@
 	const name = 'BRYAN JIANG';
 	let sidePadding = 0;
 	let bio =
-		'Filler ChatGPT text: Bryan Jiang is a passionate software developer with a focus on web development, creating dynamic and engaging user experiences. He has a keen interest in building complex, scalable applications using modern tools such as React, TypeScript, and SvelteKit. With experience in both frontend and backend technologies. With experience in both frontend and backend technologies, Bryan enjoys tackling challenging problems, especially in areas like authentication, database integration, and real-time updates.';
+		'Filler ChatGPT text: I\'ve worked professionally as a front end and full stack developer at startups where I\'ve been able to make a difference. creating dynamic and engaging user experiences. He has a keen interest in building complex, scalable applications using modern tools such as React, TypeScript, and SvelteKit. With experience in both frontend and backend technologies. With experience in both frontend and backend technologies, Bryan enjoys tackling challenging problems, especially in areas like authentication, database integration, and real-time updates.';
 	let bioContainer;
 	let splitText;
 	let previousContainerWidth;
@@ -35,7 +35,7 @@
 		// Align text ref https://darraghmckay.com/blog/rect-text
 		const canvas = document.createElement('canvas');
 		const context = canvas.getContext('2d');
-		context.font = '9rem Arial';
+		context.font = '11rem Arial';
 		const metrics = context.measureText(name);
 		sidePadding = metrics.actualBoundingBoxLeft;
 
@@ -94,7 +94,7 @@
 <style lang="scss">
 	@import '/src/global.scss';
 	#page-2 {
-		padding-left: calc((100vw - 918.55px) / 2);
+		padding-left: calc((100vw - 1134.9px) / 2);
 	}
 
 	h2 {

@@ -141,7 +141,6 @@
 	@import '/src/global.scss';
 
 	.wrapper {
-		height: 100%;
 		width: 100%;
 		position: relative;
 		display: flex;
