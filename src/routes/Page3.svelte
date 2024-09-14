@@ -1,39 +1,35 @@
 <script>
-	const projects = [
+	const experiences = [
 		{
-			name: 'Resolutions',
-			desc: 'An web app to motivate you and your friends to stick with your New Year resolutions',
-			img: '',
-			techStack: 'Next, React, JavaScript, Tailwind, NextUI, PostgreSQL'
+			title: 'Fullstack Engineer',
+			company: 'TectMind',
+			location: 'Montreal, QC',
+			techStack: 'React, TypeScript, Python, Mapbox',
+			desc: 'Worked in a tight-knit startup team to create their zoning analysis web app. Developed the app\'s main page (map) and data visualization.'
 		},
 		{
-			name: 'Chess',
-			desc: 'The board game chess',
-			img: '',
-			techStack: 'C++, XWindow'
-		},
-		{
-			name: 'Tournament Organizer',
-			desc: 'A desktop app to generate brackets and track teams and tournament progress',
-			img: '',
-			techStack: 'Java, AWT, Swing'
-		},
-		{
-			name: 'TeamFight Tactics',
-			desc: 'A recreation of the popular game TeamFight Tactics',
-			img: '',
-			techStack: 'Java, AWT, Swing'
+			title: 'Frontend Developer',
+			company: 'ProNavigator',
+			location: 'Waterloo, ON',
+			techStack: 'React, JavaScript, Material UI',
+			desc: 'Designed and developed internal tools user interfaces in collaboration with backend and QA engineers.'
 		}
-	]
+	];
 </script>
 
-<div id="page-3" class="page">
-
+<section id='page-3' class='page'>
 	<div class='container'>
-		
+		<div class='experiences'>
+			<ul>
+				<!-- {#each experiences as exp} 
+					<li class='experience'>
+						<h2>{exp.title}</h2>
+					</li>
+				{/each} -->
+			</ul>
+		</div>
 	</div>
-
-</div>
+</section>
 
 <style lang='scss'>
 	#page-3 {
@@ -41,19 +37,17 @@
 	}
 
 	.container {
-		width: 100%;
 		height: 100%;
+		width: 100%;
 		display: flex;
-		flex-direction: column;
-		justify-content: center;
 		align-items: center;
 	}
-	
-	.text-container {
-		font-size: 2.2rem;
+
+	.experiences {
+		margin-left: 50vw;
 	}
 
-	.text {
-		max-width: 30vw;
+	ul {
+		list-style: none;
 	}
 </style>
