@@ -8,6 +8,28 @@
 		url('/lib/fonts/kievit-serif-medium.otf') format('opentype');
 }
 
+
+@font-face {
+	font-family: 'Helvetica';
+	font-style: normal;
+	font-weight: normal;
+	src: local('Helvetica'), url('/lib/fonts/Helvetica.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Futura';
+	font-style: normal;
+	font-weight: normal;
+	src: local('Futura'), url('/lib/fonts/Futura\ Regular.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'Geometrica';
+	font-style: normal;
+	font-weight: normal;
+	src: local('Geometrica'), url('/lib/fonts/GeometricaSans-Regular.ttf') format('truetype');
+}
+
 // Define SCSS variables
 $font-body:
 	Arial,
@@ -28,6 +50,7 @@ $color-bg-1: #ffc919;
 $color-bg-2: #1c1b1a;
 $color-text-1: rgba(0, 0, 0, 0.9);
 $color-text-2: rgba(241, 236, 226, 0.8);
+$color-text-3: #cea12e;
 $color-theme-1: #242221;
 $column-width: 42rem;
 $column-margin-top: 4rem;
@@ -35,7 +58,7 @@ $column-margin-top: 4rem;
 // Apply the SCSS variables directly in the styles
 body {
 	font-family: $font-body;
-	color: $color-text-1;
+	color: $color-text-1;	
 	margin: 0;
 	padding: 0;
 	overflow-y: auto;
@@ -62,3 +85,4 @@ body {
 	width: 100vw;
 	min-height: 100vh;
 }
+	

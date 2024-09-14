@@ -12,6 +12,7 @@
 	let splitText;
 	let previousContainerWidth;
 	let observer;
+	let scroll;
 
 	// An event handler that will be called when the container element is resized.
 	function handleResize(entry) {
@@ -66,7 +67,7 @@
 					gsap.to(entry.target.querySelector('span'), {
 						y: 0,
 						opacity: 1,
-						duration: 1
+						duration: 1.25
 					});
 				}
 			});
@@ -80,6 +81,7 @@
 			observer.observe(line);
 		});
 	}
+
 </script>
 
 <div id="page-2" class="page">

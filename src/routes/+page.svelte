@@ -32,11 +32,11 @@
 		};
 
 		// smooth and parallax scrolling
-		const LocomotiveScroll = (await import('locomotive-scroll')).default;
-		const scroll = new LocomotiveScroll({
-			el: document.querySelector('[data-scroll-container]'),
-			smooth: true
-		});
+		// const LocomotiveScroll = (await import('locomotive-scroll')).default;
+		// const scroll = new LocomotiveScroll({
+		// 	el: document.querySelector('[data-scroll-container]'),
+		// 	smooth: true
+		// });
 
 		return () => {
 			observer.disconnect();
@@ -58,7 +58,8 @@
 	<meta property="og:description" content={description} />
 </svelte:head>
 
-<div data-scroll-container class="main-container {isNameVisible ? 'page-1' : 'page-2'}">
+<div class="main-container {isNameVisible ? 'page-1' : 'page-2'}">
+	<div>
 	<Page1 bind:nameElement />
 
 	<div class="page-divider" />
@@ -69,11 +70,14 @@
 
 	<HorizontalLoop />
 
-	<Page3 />
+	<!-- <Page3 /> -->
+
+	<div class="page-divider-lg" />
 
 	<Page4 />
 
 	<!-- <div class="page-divider" /> -->
+	</div>
 </div>
 
 <style lang="scss">
