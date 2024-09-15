@@ -55,8 +55,15 @@ $color-theme-1: #242221;
 $column-width: 42rem;
 $column-margin-top: 4rem;
 
+html {
+	height: 100%;
+	width: 100%;
+}
+
 // Apply the SCSS variables directly in the styles
 body {
+	height: 100%;
+	width: 100%;
 	font-family: $font-body;
 	color: $color-text-1;	
 	margin: 0;
@@ -82,7 +89,7 @@ body {
 }
 
 .page {
-	width: 100vw;
+	min-width: 100%;
 	min-height: 100vh;
 }
 	

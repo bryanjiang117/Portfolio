@@ -1,4 +1,10 @@
 <script>
+	import { onMount } from "svelte";
+
+	const name = 'BRYAN JIANG';
+	let padding = 0;
+	let length = 0;
+
 	const projects = [
 		{
 			name: 'Resolutions',
@@ -25,15 +31,42 @@
 			link: 'https://github.com/bryanjiang117/TeamFight-Tactics'
 		}
 	];
+
+	function handleResizeWindow() {
+		// Align text ref https://darraghmckay.com/blog/rect-text
+		const canvas = document.createElement('canvas');
+			const context = canvas.getContext('2d');
+			const windowWidth = window.innerWidth;
+			const fontSize = windowWidth * 0.11; // 11vw equivalent
+			context.font = `${fontSize}px Arial`;
+			const metrics = context.measureText(name);
+			length = metrics.actualBoundingBoxLeft + metrics.actualBoundingBoxRight;
+			padding = (windowWidth - length) / 2;
+
+			const page = document.querySelector('#page-4');
+			page.style.padding = `0 0 0 ${padding}px`;
+	}
+
+	onMount(() => {
+		handleResizeWindow();
+
+		window.addEventListener('resize', handleResizeWindow);
+
+		return () => {
+			window.removeEventListener('resize', handleResizeWindow);
+		}
+	});
 </script>
 
 <div id="page-4" class="page">
 	<div class="container">
     {#each projects as project, i}
-			<ul class='project' style="margin-left: {i * 15}rem">
+			<ul class='project' style={i !== 0 ? `margin-left: ${i * length / 4}px` : 0}>
 				<li>
-					<h3>{project.name}</h3>
-					<a href={project.link} target='_blank'>View on GitHub</a>
+					<div class='header'>
+						<h3>{project.name}</h3>
+						<a class='github-link' href={project.link} target='_blank'>View on GitHub</a>
+					</div>
 					<p>{project.desc}</p>
 					<div class='tech-stack'>
 						{#each project.techStack as tech}
@@ -95,6 +128,11 @@
 	margin-top: 1rem;
 }
 
+.github-link {
+	font-size: small;
+	display: none;
+}
+
 .project p {
 	letter-spacing: 0px;
 	font-size: small;	
@@ -106,30 +144,46 @@
 	letter-spacing: -1px;
 	margin-bottom: 0.5rem;
 	transition: text-shadow 0.5s;
+	margin: 0;
+}
+
+.header {
+	display: flex;
+	justify-content: space-between;
+	text-align: bottom;
+	align-items: center;
+	margin-bottom: 0.5rem;
 }
 
 .project li {
-	margin-bottom: 6rem;
+	margin-bottom: 4rem;
 }
+
 .project {
   font-family: 'Helvetica', sans-serif;
 	list-style-type: none;
 	width: fit-content;
+	padding: 0;
 }
 
 .project:hover h3 {
 	text-shadow: 0 0 15px $color-text-3;
 }
 
-.container {	
-	user-select: none;
+.project:hover .github-link {
+	display: block;
 }
 
-#page-4 {
-  height: 200vh;
+.container {	
+	user-select: none;
+	height: 200vh;
 	display: flex;
 	flex-direction: column;
 	justify-content: start;
-	align-items: center;
+}
+
+#page-4 {
+	width: 100%;
+	box-sizing: border-box;
 }
 </style>

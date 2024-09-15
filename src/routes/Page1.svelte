@@ -8,7 +8,8 @@
 	let desu;
 	let typing = true;
 	export let nameElement;
-	let sidePadding = 0;
+	let length = 0;
+	let leftSidePadding = 0;
 	let isNameHovered = false;
 
 	const changeGreeting = () => {
@@ -41,13 +42,28 @@
 		i = next;
 	};
 
-	onMount(() => {
+	function handleResizeWindow() {
 		// Align text ref https://darraghmckay.com/blog/rect-text
 		const canvas = document.createElement('canvas');
 		const context = canvas.getContext('2d');
-		context.font = '11rem Arial';
+		const windowWidth = window.innerWidth;
+		const fontSize = windowWidth * 0.11; // 11vw equivalent
+		context.font = `${fontSize}px Arial`;
 		const metrics = context.measureText(name);
-		sidePadding = metrics.actualBoundingBoxLeft;
+		leftSidePadding = Math.abs(metrics.actualBoundingBoxLeft); 	
+		const rightSidePadding = Math.abs(metrics.actualBoundingBoxRight - metrics.width) / 2;
+		length = metrics.actualBoundingBoxLeft + metrics.actualBoundingBoxRight;
+
+		const greeting = document.querySelector('.greeting');
+		greeting.style.transform = `translateX(${leftSidePadding}px)`;
+		const job = document.querySelector('.job');
+		job.style.transform = `translateX(-${rightSidePadding}px)`;
+		const desuWrapper = document.querySelector('.desu-wrapper');
+		desuWrapper.style.left = isNameHovered ? `${length * 1.05 + 10}px` : `${length + 10}px`;
+	}
+
+	onMount(() => {
+		handleResizeWindow();
 
 		// Typing greeting animation
 		greeting = new Typed('#greeting', {
@@ -91,17 +107,21 @@
 			changeJob();
 		}, 3500);
 
+		// window observer
+		window.addEventListener('resize', handleResizeWindow);
+
 		return () => {
 			clearInterval(greetingInterval);
+			window.removeEventListener('resize', handleResizeWindow);
 		};
 	});
 </script>
 
-<div data-scroll-section id="page-1" class="page">
+<div id="page-1" class="page">
 	<div class="fill flex-col justify-center align-center">
-		<div data-scroll data-scroll-speed="-10" class="name-container no-select">
+		<div class="name-container no-select">
 			<div class="relative">
-				<div data-scroll class="greeting" style="transform: translateX({Math.abs(sidePadding)}px)">
+				<div class="greeting">
 					<span id="greeting"></span>
 				</div>
 				<h1
@@ -116,11 +136,11 @@
 				>
 					{name}
 				</h1>
-				<div data-scroll class="desu-wrapper" style={isNameHovered ? 'left: 1168px;' : ''}>
-					<span id="desu"></span>
+				<div class="desu-wrapper">
+					<span id="desu" />
 				</div>
 			</div>
-			<div data-scroll class="job" style="transform: translateX({sidePadding}px)">
+			<div class="job">
 				<span class="word-container">
 					<div class="rotating-word">Web</div>
 					<div class="rotating-word">Software</div>
@@ -157,29 +177,32 @@
 
 	#page-1 {
 		height: 100vh;
+		width: 100%;
 	}
 
 	.desu-wrapper {
 		width: 3rem;
 		position: absolute;
 		bottom: 2rem;
-		left: 1140px;
 		transition: all 0.15s ease;
+		font-size: 1vw;
+		transform: translateY(-1vh);
 	}
 
 	.job {
 		display: flex;
-		font-size: 1.5rem;
+		font-size: 1.5vw;
 		letter-spacing: 1px;
 		line-height: 2rem;
 		text-align: right;
 		width: 100%;
 		height: 2rem;
+		transform: translateX(0);
 	}
 
 	.name {
 		margin: -1rem 0 -1rem 0;
-		font-size: 11rem;
+		font-size: 11vw;
 		letter-spacing: -5px;
 		transition: transform 0.25s ease;
 		will-change: transform
@@ -191,6 +214,7 @@
 
 	.greeting {
 		height: 1.5rem;
+		font-size: 1vw;
 	}
 
 	.name-container {
