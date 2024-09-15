@@ -127,6 +127,7 @@
 	background: radial-gradient(rgb(232, 229, 225), black);
 	background-attachment: fixed;
 	background-position: center;
+	background-size: cover;
 }
 
 .tech-stack {
@@ -202,5 +203,7 @@
 	width: 100%;
 	box-sizing: border-box;
 	background-color: $color-bg-3;
+	z-index: 3;
+	position: relative;
 }
 </style>

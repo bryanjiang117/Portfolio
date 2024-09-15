@@ -45,10 +45,11 @@
 			trigger: page3,
 			endTrigger: page4,
 			start: "top top", // Start when the top of page 3 hits the top of the viewport
-			end: "top top", // End when the top of page 4 hits the top of the viewport
+			end: "top+=20% top", // End when the top of page 4 hits the top of the viewport
 			pin: projectHeader, // Pin projectheader in place while page 3 scrolls up
 			pinSpacing: true,// Prevent extra space after the pinning
 			scrub: true,
+			immediateRender: false,
 		});
 
 		return () => {
@@ -81,16 +82,12 @@
 	<div class="page-divider-lg" />
 
 	<HorizontalLoop />
-	<div class='parallax-container'>
-		<Page3 />
-		<div class='project-header-container'>
-			<ProjectHeader />
-		</div>
-	</div>
+
+	<Page3 />
+
+	<ProjectHeader />
 
 	<Page4 />
-
-	<div class="page-divider-lg" />
 
 	<Page5 />
 </div>
@@ -98,17 +95,8 @@
 <style lang="scss">
 	@import '/src/global.scss';
 
-	.project-header-container {
-		width: 100%;
-		height: 100vh;
-		display: flex;
-		justify-content: center;
-		align-items: center;
+	:global(.pin-spacer) {
 		background-color: $color-bg-3;
-	}
-
-	.parallax-container {
-		position: relative;
 	}
 
 	.page-2 {

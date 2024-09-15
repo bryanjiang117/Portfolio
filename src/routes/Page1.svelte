@@ -205,7 +205,6 @@
 		font-size: 11vw;
 		letter-spacing: -5px;
 		transition: transform 0.25s ease;
-		will-change: transform
 	}
 
 	.name:hover {
