@@ -43,11 +43,16 @@
 			length = metrics.actualBoundingBoxLeft + metrics.actualBoundingBoxRight;
 			padding = (windowWidth - length) / 2;
 
-			const page = document.querySelector('#page-4');
-			page.style.padding = `0 0 0 ${padding}px`;
+			const projectsContainer = document.querySelector('.projects-container');
+			projectsContainer.style.padding = `0 0 0 ${padding}px`;
+
+			// const techIcon = document.querySelectorAll('.tech-icon');
+			// techIcon.forEach(icon => {
+			// 	icon.style.backgroundSize = `${length} 80vh`;
+			// });
 	}
 
-	onMount(() => {
+	onMount(async() => {
 		handleResizeWindow();
 
 		window.addEventListener('resize', handleResizeWindow);
@@ -59,18 +64,18 @@
 </script>
 
 <div id="page-4" class="page">
-	<div class="container">
+	<div class="projects-container">
     {#each projects as project, i}
-			<ul class='project' style={i !== 0 ? `margin-left: ${i * length / 4}px` : 0}>
+			<ul class='project' style={i !== 0 ? `margin-left: ${i * length / 5}px` : 0}>
 				<li>
 					<div class='header'>
-						<h1>{project.name}</h1>
-						<a class='github-link' href={project.link} target='_blank'>View on GitHub</a>
+						<h1 class='gradient'>{project.name}</h1>	
+						<a class='github-link gradient' href={project.link} target='_blank'>View on GitHub</a>
 					</div>
-					<p>{project.desc}</p>
+					<p class='gradient'>{project.desc}</p>
 					<div class='tech-stack'>
 						{#each project.techStack as tech}
-							<span class='tech-icon'>{tech}</span>
+							<span class='tech-icon gradient'>{tech}</span>
 						{/each}
 					</div>
 				</li>
@@ -116,9 +121,11 @@
 	padding: 0.5rem;
 	border-radius: 1rem;
 	font-size: x-small;
-	background: linear-gradient(to right, rgb(255, 251, 243), rgb(0, 0, 0));
+}
+
+.gradient {
+	background: radial-gradient(rgb(232, 229, 225), black);
 	background-attachment: fixed;
-	background-size: cover;
 	background-position: center;
 }
 
@@ -131,12 +138,18 @@
 .github-link {
 	font-size: small;
 	display: none;
+	-webkit-text-fill-color: transparent; 
+	background-clip: text;
+	-webkit-background-clip: text; 
 }
 
 .project p {
 	letter-spacing: 0px;
 	font-size: small;	
 	margin: 0;
+	-webkit-text-fill-color: transparent; 
+	background-clip: text;
+	-webkit-background-clip: text; 
 }
 
 .project h1 {
@@ -145,6 +158,9 @@
 	margin-bottom: 0.5rem;
 	transition: text-shadow 0.5s;
 	margin: 0;
+	-webkit-text-fill-color: transparent; 
+	background-clip: text;
+	-webkit-background-clip: text; 	
 }
 
 .header {
@@ -156,7 +172,7 @@
 }
 
 .project li {
-	margin-bottom: 10rem;
+	height: 55vh;
 }
 
 .project {
@@ -167,16 +183,16 @@
 }
 
 .project:hover h1 {
-	text-shadow: 0 0 15px $color-text-3;
+	// text-shadow: 0 0 15px $color-text-3;
 }
 
 .project:hover .github-link {
 	display: block;
 }
 
-.container {	
+.projects-container {	
 	user-select: none;
-	height: 200vh;
+	height: fit-content;
 	display: flex;
 	flex-direction: column;
 	justify-content: start;
@@ -185,5 +201,6 @@
 #page-4 {
 	width: 100%;
 	box-sizing: border-box;
+	background-color: $color-bg-3;
 }
 </style>

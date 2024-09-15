@@ -1,6 +1,4 @@
 <script>
-	import HorizontalLoop from "./HorizontalLoop.svelte";
-
 	const experiences = [
 		{
 			title: 'Fullstack Engineer',
@@ -21,7 +19,6 @@
 
 <section id='page-3' class='page'>
 	<div class='container'>
-		<HorizontalLoop />
 		<div class='experiences'>
 			<ul>
 				{#each experiences as exp} 
@@ -34,12 +31,12 @@
 				{/each}
 			</ul>
 		</div>
-		<HorizontalLoop />
 	</div>
 </section>
 
 <style lang='scss'>
-	
+	@import '/src/global.scss';
+
 	.experience .desc{
 		margin: 1rem 0;
 		font-size: small;
@@ -75,11 +72,14 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		justify-content: space-around;
-		margin-top: 20vh;
+		justify-content: center;
 	}
 
 	#page-3 {
-		height: 140vh;
+		height: 120vh;
+		width: 100%;
+		position: absolute;
+		z-index: 2;
+		background-color: $color-bg-2;
 	}
 </style>
