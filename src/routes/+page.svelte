@@ -1,6 +1,6 @@
 <script lang="js">
 	import { gsap } from "gsap";
-	import { ScrollTrigger } from "gsap/ScrollTrigger";
+	import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 	import { onMount } from 'svelte';
 	import Page1 from './Page1.svelte';
 	import Page2 from './Page2.svelte';
