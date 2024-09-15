@@ -64,7 +64,7 @@
 			<ul class='project' style={i !== 0 ? `margin-left: ${i * length / 4}px` : 0}>
 				<li>
 					<div class='header'>
-						<h3>{project.name}</h3>
+						<h1>{project.name}</h1>
 						<a class='github-link' href={project.link} target='_blank'>View on GitHub</a>
 					</div>
 					<p>{project.desc}</p>
@@ -139,7 +139,7 @@
 	margin: 0;
 }
 
-.project h3 {
+.project h1 {
 	font-weight: normal;
 	letter-spacing: -1px;
 	margin-bottom: 0.5rem;
@@ -166,7 +166,7 @@
 	padding: 0;
 }
 
-.project:hover h3 {
+.project:hover h1 {
 	text-shadow: 0 0 15px $color-text-3;
 }
 
