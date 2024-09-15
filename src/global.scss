@@ -56,13 +56,13 @@ $color-theme-1: #242221;
 $column-width: 42rem;
 $column-margin-top: 4rem;
 
-html {
+:global(html) {
 	height: 100%;
 	width: 100%;
 }
 
 // Apply the SCSS variables directly in the styles
-body {
+:global(body) {
 	height: 100%;
 	width: 100%;
 	font-family: $font-body;
@@ -80,7 +80,7 @@ body {
 	display: none;
 }
 
-.no-select {
+:global(.no-select) {
 	-webkit-touch-callout: none; /* iOS Safari */
 	-webkit-user-select: none; /* Safari */
 	-khtml-user-select: none; /* Konqueror HTML */
@@ -89,7 +89,7 @@ body {
 	user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
 }
 
-.page {
+:global(.page) {
 	min-width: 100%;
 	min-height: 100vh;
 }

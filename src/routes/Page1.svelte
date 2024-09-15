@@ -226,10 +226,6 @@
 		position: relative;
 	}
 
-	.flex-row {
-		display: flex;
-	}
-
 	.flex-col {
 		display: flex;
 		flex-direction: column;
@@ -248,7 +244,4 @@
 		align-items: center;
 	}
 
-	.main-container {
-		transition: background-color 0.5s ease;
-	}
 </style>
