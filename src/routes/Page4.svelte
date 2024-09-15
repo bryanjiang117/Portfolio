@@ -8,7 +8,7 @@
 	const projects = [
 		{
 			name: 'Resolutions',
-			desc: 'An web app to motivate you and your friends to stick with your New Year resolutions',
+			desc: 'A web app to motivate you and your friends to stick with your New Year resolutions',
 			techStack: ['Next', 'React', 'JavaScript', 'Tailwind', 'NextUI', 'PostgreSQL'],
 			link: 'https://github.com/bryanjiang117/Resolutions'
 		},
@@ -26,7 +26,7 @@
 		},
 		{
 			name: 'TeamFight Tactics',
-			desc: 'A recreation of the popular game TeamFight Tactics',
+			desc: 'A passionate recreation of the popular strategy game TeamFight Tactics',
 			techStack: ['Java', 'AWT', 'Swing'],
 			link: 'https://github.com/bryanjiang117/TeamFight-Tactics'
 		}
@@ -156,7 +156,7 @@
 }
 
 .project li {
-	margin-bottom: 4rem;
+	margin-bottom: 10rem;
 }
 
 .project {

@@ -77,11 +77,17 @@
 						gsap.to(entry.target.querySelector('span'), {
 							y: 0,
 							opacity: 1,
-							duration: 1.25
+							duration: 1
+						});
+					} else {
+						// Reset the animation when it leaves the viewport
+						gsap.set(entry.target.querySelector('span'), {
+							y: '100%',
+							opacity: 1
 						});
 					}
 				});
-			});
+			}, { threshold: 0.5 });
 
 			// window observer 
 			window.addEventListener('resize', handleResizeWindow);

@@ -97,7 +97,7 @@
 	}
 
 	.page-divider-lg {
-		height: 40vh;
+		height: 60vh;
 	}
 
 	.main-container {

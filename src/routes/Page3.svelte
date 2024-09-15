@@ -80,6 +80,6 @@
 	}
 
 	#page-3 {
-		height: 130vh;
+		height: 140vh;
 	}
 </style>
