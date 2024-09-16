@@ -6,7 +6,7 @@
 
 		const name = 'BRYAN JIANG';
 		let bio =
-			'Filler ChatGPT text: I\'ve worked professionally as a front end and full stack developer at startups where I\'ve been able to make a difference. creating dynamic and engaging user experiences. He has a keen interest in building complex, scalable applications using modern tools such as React, TypeScript, and SvelteKit. With experience in both frontend and backend technologies. With experience in both frontend and backend technologies, Bryan enjoys tackling challenging problems, especially in areas like authentication, database integration, and real-time updates.';
+			"I'm a software developer and artist. I'm super passionate about creating beautifully usable websites. There's nothing more satisfying than bringing your ideas to life. About me personally, I enjoy drawing, volleyball, and learning languages (watching shows). I love travelling because I love novelty and I love food. My mom says I'm too picky because I'm a harsh critic; I often find myself beaten by the gap between my judgement and my skill. So, my ever-changing goal is to create something that even I myself am proud of.";
 		let bioContainer;
 		let splitText;
 		let previousContainerWidth;
@@ -126,7 +126,7 @@
 
 		.bio {
 			max-width: 30vw;
-			font-size: 2.2rem;
+			font-size: 2.2vw;
 			line-height: 3rem;
 			letter-spacing: -1.5px;
 			transition: color 0.5s ease;

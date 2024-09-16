@@ -44,15 +44,10 @@
 			padding = (windowWidth - length) / 2;
 
 			const projectsContainer = document.querySelector('.projects-container');
-			projectsContainer.style.padding = `0 0 0 ${padding}px`;
-
-			// const techIcon = document.querySelectorAll('.tech-icon');
-			// techIcon.forEach(icon => {
-			// 	icon.style.backgroundSize = `${length} 80vh`;
-			// });
+			projectsContainer.style.paddingLeft = `${padding}px`;
 	}
 
-	onMount(async() => {
+	onMount(() => {
 		handleResizeWindow();
 
 		window.addEventListener('resize', handleResizeWindow);
@@ -173,7 +168,7 @@
 }
 
 .project li {
-	height: 55vh;
+	height: 65vh;
 }
 
 .project {

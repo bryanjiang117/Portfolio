@@ -38,7 +38,7 @@
 	@import '/src/global.scss';
 
 	.experience .desc{
-		margin: 1rem 0;
+		margin: 1.5rem 0;
 		font-size: small;
 	}
 
@@ -50,9 +50,11 @@
 
 	.experience h1 {
 		font-weight: normal;
-		font-size: 2rem;
 		margin: 0;
-		letter-spacing: -1px;
+		max-width: 30vw;
+		font-size: 2.2vw;
+		line-height: 3rem;
+		letter-spacing: -1.5px;
 	}
 
 	ul {
