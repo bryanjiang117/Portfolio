@@ -59,6 +59,7 @@ $column-margin-top: 4rem;
 :global(html) {
 	height: 100%;
 	width: 100%;
+	overscroll-behavior: none;
 }
 
 // Apply the SCSS variables directly in the styles
@@ -74,6 +75,7 @@ $column-margin-top: 4rem;
 	scrollbar-width: none;
 	-ms-overflow-style: none;
 	scroll-behavior: smooth;
+	overscroll-behavior: none;
 }
 
 *::-webkit-scrollbar {

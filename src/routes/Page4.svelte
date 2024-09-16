@@ -64,7 +64,7 @@
 </script>
 
 <div id="page-4" class="page">
-	<div class="projects-container">
+	<div class="projects-container no-select">
     {#each projects as project, i}
 			<ul class='project' style={i !== 0 ? `margin-left: ${i * length / 5}px` : 0}>
 				<li>
@@ -192,7 +192,6 @@
 }
 
 .projects-container {	
-	user-select: none;
 	height: fit-content;
 	display: flex;
 	flex-direction: column;

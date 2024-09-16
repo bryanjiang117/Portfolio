@@ -59,7 +59,7 @@
     .social-link img {
       width: 1.5rem;
       height: 1.5rem;
-      filter: invert(90%);
+      filter: invert(60%);
     }
 
 
