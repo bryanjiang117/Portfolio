@@ -62,9 +62,8 @@
       filter: invert(60%);
     }
 
-
-
     .links {
+      color: rgb(159, 156, 151);
       display: flex;
       justify-content: center;
       align-items: center;

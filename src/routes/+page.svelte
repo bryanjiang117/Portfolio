@@ -2,13 +2,13 @@
 	import { gsap } from "gsap";
 	import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 	import { onMount } from 'svelte';
-	import Page1 from './Page1.svelte';
-	import Page2 from './Page2.svelte';
-	import Page3 from './Page3.svelte';
-	import Page4 from './Page4.svelte';
-	import Page5 from "./Page5.svelte";
+	import Landing from './Landing.svelte';
+	import AboutMe from './AboutMe.svelte';
+	import Work from './Work.svelte';
+	import ProjectHeader from './ProjectHeader.svelte';
+	import Projects from './Projects.svelte';
+	import ContactMe from './ContactMe.svelte';
 	import HorizontalLoop from "./HorizontalLoop.svelte";
-	import ProjectHeader from "./ProjectHeader.svelte";
 
 	// meta data
 	const title = 'Bryan Jiang';
@@ -73,23 +73,23 @@
 </svelte:head>
 
 <div class="main-container {isNameVisible ? 'page-1' : 'page-2'}">
-	<Page1 bind:nameElement />
+	<Landing bind:nameElement />
 
 	<div class="page-divider" />
 
-	<Page2 />
+	<AboutMe />
 
 	<div class="page-divider-lg" />
 
 	<HorizontalLoop />
 
-	<Page3 />
+	<Work />
 
 	<ProjectHeader />
 
-	<Page4 />
+	<Projects />
 
-	<Page5 />
+	<ContactMe />
 </div>
 
 <style lang="scss">
