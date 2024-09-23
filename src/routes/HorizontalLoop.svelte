@@ -145,6 +145,7 @@
 		position: relative;
 		display: flex;
 		align-items: center;
+		overflow: hidden;
 	}
 
 	.box {
@@ -157,6 +158,7 @@
 		padding: 0;
 		position: relative;
 		flex-shrink: 0;
+		overflow: hidden;
 	}
 
 	.small-pronav-text {
@@ -175,11 +177,14 @@
   }
 
   .tectmind {
-    width: 630px;
+    width: 630px;	
   }
 
 	.box-text {
 		font-size: 5.5rem;
+		@media (max-width: 600px) {
+			// font-size: 3.5rem;
+		}
 	}
 
 	.box img {

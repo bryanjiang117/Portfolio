@@ -37,9 +37,13 @@
 <style lang='scss'>
 	@import '/src/global.scss';
 
+	.experience .techStack {
+		font-size: max(1.2vw, 0.8rem);
+	}
+
 	.experience .desc{
 		margin: 1.5rem 0;
-		font-size: small;
+		font-size: max(1vw, 0.7rem);
 	}
 
 	.experience h3 {
@@ -51,8 +55,7 @@
 	.experience h1 {
 		font-weight: normal;
 		margin: 0;
-		max-width: 30vw;
-		font-size: 2.2vw;
+		font-size: max(2.2vw, 1.5rem);
 		line-height: 3rem;
 		letter-spacing: -1.5px;
 	}
@@ -62,6 +65,14 @@
 		display: flex;
 		flex-direction: column;
 		gap: 3rem;
+	}
+
+	.experience {
+		max-width: 30vw;
+
+		@media (max-width: 600px) {
+			max-width: 50vw;
+		}
 	}
 
 	.experiences {

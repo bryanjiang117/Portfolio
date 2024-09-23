@@ -119,5 +119,6 @@
 
 	.main-container {
 		transition: background-color 0.5s ease;
+		overflow-x: hidden;
 	}
 </style>

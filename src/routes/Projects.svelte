@@ -1,9 +1,9 @@
 <script>
 	import { onMount } from "svelte";
+	import { getNameMetrics } from "../utils/util.js";
 
 	const name = 'BRYAN JIANG';
-	let padding = 0;
-	let length = 0;
+	let nameLength = 0;
 
 	const projects = [
 		{
@@ -33,18 +33,11 @@
 	];
 
 	function handleResizeWindow() {
-		// Align text ref https://darraghmckay.com/blog/rect-text
-		const canvas = document.createElement('canvas');
-			const context = canvas.getContext('2d');
-			const windowWidth = window.innerWidth;
-			const fontSize = windowWidth * 0.11; // 11vw equivalent
-			context.font = `${fontSize}px Arial`;
-			const metrics = context.measureText(name);
-			length = metrics.actualBoundingBoxLeft + metrics.actualBoundingBoxRight;
-			padding = (windowWidth - length) / 2;
+		const { length, left } = getNameMetrics(name);
+		nameLength = length;
 
-			const projectsContainer = document.querySelector('.projects-container');
-			projectsContainer.style.paddingLeft = `${padding}px`;
+		const projectsContainer = document.querySelector('.projects-container');
+		projectsContainer.style.paddingLeft = `${left}px`;
 	}
 
 	onMount(() => {
@@ -61,7 +54,7 @@
 <div id="page-4" class="page">
 	<div class="projects-container no-select">
     {#each projects as project, i}
-			<ul class='project' style={i !== 0 ? `margin-left: ${i * length / 5}px` : 0}>
+			<ul class='project' style={i !== 0 ? `margin-left: ${i * nameLength / 5}px` : 0}>
 				<li>
 					<div class='header'>
 						<h1 class='gradient'>{project.name}</h1>	

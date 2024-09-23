@@ -1,21 +1,14 @@
 <script>
   import { onMount } from "svelte";
+  import { getNameMetrics } from "../utils/util.js";
 
   const name = 'BRYAN JIANG';
 
   function handleResizeWindow() {
-  // Align text ref https://darraghmckay.com/blog/rect-text
-  const canvas = document.createElement('canvas');
-    const context = canvas.getContext('2d');
-    const windowWidth = window.innerWidth;
-    const fontSize = windowWidth * 0.11; // 11vw equivalent
-    context.font = `${fontSize}px Arial`;
-    const metrics = context.measureText(name);
-    const length = metrics.actualBoundingBoxLeft + metrics.actualBoundingBoxRight;
-    const padding = (windowWidth - length) / 2;
+    const { leftSidePadding } = getNameMetrics(name);
 
     const projectsContainer = document.querySelector('.project-header-container');
-    projectsContainer.style.paddingLeft = `${padding}px`;
+    projectsContainer.style.paddingLeft = `${leftSidePadding}px`;
   }
 
   onMount(() => {
@@ -53,7 +46,7 @@
     background-clip: text;
     -webkit-background-clip: text; 
     
-    font-size: 8vw;
+    font-size: max(8vw, 4rem);
     letter-spacing: -5px;
   }
 

@@ -2,6 +2,7 @@
 	import Typed from 'typed.js';
 	import gsap from 'gsap';
 	import { onMount } from 'svelte';
+	import { getNameMetrics } from '../utils/util.js';
 
 	const name = 'BRYAN JIANG';
 	let greeting;
@@ -43,17 +44,7 @@
 	};
 
 	function handleResizeWindow() {
-		// Align text ref https://darraghmckay.com/blog/rect-text
-		const canvas = document.createElement('canvas');
-		const context = canvas.getContext('2d');
-		const windowWidth = window.innerWidth;
-		const fontSize = windowWidth * 0.11; // 11vw equivalent
-		context.font = `${fontSize}px Arial`;
-		const metrics = context.measureText(name);
-		leftSidePadding = Math.abs(metrics.actualBoundingBoxLeft); 	
-		const rightSidePadding = Math.abs(metrics.actualBoundingBoxRight - metrics.width) / 2;
-		length = metrics.actualBoundingBoxLeft + metrics.actualBoundingBoxRight;
-
+		const { length, leftSidePadding, rightSidePadding } = getNameMetrics(name);
 		const greeting = document.querySelector('.greeting');
 		greeting.style.transform = `translateX(${leftSidePadding}px)`;
 		const job = document.querySelector('.job');
