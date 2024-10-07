@@ -177,7 +177,7 @@
   }
 
   .tectmind {
-    width: 630px;	
+    width: 630px;			
   }
 
 	.box-text {
