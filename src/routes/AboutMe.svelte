@@ -7,7 +7,7 @@
 
 		const name = 'BRYAN JIANG';
 		let bio =
-			"I'm a software developer and artist. I'm super passionate about creating beautifully usable websites. There's nothing more satisfying than bringing your ideas to life. About me personally, I enjoy drawing, volleyball, and learning languages (watching anime and dramas). I love travelling because I love novelty and I love food. I'm a harsh critic for food, art, and code because, in some ways, they are the same. I often find myself beaten by the gap between my judgement and my skill. So, my unending goal is to create something of which even I am proud.";
+			"I'm a software developer and artist. I'm super passionate about creating beautifully usable websites. There's nothing more satisfying than bringing your ideas to life. About me personally, I enjoy drawing, volleyball, and learning languages (watching anime and dramas). I love travelling because I love novelty and I love food. I'm a harsh critic for food, art, and code because, in some ways, they are the same. I often find myself beaten by the gap between my judgement and skill. So, my constant goal is to create something of which even I am proud.";
 		let bioContainer;
 		let splitText;
 		let previousContainerWidth;
