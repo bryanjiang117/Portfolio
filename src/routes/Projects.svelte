@@ -4,18 +4,25 @@
 
 	const name = 'BRYAN JIANG';
 	let nameLength = 0;
+	let windowWidth = 0;
 
 	const projects = [
 		{
+			name: 'Crusader',
+			desc: 'A Gemini-integrated web app that scrapes the web for high-quality movie and show recommendations',
+			techStack: ['Python', 'Flask', 'JavaScript', 'React', 'Docker', 'Google Cloud Platform'],
+			link: 'https://crusader-569595952979.northamerica-northeast2.run.app/'
+		},
+		{
 			name: 'Resolutions',
 			desc: 'A web app to motivate you and your friends to stick with your New Year resolutions',
-			techStack: ['Next', 'React', 'JavaScript', 'Tailwind', 'NextUI', 'PostgreSQL'],
-			link: 'https://github.com/bryanjiang117/Resolutions'
+			techStack: ['PostgreSQL', 'JavaScript', 'Next', 'React', 'Tailwind', 'NextUI', 'Vercel'],
+			link: 'https://resolutions-ochre.vercel.app/'
 		},
 		{
 			name: 'Chess',
 			desc: 'The board game chess with a focus on effective modular programming',
-			techStack: ['C++', 'XWindow'],
+			techStack: ['C++', 'X Window'],
 			link: 'https://github.com/bryanjiang117/Chess'
 		},
 		{
@@ -35,6 +42,7 @@
 	function handleResizeWindow() {
 		const { length, left } = getNameMetrics(name);
 		nameLength = length;
+		windowWidth = window.innerWidth;
 
 		const projectsContainer = document.querySelector('.projects-container');
 		projectsContainer.style.paddingLeft = `${left}px`;
@@ -53,29 +61,30 @@
 
 <div id="page-4" class="page">
 	<div class="projects-container no-select">
-    {#each projects as project, i}
-			<ul class='project' style={i !== 0 ? `margin-left: ${i * nameLength / 5}px` : 0}>
-				<li>
-					<div class='header'>
-						<h1 class='gradient'>{project.name}</h1>	
-						<a class='github-link gradient' href={project.link} target='_blank'>View on GitHub</a>
+			{#each projects as project, i}
+				<div class="project-container">
+					<div class='project' style={i !== 0 ? `margin-left: ${i * (nameLength - windowWidth * 0.03) / projects.length}px` : 0}>
+						<a href={project.link} target='_blank'>
+							<div class='header'>
+								<h1 class='gradient'>{project.name}</h1>	
+							</div>
+							<p class='gradient'>{project.desc}</p>
+							<div class='tech-stack'>
+								{#each project.techStack as tech}
+									<span class='tech-icon gradient'>{tech}</span>
+								{/each}
+							</div>
+						</a>
 					</div>
-					<p class='gradient'>{project.desc}</p>
-					<div class='tech-stack'>
-						{#each project.techStack as tech}
-							<span class='tech-icon gradient'>{tech}</span>
-						{/each}
-					</div>
-				</li>
-      </ul>
-    {/each}
+				</div>
+			{/each}
   </div>
 </div>
 
 <style lang="scss">
 @import '/src/global.scss';
 
-.project a {
+a {
 	text-decoration: none;
 	color: $color-text-2;
 	position: relative;
@@ -83,25 +92,6 @@
 
 .project a:hover {
 	cursor: pointer;
-	transition: text-decoration 1s;
-}
-
-.project a:hover::before {
-  transform: scaleX(1);
-}
-
-.project a::before {
-  content: "";
-  position: absolute;
-  display: block;
-  width: 100%;
-  height: 2px;
-  bottom: 0;
-  left: 0;
-  background-color: $color-text-2;
-  transform: scaleX(0);
-  transform-origin: top left;
-  transition: transform 0.3s ease;
 }
 
 .tech-icon {
@@ -124,12 +114,13 @@
 	margin-top: 1rem;
 }
 
-.github-link {
+.project-link {
 	font-size: small;
 	display: none;
 	-webkit-text-fill-color: transparent; 
 	background-clip: text;
 	-webkit-background-clip: text; 
+	animation: fadeIn 1s;
 }
 
 .project p {
@@ -160,10 +151,6 @@
 	margin-bottom: 0.5rem;
 }
 
-.project li {
-	height: 65vh;
-}
-
 .project {
   font-family: 'Helvetica', sans-serif;
 	list-style-type: none;
@@ -171,12 +158,8 @@
 	padding: 0;
 }
 
-.project:hover h1 {
-	// text-shadow: 0 0 15px $color-text-3;
-}
-
-.project:hover .github-link {
-	display: block;
+.project-container {
+	height: 70vh;
 }
 
 .projects-container {	
@@ -184,6 +167,7 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: start;
+	margin-right: 5vw;
 }
 
 #page-4 {
@@ -193,4 +177,14 @@
 	z-index: 3;
 	position: relative;
 }
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
 </style>

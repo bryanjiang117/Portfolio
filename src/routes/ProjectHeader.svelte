@@ -45,7 +45,7 @@
     -webkit-text-fill-color: transparent; 
     background-clip: text;
     -webkit-background-clip: text; 
-    
+    margin-left: 5vw;
     font-size: max(8vw, 4rem);
     letter-spacing: -5px;
   }
