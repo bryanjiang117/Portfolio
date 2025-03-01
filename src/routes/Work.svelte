@@ -1,18 +1,25 @@
 <script>
 	const experiences = [
 		{
+			title: 'Fullstack Developer',
+			company: 'Redbrick - Shift',
+			location: 'Victoria, BC',
+			techStack: ['React', 'TypeScript', 'C++'],
+			desc: 'Bug fixing, testing, and developing new features for our Chromium browser app as a member of the Browser UI team.'
+		},
+		{
 			title: 'Fullstack Engineer',
 			company: 'TectMind',
 			location: 'Montreal, QC',
-			techStack: 'React&nbsp;&nbsp;·&nbsp;&nbsp;TypeScript&nbsp;&nbsp;·&nbsp;&nbsp;Python&nbsp;&nbsp;·&nbsp;&nbsp;Mapbox',
-			desc: 'Worked in a tight-knit startup team to create their zoning analysis web app. Developed the app\'s main page (map) and data visualization.'
+			techStack: ['React', 'TypeScript', 'Python'],
+			desc: 'Developed a new zoning analysis app\'s main map UI and data visualization page in a tight-knit startup.'
 		},
 		{
 			title: 'Frontend Developer',
 			company: 'ProNavigator',
 			location: 'Waterloo, ON',
-			techStack: 'React&nbsp;&nbsp;·&nbsp;&nbsp;JavaScript&nbsp;&nbsp;·&nbsp;&nbsp;Material UI',
-			desc: 'Designed and developed internal tools user interfaces in collaboration with backend and QA engineers.'
+			techStack: ['React', 'JavaScript'],
+			desc: 'Designed and developed user interfaces for organizational internal tools .'
 		}
 	];
 </script>
@@ -26,7 +33,7 @@
 						<h1>{exp.title}</h1>
 						<h3>{exp.company} at {exp.location}</h3>
 						<p class='desc'>{exp.desc}</p>
-						<p class='techStack'>{@html exp.techStack}</p>
+						<p class='techStack'>{@html exp.techStack.reduce((prev, cur) => prev + '&nbsp;&nbsp;·&nbsp;&nbsp;' + cur)}</p>
 					</li>
 				{/each}
 			</ul>
@@ -38,12 +45,12 @@
 	@import '/src/global.scss';
 
 	.experience .techStack {
-		font-size: max(1.2vw, 0.8rem);
+		font-size: max(1vw, 1rem);
 	}
 
 	.experience .desc{
 		margin: 1.5rem 0;
-		font-size: max(1vw, 0.7rem);
+		font-size: max(0.8vw, 0.8rem);
 	}
 
 	.experience h3 {
@@ -76,7 +83,7 @@
 	}
 
 	.experiences {
-		
+		margin-right: 20%;
 	}
 
 	.container {
@@ -89,7 +96,7 @@
 	}
 
 	#page-3 {
-		height: 120vh;
+		height: 140vh;
 		width: 100%;
 		position: absolute;
 		z-index: 2;
