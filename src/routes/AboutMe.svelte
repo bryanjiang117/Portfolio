@@ -7,12 +7,11 @@
 
 	const name = 'BRYAN JIANG';
 	let bio =
-		"I'm a software developer and artist. I'm super passionate about creating beautifully usable websites. There's nothing more satisfying than bringing your ideas to life. About me personally, I enjoy drawing, volleyball, and learning languages (watching anime and dramas). I love travelling because I love novelty and I love food. I'm a harsh critic for food, art, and code because, in some ways, they are the same. I often find myself beaten by the gap between my judgement and skill. So, my constant goal is to create something of which even I am proud.";
+		"I'm a software developer and artist. I'm super passionate about building highly functional yet visually captivating websites. There's nothing more satisfying than bringing an idea to life. My work is driven by a commitment to user experience and an appreciation for beautiful things. Outside of work, I enjoy drawing, volleyball, and learning languages. In the near future, I'd like to travel the world and explore new cultures and new sights, which serve as the source of my inspiration to create. Please feel free to explore:";
 	let bioContainer;
 	let splitText;
 	let previousContainerWidth;
 	let observer;
-	let scroll;
 
 	// An event handler that will be called when the container element is resized.
 	function handleResizeText(entry) {
