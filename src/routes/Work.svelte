@@ -12,7 +12,7 @@
 			company: 'TectMind',
 			location: 'Montreal, QC',
 			techStack: ['React', 'TypeScript', 'Python'],
-			desc: 'Developed a new zoning analysis app\'s main map UI and data visualization page in a tight-knit startup.'
+			desc: "Developed a new zoning analysis app's main map UI and data visualization page in a tight-knit startup."
 		},
 		{
 			title: 'Frontend Developer',
@@ -24,16 +24,18 @@
 	];
 </script>
 
-<section id='page-3' class='page'>
-	<div class='container'>
-		<div class='experiences'>
+<section id="page-3" class="page">
+	<div class="container">
+		<div class="experiences">
 			<ul>
-				{#each experiences as exp} 
-					<li class='experience'>
+				{#each experiences as exp}
+					<li class="experience">
 						<h1>{exp.title}</h1>
 						<h3>{exp.company} at {exp.location}</h3>
-						<p class='desc'>{exp.desc}</p>
-						<p class='techStack'>{@html exp.techStack.reduce((prev, cur) => prev + '&nbsp;&nbsp;·&nbsp;&nbsp;' + cur)}</p>
+						<p class="desc">{exp.desc}</p>
+						<p class="techStack">
+							{@html exp.techStack.reduce((prev, cur) => prev + '&nbsp;&nbsp;·&nbsp;&nbsp;' + cur)}
+						</p>
 					</li>
 				{/each}
 			</ul>
@@ -41,14 +43,14 @@
 	</div>
 </section>
 
-<style lang='scss'>
+<style lang="scss">
 	@import '/src/global.scss';
 
 	.experience .techStack {
 		font-size: max(1vw, 1rem);
 	}
 
-	.experience .desc{
+	.experience .desc {
 		margin: 1.5rem 0;
 		font-size: max(0.8vw, 0.8rem);
 	}

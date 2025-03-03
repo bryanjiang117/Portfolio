@@ -1,6 +1,6 @@
 <script lang="js">
-	import { gsap } from "gsap";
-	import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+	import { gsap } from 'gsap';
+	import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 	import { onMount } from 'svelte';
 	import Landing from './Landing.svelte';
 	import AboutMe from './AboutMe.svelte';
@@ -8,7 +8,7 @@
 	import ProjectHeader from './ProjectHeader.svelte';
 	import Projects from './Projects.svelte';
 	import ContactMe from './ContactMe.svelte';
-	import HorizontalLoop from "./HorizontalLoop.svelte";
+	import Marquee from './Marquee.svelte';
 
 	// meta data
 	const title = 'Bryan Jiang';
@@ -19,7 +19,7 @@
 	let nameElement;
 	let isNameVisible = true;
 	let observer;
-	
+
 	onMount(async () => {
 		if (!nameElement) return;
 
@@ -44,12 +44,12 @@
 		ScrollTrigger.create({
 			trigger: page3,
 			endTrigger: page4,
-			start: "top top", // Start when the top of page 3 hits the top of the viewport
-			end: "top+=20% top", // End when the top of page 4 hits the top of the viewport
+			start: 'top top', // Start when the top of page 3 hits the top of the viewport
+			end: 'top+=20% top', // End when the top of page 4 hits the top of the viewport
 			pin: projectHeader, // Pin projectheader in place while page 3 scrolls up
-			pinSpacing: true,// Prevent extra space after the pinning
+			pinSpacing: true, // Prevent extra space after the pinning
 			scrub: true,
-			immediateRender: false,
+			immediateRender: false
 		});
 
 		return () => {
@@ -61,7 +61,6 @@
 	$: if (observer && nameElement) {
 		observer.observe(nameElement);
 	}
-
 </script>
 
 <svelte:head>
@@ -75,13 +74,13 @@
 <div class="main-container {isNameVisible ? 'page-1' : 'page-2'}">
 	<Landing bind:nameElement />
 
-	<div class="page-divider" />
+	<div class="page-divider"></div>
 
 	<AboutMe />
 
-	<div class="page-divider-lg" />
+	<div class="page-divider-lg"></div>
 
-	<HorizontalLoop />
+	<Marquee />
 
 	<Work />
 

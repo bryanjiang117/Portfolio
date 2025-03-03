@@ -11,6 +11,9 @@ importers:
       debug:
         specifier: ^4.3.7
         version: 4.4.0
+      dynamic-marquee:
+        specifier: ^2.6.5
+        version: 2.6.5
       gsap:
         specifier: ^3.12.5
         version: 3.12.7
@@ -52,7 +55,7 @@ importers:
         specifier: ^3.0.0
         version: 3.1.2(svelte@5.20.5)(vite@5.4.14(sass-embedded@1.85.1))
       prettier:
-        specifier: ^3.1.1
+        specifier: ^3.5.2
         version: 3.5.2
       prettier-plugin-svelte:
         specifier: ^3.1.2
@@ -431,6 +434,9 @@ packages:
 
   devalue@5.1.1:
     resolution: {integrity: sha512-maua5KUiapvEwiEAe+XnlZ3Rh0GD+qI1J/nb9vrJc3muPXvcF/8gXYTWF76+5DAqHyDUtOIImEuo0YKE9mshVw==}
+
+  dynamic-marquee@2.6.5:
+    resolution: {integrity: sha512-IfnOHhheSXGjTkLrrfv01x9Ws4O4mLIdzJxP8KTtINeO8hbK0OUV0iDv4qT1QPJRD+JawvrZvjvO7DuNZcO/dQ==}
 
   esbuild@0.21.5:
     resolution: {integrity: sha512-mg3OPMV4hXywwpoDxu3Qda5xCKQi+vCTZq8S9J/EpkhB2HzKXq4SNFZE3+NK93JYxc8VMSep+lOUSC/RVKaBqw==}
@@ -1039,6 +1045,8 @@ snapshots:
   deepmerge@4.3.1: {}
 
   devalue@5.1.1: {}
+
+  dynamic-marquee@2.6.5: {}
 
   esbuild@0.21.5:
     optionalDependencies:

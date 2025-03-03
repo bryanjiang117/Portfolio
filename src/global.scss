@@ -1,6 +1,11 @@
 @import '@fontsource/fira-mono';
 
 @font-face {
+	font-family: 'argentum';
+	src: url('/lib/fonts/ArgentumSans-Regular.otf') format('opentype');
+}
+
+@font-face {
 	font-family: 'kievit';
 	src:
 		url('/lib/fonts/kievit-serif-medium.woff2') format('woff2'),
@@ -8,26 +13,31 @@
 		url('/lib/fonts/kievit-serif-medium.otf') format('opentype');
 }
 
-
 @font-face {
 	font-family: 'Helvetica';
 	font-style: normal;
 	font-weight: normal;
-	src: local('Helvetica'), url('/lib/fonts/Helvetica.woff') format('woff');
+	src:
+		local('Helvetica'),
+		url('/lib/fonts/Helvetica.woff') format('woff');
 }
 
 @font-face {
 	font-family: 'Futura';
 	font-style: normal;
 	font-weight: normal;
-	src: local('Futura'), url('/lib/fonts/Futura\ Regular.ttf') format('truetype');
+	src:
+		local('Futura'),
+		url('/lib/fonts/Futura\ Regular.ttf') format('truetype');
 }
 
 @font-face {
 	font-family: 'Geometrica';
 	font-style: normal;
 	font-weight: normal;
-	src: local('Geometrica'), url('/lib/fonts/GeometricaSans-Regular.ttf') format('truetype');
+	src:
+		local('Geometrica'),
+		url('/lib/fonts/GeometricaSans-Regular.ttf') format('truetype');
 }
 
 // Define SCSS variables
@@ -45,6 +55,7 @@ $font-body:
 	sans-serif;
 $font-mono: 'Fira Mono', monospace;
 $font-pronavigator: 'kievit';
+$font-redbrick: 'argentum', sans-serif;
 $color-bg-1: #ffc919;
 // $color-bg-1: #fecd5c;
 $color-bg-2: #1c1b1a;
@@ -68,7 +79,7 @@ $column-margin-top: 4rem;
 	height: 100%;
 	width: 100%;
 	font-family: $font-body;
-	color: $color-text-1;	
+	color: $color-text-1;
 	margin: 0;
 	padding: 0;
 	overflow-y: auto;
@@ -96,4 +107,3 @@ $column-margin-top: 4rem;
 	min-width: 100%;
 	min-height: 100vh;
 }
-	
