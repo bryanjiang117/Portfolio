@@ -2,10 +2,8 @@
 	import { onMount } from 'svelte';
 	import { getNameMetrics } from '../utils/util.js';
 
-	const name = 'BRYAN JIANG';
-
 	function handleResizeWindow() {
-		const { leftSidePadding } = getNameMetrics(name);
+		const { leftSidePadding } = getNameMetrics();
 
 		const projectsContainer = document.querySelector('.project-header-container');
 		projectsContainer.style.paddingLeft = `${leftSidePadding}px`;
@@ -35,14 +33,14 @@
 		display: flex;
 		justify-content: start;
 		align-items: center;
-		background: radial-gradient(rgb(231, 228, 224), black);
+		background: $projects-gradient;
 		background-attachment: fixed;
 		background-position: center;
 		background-size: 100vw 100vh;
 		-webkit-text-fill-color: transparent;
 		background-clip: text;
 		-webkit-background-clip: text;
-		margin-left: 5vw;
+		margin-left: 15vw;
 		font-size: max(8vw, 4rem);
 		letter-spacing: -5px;
 	}

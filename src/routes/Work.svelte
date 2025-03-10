@@ -12,14 +12,14 @@
 			company: 'TectMind',
 			location: 'Montreal, QC',
 			techStack: ['React', 'TypeScript', 'Python'],
-			desc: "Developed a new zoning analysis app's main map UI and data visualization page in a tight-knit startup."
+			desc: "Developed our new zoning analysis app's main map UI, data visualization page, and corresponding backend in a tight-knit startup."
 		},
 		{
 			title: 'Frontend Developer',
 			company: 'ProNavigator',
 			location: 'Waterloo, ON',
 			techStack: ['React', 'JavaScript'],
-			desc: 'Designed and developed user interfaces for organizational internal tools .'
+			desc: 'Designed and developed user interfaces for our organizational internal tools.'
 		}
 	];
 </script>

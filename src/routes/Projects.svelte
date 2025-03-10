@@ -2,7 +2,6 @@
 	import { onMount } from 'svelte';
 	import { getNameMetrics } from '../utils/util.js';
 
-	const name = 'BRYAN JIANG';
 	let nameLength = 0;
 	let windowWidth = 0;
 
@@ -40,12 +39,12 @@
 	];
 
 	function handleResizeWindow() {
-		const { length, left } = getNameMetrics(name);
+		const { length, left, leftSidePadding } = getNameMetrics();
 		nameLength = length;
 		windowWidth = window.innerWidth;
 
 		const projectsContainer = document.querySelector('.projects-container');
-		projectsContainer.style.paddingLeft = `${left}px`;
+		projectsContainer.style.paddingLeft = `${left + leftSidePadding + 10}px`;
 	}
 
 	onMount(() => {
@@ -66,7 +65,7 @@
 				<div
 					class="project"
 					style={i !== 0
-						? `margin-left: ${(i * (nameLength - windowWidth * 0.03)) / projects.length}px`
+						? `margin-left: ${(i * (nameLength - windowWidth * 0.03)) / projects.length / 2}px`
 						: 0}
 				>
 					<a href={project.link} target="_blank">
@@ -107,7 +106,7 @@
 	}
 
 	.gradient {
-		background: radial-gradient(rgb(232, 229, 225), black);
+		background: $projects-gradient;
 		background-attachment: fixed;
 		background-position: center;
 		background-size: cover;
@@ -164,7 +163,7 @@
 	}
 
 	.project-container {
-		height: 70vh;
+		height: 30vh;
 	}
 
 	.projects-container {

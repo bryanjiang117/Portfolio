@@ -4,16 +4,15 @@
 
 	onMount(() => {
 		const marquee1 = (window.m = new Marquee(document.getElementById('marquee'), {
+			rate: -150,
+			startOnScreen: true
+		}));
+
+		const marquee2 = (window.m = new Marquee(document.getElementById('marquee'), {
 			rate: -125,
 			startOnScreen: true
 		}));
 
-    const marquee2 = (window.m = new Marquee(document.getElementById('marquee'), {
-			rate: -125,
-			startOnScreen: true
-		}));
-
-    
 		window.l = loop(marquee1, [
 			() => {
 				const el = document.createElement('div');
@@ -38,8 +37,11 @@
 			() => {
 				const el = document.createElement('div');
 				el.innerHTML = `
-            <div class="marqueeItem tectmind">
-              <img src="/lib/images/tectmind.webp" alt="Tectmind Logo" />
+            <div class="marqueeItem pronavigator">
+              <img src="/lib/images/pronavigator-logo.png" alt="ProNavigator logo" />
+              <div class='text'>
+                <span>  P</span><span class="small-pronav-text">RO</span><span>N</span><span class="small-pronav-text">AVIGATOR</span>
+              </div>
             </div>
           `;
 				return el;
@@ -47,11 +49,8 @@
 			() => {
 				const el = document.createElement('div');
 				el.innerHTML = `
-            <div class="marqueeItem pronavigator">
-              <img src="/lib/images/pronavigator-logo.png" alt="ProNavigator logo" />
-              <div class='text'>
-                <span>  P</span><span class="small-pronav-text">RO</span><span>N</span><span class="small-pronav-text">AVIGATOR</span>
-              </div>
+            <div class="marqueeItem tectmind">
+              <img src="/lib/images/tectmind.webp" alt="Tectmind Logo" />
             </div>
           `;
 				return el;

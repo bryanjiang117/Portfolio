@@ -5,7 +5,6 @@
 	import gsap from 'gsap';
 	import { getNameMetrics } from '../utils/util.js';
 
-	const name = 'BRYAN JIANG';
 	let bio =
 		"I'm a software developer and artist. I'm super passionate about building highly functional yet visually captivating websites. There's nothing more satisfying than bringing an idea to life. My work is driven by a commitment to user experience and an appreciation for beautiful things. Outside of work, I enjoy drawing, volleyball, and learning languages. In the near future, I'd like to travel the world and explore new cultures and new sights, which serve as the source of my inspiration to create. Please feel free to explore:";
 	let bioContainer;
@@ -32,7 +31,7 @@
 	}
 
 	function handleResizeWindow() {
-		const { left } = getNameMetrics(name);
+		const { left } = getNameMetrics();
 
 		const bioContainer = document.querySelector('.bio-container');
 		bioContainer.style.transform = `translateX(${left}px)`;

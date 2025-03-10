@@ -1,4 +1,6 @@
-export const getNameMetrics = (name) => {
+export const getNameMetrics = () => {
+	const name = 'BRYAN JIANG';
+
 	// Align text ref https://darraghmckay.com/blog/rect-text
 	const canvas = document.createElement('canvas');
 	const context = canvas.getContext('2d');

@@ -28,7 +28,7 @@
 	.contact-me {
 		font-size: 8vw;
 		letter-spacing: -0.5vw;
-		background: radial-gradient(rgb(231, 228, 224), black);
+		background: $projects-gradient;
 		background-attachment: fixed;
 		background-position: center;
 		background-size: 80vw 100vh;

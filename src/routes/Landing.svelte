@@ -4,13 +4,11 @@
 	import { onMount } from 'svelte';
 	import { getNameMetrics } from '../utils/util.js';
 
-	const name = 'BRYAN JIANG';
+	const NAME = 'BRYAN JIANG';
 	let greeting;
 	let desu;
 	let typing = true;
 	export let nameElement;
-	let length = 0;
-	let leftSidePadding = 0;
 	let isNameHovered = false;
 
 	const changeGreeting = () => {
@@ -44,7 +42,7 @@
 	};
 
 	function handleResizeWindow() {
-		const { length, leftSidePadding, rightSidePadding } = getNameMetrics(name);
+		const { length, leftSidePadding, rightSidePadding } = getNameMetrics();
 		const greeting = document.querySelector('.greeting');
 		greeting.style.transform = `translateX(${leftSidePadding}px)`;
 		const job = document.querySelector('.job');
@@ -125,10 +123,10 @@
 					}}
 					bind:this={nameElement}
 				>
-					{name}
+					{NAME}
 				</h1>
 				<div class="desu-wrapper">
-					<span id="desu" />
+					<span id="desu"></span>
 				</div>
 			</div>
 			<div class="job">
