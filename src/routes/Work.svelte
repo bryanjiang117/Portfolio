@@ -2,7 +2,7 @@
 	const experiences = [
 		{
 			title: 'Fullstack Developer',
-			company: 'Redbrick - Shift',
+			company: 'Redbrick — Shift',
 			location: 'Victoria, BC',
 			techStack: ['React', 'TypeScript', 'C++'],
 			desc: 'Bug fixing, testing, and developing new features for our Chromium browser app as a member of the Browser UI team.'
@@ -30,8 +30,8 @@
 			<ul>
 				{#each experiences as exp}
 					<li class="experience">
-						<h1>{exp.title}</h1>
-						<h3>{exp.company} at {exp.location}</h3>
+						<h1>{exp.company}</h1>
+						<h4>{exp.title} at {exp.location}</h4>
 						<p class="desc">{exp.desc}</p>
 						<p class="techStack">
 							{@html exp.techStack.reduce((prev, cur) => prev + '&nbsp;&nbsp;·&nbsp;&nbsp;' + cur)}
@@ -53,20 +53,21 @@
 	.experience .desc {
 		margin: 1.5rem 0;
 		font-size: max(0.8vw, 0.8rem);
+		line-height: 150%;
 	}
 
-	.experience h3 {
+	.experience h4 {
 		font-weight: normal;
 		margin-top: 0.5rem;
 		margin-bottom: 0;
 	}
 
 	.experience h1 {
-		font-weight: normal;
 		margin: 0;
-		font-size: max(2.2vw, 1.5rem);
+		font-weight: normal;
+		font-size: max(2.2vw, 2rem);
 		line-height: 3rem;
-		letter-spacing: -1.5px;
+		letter-spacing: -1px;
 	}
 
 	ul {

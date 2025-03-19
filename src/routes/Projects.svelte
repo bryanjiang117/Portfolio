@@ -137,13 +137,13 @@
 	}
 
 	.project h1 {
+		margin: 0;
+		margin-bottom: 0.5rem;
 		font-weight: normal;
 		letter-spacing: -1px;
-		margin-bottom: 0.5rem;
 		transition: text-shadow 0.5s;
-		margin: 0;
-		-webkit-text-fill-color: transparent;
 		background-clip: text;
+		-webkit-text-fill-color: transparent;
 		-webkit-background-clip: text;
 	}
 
@@ -156,10 +156,16 @@
 	}
 
 	.project {
-		font-family: 'Helvetica', sans-serif;
+		padding: 24px;
+		padding-left: 30px;
+		border-radius: 4px;
+		width: 100vw;
 		list-style-type: none;
-		width: fit-content;
-		padding: 0;
+		font-family: 'Helvetica', sans-serif;
+	}
+
+	.project:hover {
+		background-color: $color-bg-2;
 	}
 
 	.project-container {
@@ -175,11 +181,12 @@
 	}
 
 	#page-4 {
+		position: relative;
+		padding-top: 5rem;
 		width: 100%;
 		box-sizing: border-box;
 		background-color: $color-bg-3;
 		z-index: 3;
-		position: relative;
 	}
 
 	@keyframes fadeIn {

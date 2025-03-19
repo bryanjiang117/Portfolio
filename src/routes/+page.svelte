@@ -106,7 +106,7 @@
 	.page-1 {
 		background-color: $color-bg-1;
 		color: $color-text-1;
-	}
+	}	
 
 	.page-divider {
 		height: 30vh;

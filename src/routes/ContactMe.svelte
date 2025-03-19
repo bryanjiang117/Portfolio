@@ -12,14 +12,14 @@
 		<div class="contact-me">Contact Me!</div>
 	</div>
 
-	<div class="links">
+	<!-- <div class="links">
 		{#each socialLinks as link}
 			<a class="social-link" href={link.url} target="_blank">
 				<img src={`/lib/images/${link.icon}`} alt={link.name} />
 				<span>{link.name}</span>
 			</a>
 		{/each}
-	</div>
+	</div> -->
 </div>
 
 <style lang="scss">
@@ -56,13 +56,13 @@
 		height: fit-content;
 	}
 	.social-link img {
+		filter: invert(80%);
 		width: 1.5rem;
 		height: 1.5rem;
-		filter: invert(60%);
 	}
 
 	.links {
-		color: rgb(159, 156, 151);
+		color: rgb(172, 132, 76);
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -75,7 +75,6 @@
 	#page-5 {
 		height: 100vh;
 		width: 100%;
-		margin-top: -30vh;
 		background-color: $color-bg-3;
 	}
 </style>
