@@ -6,7 +6,7 @@
 	import { getNameMetrics } from '../utils/util.js';
 
 	let bio =
-		"I'm a software developer and artist. I'm super passionate about building highly functional yet visually captivating websites. There's nothing more satisfying than bringing an idea to life. My work is driven by a commitment to user experience and an appreciation for beautiful things. Outside of work, I enjoy drawing, volleyball, and learning languages. In the near future, I'd like to travel the world and explore new cultures and new sights, which serve as the source of my inspiration to create. Please feel free to explore:";
+		"I'm a software developer and artist. I'm passionate about building visually captivating yet highly usable websites. There's nothing more satisfying than bringing an idea to life. My work is driven by a commitment to user experience and an appreciation for beautiful things. Outside of work, I enjoy drawing, volleyball, and learning languages. In the near future, I'd like to travel the world and explore new cultures and new sights, which serve as the source of my inspiration to create. <br> Please feel free to explore.";
 	let bioContainer;
 	let splitText;
 	let previousContainerWidth;
@@ -33,8 +33,8 @@
 	function handleResizeWindow() {
 		const { left } = getNameMetrics();
 
-		const bioContainer = document.querySelector('.bio-container');
-		bioContainer.style.transform = `translateX(${left}px)`;
+		const page2 = document.querySelector('#page-2');
+		page2.style.paddingLeft = `${left}px`;
 	}
 
 	onMount(() => {
@@ -99,14 +99,19 @@
 	<div class="bio-container">
 		<h2>About Me</h2>
 		<div class="bio" bind:this={bioContainer}>
-			<p id="bio-text">{bio}</p>
+			<p id="bio-text">{@html bio}</p>
 		</div>
+	</div>
+	<div class="photo-container">
+		<!-- <img src="/lib/images/photos/orange_tree.png" alt="orange tree" class="photo" /> -->
 	</div>
 </div>
 
 <style lang="scss">
 	@import '/src/global.scss';
 	#page-2 {
+		display: flex;
+		box-sizing: border-box;
 	}
 
 	h2 {
@@ -116,19 +121,33 @@
 	}
 
 	.bio {
-		max-width: 30vw;
 		font-size: max(2.2vw, 1rem);
 		line-height: max(3vw, 1.2rem);
 		letter-spacing: -0.1vw;
 		transition: color 0.5s ease;
+		max-width: 30vw;
 		@media (max-width: 600px) {
 			max-width: 50vw;
 		}
 	}
 
 	.bio-container {
-		width: 100%;
-		height: 100%;
+		flex: 1;
+		// background: blue;
+	}
+
+	.photo-container {
+		flex: 1;
+		position: relative;
+		height: 500px;
+		// background: red;
+	}
+
+	.photo {
+		position: absolute;
+		top: 100%;
+		left: 0;
+		width: 50%;
 	}
 
 	:global(::-moz-selection) {

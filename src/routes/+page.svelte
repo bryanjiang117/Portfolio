@@ -80,8 +80,6 @@
 
 	<div class="page-divider-lg"></div>
 
-	<Marquee />
-
 	<Work />
 
 	<ProjectHeader />
@@ -113,7 +111,7 @@
 	}
 
 	.page-divider-lg {
-		height: 60vh;
+		height: 50vh;
 	}
 
 	.main-container {

@@ -7,6 +7,12 @@
 
 	const projects = [
 		{
+			name: 'FOMO',
+			desc: 'An Android app location tracking social app made for students and young adults to stay connected',
+			techStack: ['Kotlin', 'Jetpack Compose', 'MaterialUI', 'Supbase', 'JUnit', 'Google Maps API'],
+			link: 'https://github.com/bryanjiang117/FOMO'
+		},
+		{
 			name: 'Crusader',
 			desc: 'A Gemini-integrated web app that scrapes the web for high-quality movie and show recommendations',
 			techStack: ['Python', 'Flask', 'JavaScript', 'React', 'Docker', 'Google Cloud Platform'],
@@ -62,24 +68,24 @@
 	<div class="projects-container no-select">
 		{#each projects as project, i}
 			<div class="project-container">
-				<div
+				<a
 					class="project"
 					style={i !== 0
 						? `margin-left: ${(i * (nameLength - windowWidth * 0.03)) / projects.length / 2}px`
 						: 0}
+					href={project.link}
+					target="_blank"
 				>
-					<a href={project.link} target="_blank">
-						<div class="header">
-							<h1 class="gradient">{project.name}</h1>
-						</div>
-						<p class="gradient">{project.desc}</p>
-						<div class="tech-stack">
-							{#each project.techStack as tech}
-								<span class="tech-icon gradient">{tech}</span>
-							{/each}
-						</div>
-					</a>
-				</div>
+					<div class="header">
+						<h1 class="gradient">{project.name}</h1>
+					</div>
+					<p class="gradient">{project.desc}</p>
+					<div class="tech-stack">
+						{#each project.techStack as tech}
+							<span class="tech-icon gradient">{tech}</span>
+						{/each}
+					</div>
+				</a>
 			</div>
 		{/each}
 	</div>
@@ -88,14 +94,11 @@
 <style lang="scss">
 	@import '/src/global.scss';
 
-	a {
-		text-decoration: none;
-		color: $color-text-2;
+	.project {
+		display: block;
 		position: relative;
-	}
-
-	.project a:hover {
-		cursor: pointer;
+		color: $color-text-2;
+		text-decoration: none;
 	}
 
 	.tech-icon {
@@ -156,9 +159,8 @@
 	}
 
 	.project {
-		padding: 24px;
-		padding-left: 30px;
-		border-radius: 4px;
+		padding: 28px 0 32px 36px;
+		border-radius: 8px;
 		width: 100vw;
 		list-style-type: none;
 		font-family: 'Helvetica', sans-serif;

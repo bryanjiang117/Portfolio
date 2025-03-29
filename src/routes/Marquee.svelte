@@ -3,72 +3,85 @@
 	import { Marquee, loop } from 'dynamic-marquee';
 
 	onMount(() => {
-		const marquee1 = (window.m = new Marquee(document.getElementById('marquee'), {
-			rate: -150,
-			startOnScreen: true
-		}));
+		const marqueeElements = document.querySelectorAll('.marquee');
 
-		const marquee2 = (window.m = new Marquee(document.getElementById('marquee'), {
-			rate: -125,
-			startOnScreen: true
-		}));
+		marqueeElements.forEach((marqueeElement, i) => {
+			const marquee = new Marquee(marqueeElement, {
+				rate: -200,
+				startOnScreen: true
+			});
 
-		window.l = loop(marquee1, [
-			() => {
-				const el = document.createElement('div');
-				el.innerHTML = `
-            <div class="marqueeItem shift">
-              <img src="/lib/images/shift-logo.png" alt="Shift logo" />
-            </div>
-          `;
+			const offset = i * 50;
+			let firstCycle = true;
+			// The first callback returns a spacer element once to create an offset
+			loop(marquee, [
+				() => {
+					if (firstCycle) {
+						firstCycle = false;
+						const spacer = document.createElement('div');
+						spacer.style.width = `${offset}px`;
+						spacer.style.flexShrink = '0';
+						return spacer;
+					}
+					return null;
+				},
+				() => {
+					const el = document.createElement('div');
+					el.innerHTML = `
+							<div class="marqueeItem shift">
+								<img src="/lib/images/shift-logo.png" alt="Shift logo" />
+							</div>
+						`;
 
-				return el;
-			},
-			() => {
-				const el = document.createElement('div');
-				el.innerHTML = `
-            <div class="marqueeItem redbrick">
-              <div class='text'>REDBRICK</div>
-            </div>
-          `;
+					return el;
+				},
+				() => {
+					const el = document.createElement('div');
+					el.innerHTML = `
+							<div class="marqueeItem redbrick">
+								<div class='text'>REDBRICK</div>
+							</div>
+						`;
 
-				return el;
-			},
-			() => {
-				const el = document.createElement('div');
-				el.innerHTML = `
-            <div class="marqueeItem pronavigator">
-              <img src="/lib/images/pronavigator-logo.png" alt="ProNavigator logo" />
-              <div class='text'>
-                <span>  P</span><span class="small-pronav-text">RO</span><span>N</span><span class="small-pronav-text">AVIGATOR</span>
-              </div>
-            </div>
-          `;
-				return el;
-			},
-			() => {
-				const el = document.createElement('div');
-				el.innerHTML = `
-            <div class="marqueeItem tectmind">
-              <img src="/lib/images/tectmind.webp" alt="Tectmind Logo" />
-            </div>
-          `;
-				return el;
-			}
-		]);
+					return el;
+				},
+				() => {
+					const el = document.createElement('div');
+					el.innerHTML = `
+							<div class="marqueeItem pronavigator">
+								<img src="/lib/images/pronavigator-logo.png" alt="ProNavigator logo" />
+								<div class='text'>
+									<span>  P</span><span class="small-pronav-text">RO</span><span>N</span><span class="small-pronav-text">AVIGATOR</span>
+								</div>
+							</div>
+						`;
+					return el;
+				},
+				() => {
+					const el = document.createElement('div');
+					el.innerHTML = `
+							<div class="marqueeItem tectmind">
+								<img src="/lib/images/tectmind.webp" alt="Tectmind Logo" />
+							</div>
+						`;
+					return el;
+				}
+			]);
+		});
 	});
 </script>
 
-<div id="marquee"></div>
+<div class="marquee"></div>
 
 <style lang="scss">
 	@import '/src/global.scss';
 
 	$marquee-height: 120px;
 
-	#marquee {
+	.marquee {
 		position: static !important;
 		overflow: hidden;
+		height: $marquee-height;
 		margin: 0;
 		padding: 0;
 	}
@@ -78,8 +91,9 @@
 		align-items: center;
 		display: flex;
 		gap: 10px;
+		margin-left: 3rem;
 		font-size: $marquee-height;
-		margin-left: 7rem;
+		user-select: none;
 	}
 
 	:global(.marqueeItem img) {
