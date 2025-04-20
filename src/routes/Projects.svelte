@@ -64,7 +64,7 @@
 	});
 </script>
 
-<div id="page-4" class="page">
+<div id="page-5" class="page">
 	<div class="projects-container no-select">
 		{#each projects as project, i}
 			<div class="project-container">
@@ -182,7 +182,7 @@
 		margin-right: 5vw;
 	}
 
-	#page-4 {
+	#page-5 {
 		position: relative;
 		padding-top: 5rem;
 		width: 100%;

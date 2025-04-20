@@ -10,6 +10,8 @@
 		<Marquee />
 		<Marquee />
 		<Marquee />
+		<Marquee />
+		<Marquee />
 	</div>
 </section>
 
@@ -17,16 +19,13 @@
 	@import '/src/global.scss';
 
 	#page-3 {
-		height: 130vh;
-		width: 100%;
-		position: absolute;
-		z-index: 2;
+		height: 120vh;
 		background-color: $color-bg-2;
 	}
 
 	.container {
 		display: flex;
 		flex-direction: column;
-		gap: 10px;
+		gap: 1rem;
 	}
 </style>

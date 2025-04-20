@@ -8,7 +8,7 @@
 	import ProjectHeader from './ProjectHeader.svelte';
 	import Projects from './Projects.svelte';
 	import ContactMe from './ContactMe.svelte';
-	import Marquee from './Marquee.svelte';
+	import Photos from './Photos.svelte';
 
 	// meta data
 	const title = 'Bryan Jiang';
@@ -38,12 +38,12 @@
 		};
 
 		// parallax
-		const page3 = document.querySelector('#page-3');
-		const projectHeader = document.querySelector('.project-header-container');
 		const page4 = document.querySelector('#page-4');
+		const projectHeader = document.querySelector('.project-header-container');
+		const page5 = document.querySelector('#page-5');
 		ScrollTrigger.create({
-			trigger: page3,
-			endTrigger: page4,
+			trigger: page4,
+			endTrigger: page5,
 			start: 'top top', // Start when the top of page 3 hits the top of the viewport
 			end: 'top+=20% top', // End when the top of page 4 hits the top of the viewport
 			pin: projectHeader, // Pin projectheader in place while page 3 scrolls up
@@ -81,6 +81,8 @@
 	<div class="page-divider-lg"></div>
 
 	<Work />
+
+	<Photos />
 
 	<ProjectHeader />
 

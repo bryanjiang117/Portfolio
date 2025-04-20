@@ -181,6 +181,7 @@
 	.job {
 		display: flex;
 		font-size: 1.5vw;
+		font-weight: lighter;
 		letter-spacing: 1px;
 		line-height: 2rem;
 		text-align: right;

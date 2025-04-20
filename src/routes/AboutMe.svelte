@@ -103,6 +103,7 @@
 		</div>
 	</div>
 	<div class="photo-container">
+		<!-- <div class="color-block"></div> -->
 		<!-- <img src="/lib/images/photos/orange_tree.png" alt="orange tree" class="photo" /> -->
 	</div>
 </div>
@@ -114,39 +115,55 @@
 		box-sizing: border-box;
 	}
 
+	.bio-container {
+		position: relative;
+		z-index: 10;
+	}
+
 	h2 {
-		font-size: max(6vw, 2rem);
+		font-size: calc(4vw + 2rem);
 		font-weight: normal;
-		letter-spacing: -3px;
+		letter-spacing: -0.2vw;
+		margin-bottom: 2.5vm;
 	}
 
 	.bio {
-		font-size: max(2.2vw, 1rem);
-		line-height: max(3vw, 1.2rem);
+		max-width: 35vw;
+		font-size: calc(2.5vw + 0.5rem);
+		line-height: 125%;
 		letter-spacing: -0.1vw;
 		transition: color 0.5s ease;
-		max-width: 30vw;
+
 		@media (max-width: 600px) {
 			max-width: 50vw;
 		}
 	}
 
-	.bio-container {
-		flex: 1;
-		// background: blue;
+	.bio p {
 	}
 
 	.photo-container {
-		flex: 1;
 		position: relative;
-		height: 500px;
-		// background: red;
+		flex: 1;
+		opacity: 0.2;
+
+		// display: flex;
+		// align-items: center;
+		// justify-content: end;
+	}
+
+	.color-block {
+		position: absolute;
+		left: -50%;
+		height: 70%;
+		width: 120%;
+		background: rgb(49, 102, 199);
 	}
 
 	.photo {
 		position: absolute;
-		top: 100%;
-		left: 0;
+		top: 20%;
+		left: -20%;
 		width: 50%;
 	}
 
