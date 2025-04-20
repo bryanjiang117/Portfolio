@@ -82,6 +82,8 @@
 
 	<Work />
 
+	<div class="page-divider-lg"></div>
+
 	<Photos />
 
 	<ProjectHeader />
@@ -93,10 +95,6 @@
 
 <style lang="scss">
 	@import '/src/global.scss';
-
-	:global(.pin-spacer) {
-		background-color: $color-bg-3;
-	}
 
 	.page-2 {
 		background-color: $color-bg-2;
