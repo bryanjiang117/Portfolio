@@ -19,7 +19,7 @@
 	@import '/src/global.scss';
 
 	#page-3 {
-		height: 160vh;
+		height: fit-content;
 		background-color: $color-bg-2;
 	}
 

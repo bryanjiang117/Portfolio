@@ -112,6 +112,7 @@
 	@import '/src/global.scss';
 	#page-2 {
 		display: flex;
+		min-height: 0;
 		box-sizing: border-box;
 	}
 

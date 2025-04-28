@@ -96,6 +96,10 @@
 <style lang="scss">
 	@import '/src/global.scss';
 
+	html, body {
+		min-width: 400px;
+	}
+
 	.page-2 {
 		background-color: $color-bg-2;
 		color: $color-text-2;
