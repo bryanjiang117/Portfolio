@@ -45,7 +45,7 @@
 			trigger: page4,
 			endTrigger: page5,
 			start: 'top top', // Start when the top of page 3 hits the top of the viewport
-			end: 'top+=30% top', // End when the top of page 4 hits the top of the viewport
+			end: 'top+=55% top', // End when the top of page 4 hits the top of the viewport
 			pin: projectHeader, // Pin projectheader in place while page 3 scrolls up
 			pinSpacing: true, // Prevent extra space after the pinning
 			scrub: true,
