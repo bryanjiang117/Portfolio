@@ -86,7 +86,7 @@
 		width: 213px;
 		top: 372px;
 		left: 213px;
-		font-size: 430px;
+		font-size: 325px;
 		font-style: normal;
 		font-weight: bold;
 		letter-spacing: -15px;	
