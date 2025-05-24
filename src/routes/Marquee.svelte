@@ -79,7 +79,7 @@
 	$marquee-height: 120px;
 
 	.marquee {
-		position: static !important;
+		position: static;
 		overflow: hidden;
 		height: $marquee-height;
 		margin: 0;

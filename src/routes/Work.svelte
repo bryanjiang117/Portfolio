@@ -13,12 +13,14 @@
 		<Marquee />
 		<Marquee />
 	</div>
+	<img class="scribble" src="/lib/images/scribbles/work-scribble.png" alt="These are the companies that I've worked at before! (all as a web dev)"/>
 </section>
 
 <style lang="scss">
 	@import '/src/global.scss';
 
 	#page-3 {
+		position: relative;
 		height: fit-content;
 		background-color: $color-bg-2;
 	}
@@ -27,5 +29,13 @@
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
+	}
+
+	.scribble {
+		position: absolute;
+		right: 10vw;
+		bottom: calc(min(-20vw, -10rem)  + -3rem);
+		
+		height: max(20vw, 10rem);
 	}
 </style>
