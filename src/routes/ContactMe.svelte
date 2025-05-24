@@ -23,7 +23,7 @@
 </div>
 
 <style lang="scss">
-	@import '/src/global.scss';
+	@use '/src/global.scss' as *;
 
 	.contact-me {
 		font-size: 8vw;

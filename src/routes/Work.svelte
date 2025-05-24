@@ -1,6 +1,5 @@
 <script>
 	import Marquee from './Marquee.svelte';
-
 </script>
 
 <section id="page-3" class="page">
@@ -13,11 +12,15 @@
 		<Marquee />
 		<Marquee />
 	</div>
-	<img class="scribble" src="/lib/images/scribbles/work-scribble.png" alt="These are the companies that I've worked at before! (all as a web dev)"/>
+	<img
+		class="scribble"
+		src="/lib/images/scribbles/work-scribble.png"
+		alt="These are the companies that I've worked at before! (all as a web dev)"
+	/>
 </section>
 
 <style lang="scss">
-	@import '/src/global.scss';
+	@use '/src/global.scss' as *;
 
 	#page-3 {
 		position: relative;
@@ -28,14 +31,14 @@
 	.container {
 		display: flex;
 		flex-direction: column;
-		gap: 1rem;
+		gap: 1vw;
 	}
 
 	.scribble {
 		position: absolute;
 		right: 10vw;
-		bottom: calc(min(-20vw, -10rem)  + -3rem);
-		
+		bottom: calc(min(-20vw, -10rem) + -3rem);
+
 		height: max(20vw, 10rem);
 	}
 </style>

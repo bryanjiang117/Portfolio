@@ -109,7 +109,8 @@
 </div>
 
 <style lang="scss">
-	@import '/src/global.scss';
+	@use '/src/global.scss' as *;
+
 	#page-2 {
 		display: flex;
 		min-height: 0;

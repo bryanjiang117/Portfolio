@@ -74,9 +74,9 @@
 <div class="marquee"></div>
 
 <style lang="scss">
-	@import '/src/global.scss';
+	@use '/src/global.scss' as *;
 
-	$marquee-height: 120px;
+	$marquee-height: max(8vw, 3rem);
 
 	.marquee {
 		position: static;
@@ -90,8 +90,7 @@
 		height: $marquee-height;
 		align-items: center;
 		display: flex;
-		gap: 10px;
-		margin-left: 3rem;
+		margin-left: max(3vw, 2rem);
 		font-size: $marquee-height;
 		user-select: none;
 	}

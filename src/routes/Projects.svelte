@@ -92,7 +92,7 @@
 </div>
 
 <style lang="scss">
-	@import '/src/global.scss';
+	@use '/src/global.scss' as *;
 
 	.project {
 		display: block;

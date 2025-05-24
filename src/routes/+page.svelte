@@ -94,7 +94,7 @@
 </div>
 
 <style lang="scss">
-	@import '/src/global.scss';
+	@use '/src/global.scss' as *;
 
 	html, body {
 		min-width: 400px;

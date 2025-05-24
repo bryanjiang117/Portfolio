@@ -1,5 +1,4 @@
 <script>
-
 </script>
 
 <section id="page-4" class="page">
@@ -12,7 +11,7 @@
 </section>
 
 <style lang="scss">
-	@import '/src/global.scss';
+	@use '/src/global.scss' as *;
 
 	#page-4 {
 		position: absolute;
@@ -27,7 +26,7 @@
 	}
 
 	.container {
-    position: relative;
+		position: relative;
 		width: 100%;
 		height: 100%;
 	}
@@ -89,7 +88,7 @@
 		font-size: 325px;
 		font-style: normal;
 		font-weight: bold;
-		letter-spacing: -15px;	
+		letter-spacing: -15px;
 		z-index: 3;
 
 		@media (max-width: 600px) {
@@ -109,5 +108,4 @@
 			font-size: 150px;
 		}
 	}
-
 </style>
