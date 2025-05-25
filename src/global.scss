@@ -94,4 +94,11 @@ $column-margin-top: 4rem;
 :global(.page) {
 	min-width: 100%;
 	min-height: 100vh;
+	// overflow-x: hidden;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
 }

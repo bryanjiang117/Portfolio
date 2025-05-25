@@ -82,7 +82,7 @@
 
 	<Work />
 
-	<div class="page-divider-xl"></div>
+	<div class="page-divider-lg"></div>
 
 	<Photos />
 
@@ -96,8 +96,10 @@
 <style lang="scss">
 	@use '/src/global.scss' as *;
 
-	html, body {
+	html,
+	body {
 		min-width: 400px;
+		overflow-x: hidden;
 	}
 
 	.page-2 {
@@ -108,7 +110,7 @@
 	.page-1 {
 		background-color: $color-bg-1;
 		color: $color-text-1;
-	}	
+	}
 
 	.page-divider {
 		height: 30vh;

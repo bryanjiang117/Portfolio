@@ -3,10 +3,14 @@
 
 <section id="page-4" class="page">
 	<div class="container">
-		<span id="gallery-text">GALLERY</span>
-		<img src="/lib/images/photos/sakura.png" alt="sakura" id="sakura-photo" class="photo" />
-		<img src="/lib/images/photos/pigeons.png" alt="pigeons" id="pigeons-photo" class="photo" />
-		<img src="/lib/images/photos/trees.JPG" alt="winter trees" id="trees-photo" class="photo" />
+		<video autoplay muted loop playsinline>
+			<source src="/lib/videos/leaves-background.mp4" type="video/mp4" />
+			<track kind="captions" srclang="en" label="English captions" src="" default />
+		</video>
+		<!-- <span id="gallery-text">GALLERY</span> -->
+		<!-- <img src="/lib/images/photos/sakura.png" alt="sakura" id="sakura-photo" class="photo" />
+			<img src="/lib/images/photos/pigeons.png" alt="pigeons" id="pigeons-photo" class="photo" />
+			<img src="/lib/images/photos/trees.JPG" alt="winter trees" id="trees-photo" class="photo" /> -->
 	</div>
 </section>
 
@@ -15,8 +19,7 @@
 
 	#page-4 {
 		position: absolute;
-		height: 130vh;
-		padding-top: 440px;
+		height: 200vh;
 		z-index: 2;
 		background-color: $color-bg-2;
 
@@ -31,16 +34,29 @@
 		height: 100%;
 	}
 
-	.photo {
+	video {
 		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 100vw;
+		min-height: 125vh;
+		object-fit: cover;
+
+		@media (max-width: 600px) {
+			min-height: 100vh;
+		}
+	}
+
+	.photo {
 		object-fit: cover;
 	}
 
 	#sakura-photo {
-		width: 382px;
+		align-self: flex-end;
+		width: 452px;
 		height: 700px;
-		top: -400px;
-		right: 77px;
+		// top: -400px;
+		// right: 0px;
 
 		@media (max-width: 600px) {
 			width: 175px;
@@ -52,10 +68,12 @@
 	}
 
 	#pigeons-photo {
+		align-self: flex-end;
+		transform: translateX(-15vw);
 		width: 752px;
 		height: 502px;
-		left: 213px;
-		top: 74px;
+		// left: 200px;
+		// top: 74px;
 
 		@media (max-width: 600px) {
 			width: 300px;
@@ -67,10 +85,12 @@
 	}
 
 	#trees-photo {
+		align-self: flex-end;
+		transform: translateX(-10vw);
 		width: 689px;
 		height: 350px;
-		left: 850px;
-		bottom: -150px;
+		// right: 100px;
+		// bottom: -150px;
 
 		@media (max-width: 600px) {
 			width: 300px;
@@ -83,9 +103,9 @@
 	#gallery-text {
 		position: absolute;
 		width: 213px;
-		top: 372px;
-		left: 213px;
-		font-size: 325px;
+		top: 452px;
+		left: 103px;
+		font-size: 300px;
 		font-style: normal;
 		font-weight: bold;
 		letter-spacing: -15px;

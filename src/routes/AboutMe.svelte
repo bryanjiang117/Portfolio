@@ -131,13 +131,13 @@
 
 	.bio {
 		max-width: 35vw;
-		font-size: calc(2.5vw + 0.5rem);
+		font-size: calc(2vw + 1rem);
 		line-height: 125%;
 		letter-spacing: -0.1vw;
 		transition: color 0.5s ease;
 
 		@media (max-width: 600px) {
-			max-width: 50vw;
+			max-width: 70vw;
 		}
 	}
 

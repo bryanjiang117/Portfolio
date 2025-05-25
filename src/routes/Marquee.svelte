@@ -76,7 +76,7 @@
 <style lang="scss">
 	@use '/src/global.scss' as *;
 
-	$marquee-height: max(8vw, 3rem);
+	$marquee-height: max(9vw, 5rem);
 
 	.marquee {
 		position: static;
