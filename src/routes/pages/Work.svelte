@@ -5,12 +5,6 @@
 <section id="page-3" class="page">
 	<div class="container">
 		<Marquee />
-		<Marquee />
-		<Marquee />
-		<Marquee />
-		<Marquee />
-		<Marquee />
-		<Marquee />
 		<img
 			class="scribble"
 			src="/lib/images/scribbles/work-scribble.png"

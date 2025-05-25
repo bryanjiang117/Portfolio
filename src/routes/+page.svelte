@@ -88,7 +88,7 @@
 
 	<Photography />
 
-	<div class="page-divider-lg background-3"></div>
+	<!-- <div class="page-divider background-3"></div> -->
 
 	<Travel />
 

@@ -5,16 +5,14 @@
 	<div class="parallax-container">
 		<video autoplay muted loop playsinline>
 			<source src="/lib/videos/leaves-background.mp4" type="video/mp4" />
-			<track kind="captions" srclang="en" label="English captions" src="" default />
+			<track kind="captions" />
 		</video>
-		<a href="https://example.com" target="_blank">
-			VIEW PHOTOGRAPHY
-		</a>
+		<a href="https://example.com" target="_blank"> VIEW PHOTOGRAPHY </a>
 	</div>
 </section>
 
 <style lang="scss">
-	@import '/src/global.scss';
+	@use '/src/global.scss' as *;
 
 	#page-5 {
 		width: 100vw;

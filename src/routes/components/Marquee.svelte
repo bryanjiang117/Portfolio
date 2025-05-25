@@ -2,9 +2,9 @@
 	import { onMount } from 'svelte';
 	import { Marquee, loop } from 'dynamic-marquee';
 
-	onMount(() => {
-		const marqueeElements = document.querySelectorAll('.marquee');
+	const marqueeElements = Array.from({ length: 7 }, () => null);
 
+	onMount(() => {
 		marqueeElements.forEach((marqueeElement, i) => {
 			const marquee = new Marquee(marqueeElement, {
 				rate: -200,
@@ -71,7 +71,9 @@
 	});
 </script>
 
-<div class="marquee"></div>
+{#each marqueeElements as el}
+	<div class="marquee" bind:this={el}></div>
+{/each}
 
 <style lang="scss">
 	@use '/src/global.scss' as *;

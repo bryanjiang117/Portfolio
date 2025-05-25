@@ -3,6 +3,13 @@
 
 <section id="page-5" class="page">
 	<div class="container">
+		<div class="video-container">
+			<video autoplay muted loop playsinline>
+				<source src="lib/videos/clouds-background.mp4" type="video/mp4" />
+				<track kind="captions" />
+			</video>
+		</div>
+
 		<!-- <span id="gallery-text">GALLERY</span>
 		<img src="/lib/images/photos/sakura.png" alt="sakura" id="sakura-photo" class="photo" />
 			<img src="/lib/images/photos/pigeons.png" alt="pigeons" id="pigeons-photo" class="photo" />
@@ -26,6 +33,19 @@
 		position: relative;
 		width: 100%;
 		height: 100%;
+	}
+
+	.video-container {
+		width: 100vw;
+		height: 100vh;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	video {
+		height: 80vh;
+		width: 85vw;
 	}
 
 	.photo {
