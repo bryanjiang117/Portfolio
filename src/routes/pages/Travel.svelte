@@ -1,14 +1,10 @@
 <script>
 </script>
 
-<section id="page-4" class="page">
+<section id="page-5" class="page">
 	<div class="container">
-		<video autoplay muted loop playsinline>
-			<source src="/lib/videos/leaves-background.mp4" type="video/mp4" />
-			<track kind="captions" srclang="en" label="English captions" src="" default />
-		</video>
-		<!-- <span id="gallery-text">GALLERY</span> -->
-		<!-- <img src="/lib/images/photos/sakura.png" alt="sakura" id="sakura-photo" class="photo" />
+		<!-- <span id="gallery-text">GALLERY</span>
+		<img src="/lib/images/photos/sakura.png" alt="sakura" id="sakura-photo" class="photo" />
 			<img src="/lib/images/photos/pigeons.png" alt="pigeons" id="pigeons-photo" class="photo" />
 			<img src="/lib/images/photos/trees.JPG" alt="winter trees" id="trees-photo" class="photo" /> -->
 	</div>
@@ -17,11 +13,9 @@
 <style lang="scss">
 	@use '/src/global.scss' as *;
 
-	#page-4 {
-		position: absolute;
+	#page-5 {
 		height: 200vh;
-		z-index: 2;
-		background-color: $color-bg-2;
+		background-color: $color-bg-3;
 
 		@media (max-width: 600px) {
 			padding-top: 0px;
@@ -32,19 +26,6 @@
 		position: relative;
 		width: 100%;
 		height: 100%;
-	}
-
-	video {
-		position: absolute;
-		left: 50%;
-		transform: translateX(-50%);
-		width: 100vw;
-		min-height: 125vh;
-		object-fit: cover;
-
-		@media (max-width: 600px) {
-			min-height: 100vh;
-		}
 	}
 
 	.photo {

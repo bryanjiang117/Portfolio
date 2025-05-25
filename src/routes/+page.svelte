@@ -2,13 +2,13 @@
 	import { gsap } from 'gsap';
 	import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 	import { onMount } from 'svelte';
-	import Landing from './Landing.svelte';
-	import AboutMe from './AboutMe.svelte';
-	import Work from './Work.svelte';
-	import ProjectHeader from './ProjectHeader.svelte';
-	import Projects from './Projects.svelte';
-	import ContactMe from './ContactMe.svelte';
-	import Photos from './Photos.svelte';
+	import Landing from './pages/Landing.svelte';
+	import AboutMe from './pages/AboutMe.svelte';
+	import Work from './pages/Work.svelte';
+	import Photography from './pages/Photography.svelte';
+	import Projects from './pages/Projects.svelte';
+	import ContactMe from './pages/ContactMe.svelte';
+	import Travel from './pages/Travel.svelte';
 
 	// meta data
 	const title = 'Bryan Jiang';
@@ -39,14 +39,14 @@
 
 		// parallax
 		const page4 = document.querySelector('#page-4');
-		const projectHeader = document.querySelector('.project-header-container');
-		const page5 = document.querySelector('#page-5');
+		const parallaxContainer = document.querySelector('#page-5');
+		const page5 = document.querySelector('#page-6');
 		ScrollTrigger.create({
 			trigger: page4,
 			endTrigger: page5,
 			start: 'top top', // Start when the top of page 3 hits the top of the viewport
-			end: 'top+=80% top', // End when the top of page 4 hits the top of the viewport
-			pin: projectHeader, // Pin projectheader in place while page 3 scrolls up
+			end: 'top+=125% top', // End when the top of page 4 hits the top of the viewport
+			pin: parallaxContainer, // Pin projectheader in place while page 3 scrolls up
 			pinSpacing: true, // Prevent extra space after the pinning
 			scrub: true,
 			immediateRender: false
@@ -71,7 +71,7 @@
 	<meta property="og:description" content={description} />
 </svelte:head>
 
-<div class="main-container {isNameVisible ? 'page-1' : 'page-2'}">
+<div class="main-container {isNameVisible ? "background-1" : "background-2"}">
 	<Landing bind:nameElement />
 
 	<div class="page-divider"></div>
@@ -84,11 +84,13 @@
 
 	<div class="page-divider-lg"></div>
 
-	<Photos />
-
-	<ProjectHeader />
-
 	<Projects />
+
+	<Photography />
+
+	<div class="page-divider-lg background-3"></div>
+
+	<Travel />
 
 	<ContactMe />
 </div>
@@ -102,14 +104,19 @@
 		overflow-x: hidden;
 	}
 
-	.page-2 {
-		background-color: $color-bg-2;
+	.background-1 {
+		background: $color-bg-1;
+		color: $color-text-1;
+	}
+
+	.background-2 {
+		background: $color-bg-2;
 		color: $color-text-2;
 	}
 
-	.page-1 {
-		background-color: $color-bg-1;
-		color: $color-text-1;
+	.background-3 {
+		background: $color-bg-3;
+		color: $color-text-2;
 	}
 
 	.page-divider {

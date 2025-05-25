@@ -2,7 +2,7 @@
 	import Typed from 'typed.js';
 	import gsap from 'gsap';
 	import { onMount } from 'svelte';
-	import { getNameMetrics } from '../utils/util.js';
+	import { getNameMetrics } from '../../utils/util.js';
 
 	const NAME = 'BRYAN JIANG';
 	let greeting;

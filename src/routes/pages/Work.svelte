@@ -1,5 +1,5 @@
 <script>
-	import Marquee from './Marquee.svelte';
+	import Marquee from '../components/Marquee.svelte';
 </script>
 
 <section id="page-3" class="page">
