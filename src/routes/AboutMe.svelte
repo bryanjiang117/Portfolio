@@ -6,7 +6,7 @@
 	import { getNameMetrics } from '../utils/util.js';
 
 	let bio =
-		"I'm a software developer and artist. I'm passionate about building visually captivating yet highly usable websites. There's nothing more satisfying than bringing an idea to life. My work is driven by a commitment to user experience and an appreciation for beautiful things. Outside of work, I enjoy drawing, volleyball, and learning languages. In the near future, I'd like to travel the world and explore new cultures and new sights, which serve as the source of my inspiration to create. <br> Please feel free to explore.";
+		"I'm a software developer and artist. I'm passionate about building visually captivating and usable websites. There's nothing more satisfying than bringing an idea to life. My work is driven by a commitment to user experience and an appreciation for beautiful things. Outside of work, I enjoy drawing, volleyball, and learning languages. In the near future, I'd like to travel the world and explore new cultures and new sights, which serve as the source of my inspiration to create. <br> Please feel free to explore.";
 	let bioContainer;
 	let splitText;
 	let previousContainerWidth;
