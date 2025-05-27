@@ -149,7 +149,7 @@
 	video {
 		position: absolute;
 		left: 50%;
-		top: 56%;
+		top: 52%;
 		transform: translate(-50%, -50%);
 		width: 85vw;
 		height: 80vh;
