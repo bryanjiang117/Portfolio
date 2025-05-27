@@ -6,7 +6,7 @@
 	import { getNameMetrics } from '../../utils/util.js';
 
 	let bio =
-		"I'm passionate about building visually captivating and usable websites. I'm driven by a commitment to the user experience, an obsession over details, and the endless possibilities of creating. There's nothing more satisfying than bringing an idea to life. Outside of work, I'm interested in languages, photography, illustration. In the near future, I'd like to explore the world a little ...and be inspired by it's beauty. <br> Feel free to explore.";
+		"I'm a software developer passionate about building visually captivating and usable products. I'm driven by a commitment to user experience, an obsession over details, and the endless possibilities of creating. There's nothing more satisfying than bringing an idea to life. Outside of work, I'm interested in languages, photography, illustration. In the near future, I'd like to explore the world a little ...and be inspired by it's beauty. <br> Feel free to explore.";
 	let bioContainer;
 	let splitText;
 	let previousContainerWidth;
@@ -127,7 +127,7 @@
 		font-size: calc(4vw + 2rem);
 		font-weight: normal;
 		letter-spacing: -0.2vw;
-		margin-bottom: 2.5vm;
+		margin: 0;
 	}
 
 	.bio {
@@ -137,6 +137,10 @@
 		letter-spacing: -0.1vw;
 		transition: color 0.5s ease;
 
+		&p {
+			margin: 0;
+		}
+
 		@media (max-width: 600px) {
 			max-width: 65vw;
 		}
@@ -145,7 +149,7 @@
 	video {
 		position: absolute;
 		left: 50%;
-		top: 50%;
+		top: 57%;
 		transform: translate(-50%, -50%);
 		width: 85vw;
 		height: 80vh;

@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import { Marquee, loop } from 'dynamic-marquee';
 
-	const marqueeElements = Array.from({ length: 7 }, () => null);
+	const marqueeElements = Array.from({ length: 6 }, () => null);
 
 	onMount(() => {
 		marqueeElements.forEach((marqueeElement, i) => {
