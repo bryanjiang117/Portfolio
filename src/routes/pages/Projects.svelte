@@ -1,6 +1,7 @@
 <script>
 
-	const projects = [
+
+const projects = [
 		{
 			name: 'FOMO',
 			desc: 'An Android location tracking social app made for students and young adults to stay connected',
@@ -38,11 +39,12 @@
 			link: 'https://github.com/bryanjiang117/TeamFight-Tactics'
 		}
 	];
-	
 </script>
 
 <section id="page-4" class="page">
-	<div class="projects-container no-select"></div>
+	<div class="projects-container">
+		
+	</div>
 </section>
 
 <style lang="scss">
@@ -51,15 +53,13 @@
 	#page-4 {
 		position: absolute;
 		height: 200vh;
-		background: red;
 		z-index: 1;
+		background: $color-bg-2;
 	}
 
-	.project {
-		display: block;
-		position: relative;
-		color: $color-text-2;
-		text-decoration: none;
+	.projects-container {
+		display: columns;
+		columns: minmax()
 	}
 
 	.tech-icon {

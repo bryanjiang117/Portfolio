@@ -18,7 +18,6 @@
 		"@sveltejs/vite-plugin-svelte": "^4.0.4",
 		"prettier": "^3.5.2",
 		"prettier-plugin-svelte": "^3.1.2",
-		"sass-embedded": "^1.78.0",
 		"svelte": "^5.20.5",
 		"svelte-check": "^4.0.0",
 		"vite": "^5.0.3"
@@ -31,7 +30,7 @@
 		"locomotive-scroll": "^4.1.4",
 		"lodash.debounce": "^4.0.8",
 		"rollup": "^4.22.4",
-		"scss": "^0.2.4",
+		"sass": "^1.89.0",
 		"split-type": "^0.3.4",
 		"textfit": "^2.4.0",
 		"typed.js": "^2.1.0"
