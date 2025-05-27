@@ -44,6 +44,7 @@
 		font-size: large;
 		text-decoration: none;
 		color: $color-text-2;
+		mix-blend-mode: difference;
 
 		&::after {
 			content: '';

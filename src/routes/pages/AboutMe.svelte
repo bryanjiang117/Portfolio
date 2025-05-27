@@ -102,16 +102,17 @@
 			<p id="bio-text">{@html bio}</p>
 		</div>
 	</div>
-	<div class="photo-container">
-		<!-- <div class="color-block"></div> -->
-		<!-- <img src="/lib/images/photos/orange_tree.png" alt="orange tree" class="photo" /> -->
-	</div>
+	<video autoplay muted loop playsinline>
+		<source src="lib/videos/clouds-background.mp4" type="video/mp4" />
+		<track kind="captions" />
+	</video>
 </div>
 
 <style lang="scss">
 	@use '/src/global.scss' as *;
 
 	#page-2 {
+		position: relative;
 		display: flex;
 		min-height: 0;
 		box-sizing: border-box;
@@ -130,43 +131,24 @@
 	}
 
 	.bio {
-		max-width: 35vw;
+		max-width: max(35vw, 25rem);
 		font-size: calc(2vw + 1rem);
 		line-height: 125%;
 		letter-spacing: -0.1vw;
 		transition: color 0.5s ease;
 
 		@media (max-width: 600px) {
-			max-width: 70vw;
+			max-width: 65vw;
 		}
 	}
 
-	.bio p {
-	}
-
-	.photo-container {
-		position: relative;
-		flex: 1;
-		opacity: 0.2;
-
-		// display: flex;
-		// align-items: center;
-		// justify-content: end;
-	}
-
-	.color-block {
+	video {
 		position: absolute;
-		left: -50%;
-		height: 70%;
-		width: 120%;
-		background: rgb(49, 102, 199);
-	}
-
-	.photo {
-		position: absolute;
-		top: 20%;
-		left: -20%;
-		width: 50%;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		width: 85vw;
+		height: 80vh;
 	}
 
 	:global(::-moz-selection) {
