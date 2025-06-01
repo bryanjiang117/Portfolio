@@ -101,12 +101,13 @@
 		position: absolute;
 		display: flex;
 		justify-content: center;
-		height: 120vh;
+		align-items: start;
 		z-index: 1;
 		background: $color-bg-2;
 	}
 
 	.projects-container {
+		margin-bottom: 0vh;
 		width: 100%;
 		height: 100%;
 		user-select: none;
