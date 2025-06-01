@@ -82,8 +82,6 @@
 
 	<Work />
 
-	<div class="page-divider-lg"></div>
-
 	<Projects />
 
 	<Photography />

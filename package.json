@@ -29,8 +29,9 @@
 		"gsap": "^3.12.5",
 		"locomotive-scroll": "^4.1.4",
 		"lodash.debounce": "^4.0.8",
+		"motion": "^12.15.0",
 		"rollup": "^4.22.4",
-		"sass": "^1.89.0",
+		"sass": "^1.89.1",
 		"split-type": "^0.3.4",
 		"textfit": "^2.4.0",
 		"typed.js": "^2.1.0"

@@ -23,7 +23,10 @@
 						spacer.style.flexShrink = '0';
 						return spacer;
 					}
-					return null;
+					const empty = document.createElement('div');
+					empty.style.width = '0';
+					empty.style.height = '0';
+					return empty;
 				},
 				() => {
 					const el = document.createElement('div');
@@ -71,8 +74,8 @@
 	});
 </script>
 
-{#each marqueeElements as el}
-	<div class="marquee" bind:this={el}></div>
+{#each marqueeElements as _, i}
+	<div class="marquee" bind:this={marqueeElements[i]}></div>
 {/each}
 
 <style lang="scss">
