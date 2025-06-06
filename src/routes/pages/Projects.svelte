@@ -35,10 +35,16 @@
 
 	const refs = [];
 	const imgRefs = [];
+	let startingYs = []; // used to cluster the images toward the center of the list so they fit on the screen
 
 	let selectedProjectIndex = -1;
 
 	onMount(() => {
+		startingYs = Array.from(
+			{ length: imgRefs.length },
+			(_, i) => -50 + ((imgRefs.length - 1) / 2 - i) * 10
+		);
+
 		const withinElement = (x, y, element) => {
 			if (!element) return false;
 
@@ -47,7 +53,15 @@
 		};
 
 		const animateIn = (i) => {
-			animate(imgRefs[i], { opacity: 1 }, { ease: 'easeOut', duration: 0.25 });
+			animate(imgRefs[i], { opacity: 1, y: startingYs[i] + 5 + '%' }, { duration: 0.25 });
+		};
+
+		const animateOut = (i) => {
+			animate(
+				imgRefs[i],
+				{ opacity: 0, y: startingYs[i] + '%' },
+				{ duration: 0.2, ease: 'easeOut' }
+			);
 		};
 
 		window.addEventListener('mousemove', (event) => {
@@ -60,11 +74,7 @@
 			}
 			if (indexHovered !== selectedProjectIndex) {
 				if (selectedProjectIndex > -1) {
-					animate(
-						imgRefs[selectedProjectIndex],
-						{ opacity: 0 },
-						{ ease: 'easeOut', duration: 0.1 }
-					);
+					animateOut(selectedProjectIndex);
 				}
 				if (indexHovered > -1) {
 					animateIn(indexHovered);
@@ -85,7 +95,7 @@
 						src={project.src}
 						alt={`${project.name} visual`}
 						bind:this={imgRefs[i]}
-						style="opacity: 0"
+						style={`opacity: 0; transform: translateY(${startingYs[i]}%)`}
 					/>
 				</li>
 				<hr class="divider" />
@@ -131,7 +141,6 @@
 		position: absolute;
 		left: 35vw;
 		top: 50%;
-		transform: translateY(-50%);
 		max-height: 65vh;
 		max-width: 50vw;
 		object-fit: contain;
