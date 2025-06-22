@@ -35,8 +35,7 @@
 
 	const refs = [];
 	const imgRefs = [];
-	let startingYs = []; // used to cluster the images toward the center of the list so they fit on the screen
-
+	let startingYs = []; // cluster the images toward the center of the list so they fit on the screen
 	let selectedProjectIndex = -1;
 
 	onMount(() => {
@@ -53,6 +52,8 @@
 		};
 
 		const animateIn = (i) => {
+			const randomX = Math.random() * 10 - 5;
+			imgRefs[i].style.left = 40 + randomX + 'vw';
 			animate(imgRefs[i], { opacity: 1, y: startingYs[i] + 5 + '%' }, { duration: 0.25 });
 		};
 
@@ -95,7 +96,7 @@
 						src={project.src}
 						alt={`${project.name} visual`}
 						bind:this={imgRefs[i]}
-						style={`opacity: 0; transform: translateY(${startingYs[i]}%)`}
+						style={`opacity: 0; transform: translateY(${startingYs[i]}%);`}
 					/>
 				</li>
 				<hr class="divider" />
