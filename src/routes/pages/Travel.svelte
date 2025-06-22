@@ -10,7 +10,6 @@
 
 	#page-5 {
 		height: 200vh;
-		background-color: $color-bg-3;
 
 		@media (max-width: 600px) {
 			padding-top: 0px;

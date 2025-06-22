@@ -1,4 +1,6 @@
 <script>
+	export let contactElement;
+
 	// You can add more social media links here
 	const socialLinks = [
 		{ name: 'Email', url: 'mailto:haozhoujiang@gmail.com', icon: 'email.svg' },
@@ -9,7 +11,7 @@
 
 <div id="page-5" class="page">
 	<div class="contact-container">
-		<div class="contact-me">Contact Me!</div>
+		<div class="contact-me" bind:this={contactElement}>Contact Me!</div>
 	</div>
 
 	<!-- <div class="links">
@@ -45,36 +47,8 @@
 		height: 100vh;
 	}
 
-	.social-link {
-		margin: 0 1rem;
-		text-decoration: none;
-		color: inherit;
-		display: flex;
-		align-items: center;
-		gap: 0.5rem;
-		text-align: center;
-		height: fit-content;
-	}
-	.social-link img {
-		filter: invert(80%);
-		width: 1.5rem;
-		height: 1.5rem;
-	}
-
-	.links {
-		color: rgb(172, 132, 76);
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		width: 100%;
-		background-color: inherit;
-		margin-top: -4rem;
-		margin-bottom: 2rem;
-	}
-
 	#page-5 {
 		height: 100vh;
 		width: 100%;
-		background-color: $color-bg-3;
 	}
 </style>

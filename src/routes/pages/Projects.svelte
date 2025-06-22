@@ -109,6 +109,7 @@
 	@use '/src/global.scss' as *;
 
 	#page-4 {
+		height: 120vh;
 		position: absolute;
 		display: flex;
 		justify-content: center;

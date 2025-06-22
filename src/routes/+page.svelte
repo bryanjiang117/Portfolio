@@ -17,7 +17,8 @@
 	gsap.registerPlugin(ScrollTrigger);
 
 	let nameElement;
-	let isNameVisible = true;
+	let contactElement;
+	let initialBackground = true;
 	let observer;
 
 	onMount(async () => {
@@ -25,9 +26,13 @@
 
 		observer = new IntersectionObserver(
 			(entries) => {
-				entries.forEach((entry) => {
-					isNameVisible = entry.isIntersecting;
-				});
+				for (const entry of entries) {
+					if (entry.isIntersecting) {
+						initialBackground = true;
+						break;
+					}
+					initialBackground = false;
+				}
 			},
 			{ threshold: 0.2 }
 		);
@@ -45,7 +50,7 @@
 			trigger: page4,
 			endTrigger: page5,
 			start: 'top top', // Start when the top of page 3 hits the top of the viewport
-			end: 'top+=125% top', // End when the top of page 4 hits the top of the viewport
+			end: 'top+=145% top', // End when the top of page 4 hits the top of the viewport
 			pin: parallaxContainer, // Pin projectheader in place while page 3 scrolls up
 			pinSpacing: true, // Prevent extra space after the pinning
 			scrub: true,
@@ -58,8 +63,9 @@
 	});
 
 	// $ makes a reactive expression
-	$: if (observer && nameElement) {
+	$: if (observer && nameElement && contactElement) {
 		observer.observe(nameElement);
+		observer.observe(contactElement);
 	}
 </script>
 
@@ -71,7 +77,7 @@
 	<meta property="og:description" content={description} />
 </svelte:head>
 
-<div class="main-container {isNameVisible ? "background-1" : "background-2"}">
+<div class="main-container {initialBackground ? 'background-1' : 'background-2'}">
 	<Landing bind:nameElement />
 
 	<div class="page-divider"></div>
@@ -92,7 +98,7 @@
 
 	<Travel />
 
-	<ContactMe />
+	<ContactMe bind:contactElement />
 </div>
 
 <style lang="scss">
