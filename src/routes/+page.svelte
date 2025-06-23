@@ -45,10 +45,10 @@
 		// parallax
 		const page4 = document.querySelector('#page-4');
 		const parallaxContainer = document.querySelector('#page-5');
-		const page5 = document.querySelector('#page-6');
+		const page6 = document.querySelector('#page-6');
 		ScrollTrigger.create({
 			trigger: page4,
-			endTrigger: page5,
+			endTrigger: page6,
 			start: 'top top', // Start when the top of page 3 hits the top of the viewport
 			end: 'top+=145% top', // End when the top of page 4 hits the top of the viewport
 			pin: parallaxContainer, // Pin projectheader in place while page 3 scrolls up

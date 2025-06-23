@@ -9,7 +9,7 @@
 	];
 </script>
 
-<div id="page-5" class="page">
+<div id="page-7" class="page">
 	<div class="contact-container">
 		<div class="contact-me" bind:this={contactElement}>Contact Me!</div>
 	</div>
@@ -40,14 +40,14 @@
 	}
 
 	.contact-container {
-		display: flex;
+		display: flex;	
 		justify-content: center;
 		align-items: center;
 		width: 100%;
 		height: 100vh;
 	}
 
-	#page-5 {
+	#page-7 {
 		height: 100vh;
 		width: 100%;
 	}
