@@ -18,7 +18,7 @@
 
 	#page-3 {
 		padding-bottom: max(50vh, 25vw);
-		background-color: $color-bg-2;
+		background: inherit;
 	}
 
 	.container {

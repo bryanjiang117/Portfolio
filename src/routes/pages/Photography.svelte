@@ -1,7 +1,7 @@
 <script>
 </script>
 
-<section id="page-5">
+<section id="page-5" class="page">
 	<div class="parallax-container">
 		<video autoplay muted loop playsinline>
 			<source src="/lib/videos/leaves-background.mp4" type="video/mp4" />

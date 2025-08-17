@@ -109,13 +109,12 @@
 	@use '/src/global.scss' as *;
 
 	#page-4 {
-		height: 120vh;
 		position: absolute;
 		display: flex;
 		justify-content: center;
 		align-items: start;
 		z-index: 1;
-		background: $color-bg-2;
+		background: inherit;
 	}
 
 	.projects-container {

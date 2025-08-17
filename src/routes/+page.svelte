@@ -43,18 +43,24 @@
 		};
 
 		// parallax
-		const page4 = document.querySelector('#page-4');
-		const parallaxContainer = document.querySelector('#page-5');
-		const page6 = document.querySelector('#page-6');
+		const projectsPage = document.querySelector('#page-4');
+		const photographyPage = document.querySelector('#page-5');
+		const travelPage = document.querySelector('#page-6');
 		ScrollTrigger.create({
-			trigger: page4,
-			endTrigger: page6,
-			start: 'top top', // Start when the top of page 3 hits the top of the viewport
-			end: 'top+=145% top', // End when the top of page 4 hits the top of the viewport
-			pin: parallaxContainer, // Pin projectheader in place while page 3 scrolls up
-			pinSpacing: true, // Prevent extra space after the pinning
-			scrub: true,
+			trigger: projectsPage,
+			endTrigger: travelPage,
+			start: 'top top', 
+			end: 'top top', 
+			pin: photographyPage, 
+			pinSpacing: false, 
 			immediateRender: false
+		});
+
+		ScrollTrigger.create({
+			trigger: travelPage,
+			start: 'top bottom', 
+			end: 'bottom+=50% top', 
+			pinSpacing: true
 		});
 
 		return () => {
@@ -94,7 +100,7 @@
 
 	<Photography />
 
-	<!-- <div class="page-divider background-3"></div> -->
+	<div class="pin-spacer background-2"></div>
 
 	<Travel />
 
@@ -110,6 +116,11 @@
 		overflow-x: hidden;
 	}
 
+	:global(.page) {
+		position: relative;
+		transition: transform 0.3s ease;
+	}
+
 	.background-1 {
 		background: $color-bg-1;
 		color: $color-text-1;
@@ -123,6 +134,10 @@
 	.background-3 {
 		background: $color-bg-3;
 		color: $color-text-2;
+	}
+
+	.pin-spacer {
+		height: 150vh;
 	}
 
 	.page-divider {

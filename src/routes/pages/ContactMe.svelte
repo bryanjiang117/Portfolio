@@ -27,6 +27,12 @@
 <style lang="scss">
 	@use '/src/global.scss' as *;
 
+	#page-7 {
+		height: 100vh;
+		width: 100%;
+		background: inherit;
+	}
+
 	.contact-me {
 		font-size: 8vw;
 		letter-spacing: -0.5vw;
@@ -40,15 +46,10 @@
 	}
 
 	.contact-container {
-		display: flex;	
+		display: flex;
 		justify-content: center;
 		align-items: center;
 		width: 100%;
 		height: 100vh;
-	}
-
-	#page-7 {
-		height: 100vh;
-		width: 100%;
 	}
 </style>
