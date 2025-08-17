@@ -47,7 +47,7 @@
 		{ name: 'Ottawa', latlng: [45.4215, -75.6972] }
 	];
 
-	let coverClass = 'map-cover show-cover';
+	let coverClass = 'map-cover';
 
 	function handleClickCover() {
 		coverClass = 'map-cover hide-cover';
@@ -60,7 +60,7 @@
 	}
 
 	function handleScroll() {
-		coverClass = 'map-cover show-cover';
+		coverClass = 'map-cover';
 	}
 
 	let map;
@@ -113,7 +113,9 @@
 				on:keydown={handleKeydownCover}
 				role="button"
 				tabindex="0"
-			></div>
+			>
+				<span class="cover-text">Interact to view map</span>
+			</div>
 			<div id="map"></div>
 		</div>
 	</div>
@@ -123,9 +125,15 @@
 	@use '/src/global.scss' as *;
 
 	#page-6 {
+		height: 120vh;
+
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
 		background: inherit;
 		z-index: 1;
-				@media (max-width: 600px) {
+		@media (max-width: 600px) {
 			padding-top: 0px;
 		}
 	}
@@ -191,20 +199,30 @@
 		position: absolute;
 		top: 0;
 		left: 0;
+
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
 		width: 100%;
 		height: 100%;
-		background: $color-bg-2;
-		transition: opacity 1s;
+		background: #21201f;
+		opacity: 0.8;
+		transition: opacity 0.5s;
 		z-index: 3000;
 		cursor: pointer;
 	}
-
-	.show-cover {
-		opacity: 0.7;
-	}
-
 	.hide-cover {
 		opacity: 0;
 		pointer-events: none;
+	}
+
+	.map-cover:hover .cover-text {
+		opacity: 1;
+	}
+
+	.cover-text {
+		transition: opacity 0.25s;
+		opacity: 0;
 	}
 </style>
