@@ -155,6 +155,11 @@
 		height: 80vh;
 		aspect-ratio: 21/16;
 		background: $color-bg-2;
+
+		@media (max-width: 600px) {
+			aspect-ratio: none;
+			width: 100vw;
+		}
 	}
 
 	:global(.leaflet-control-zoom-in),

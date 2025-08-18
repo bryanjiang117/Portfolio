@@ -143,6 +143,12 @@
 <style lang="scss">
 	@use '/src/global.scss' as *;
 
+	#page-1 {
+		height: 100vh;
+		width: 100%;
+		padding: 10vw;
+	}
+
 	.rotating-word {
 		position: absolute;
 		top: 0;
@@ -162,11 +168,6 @@
 		height: 2rem; /* Match line-height to mask words properly */
 		vertical-align: bottom;
 		margin-right: 0.4rem;
-	}
-
-	#page-1 {
-		height: 100vh;
-		width: 100%;
 	}
 
 	.desu-wrapper {
@@ -192,8 +193,8 @@
 
 	.name {
 		margin: -1rem 0 -1rem 0;
-		font-size: 11vw;
-		letter-spacing: -5px;
+		font-size: max(11vw, 3rem);
+		letter-spacing: -0.5vw;
 		transition: transform 0.25s ease;
 	}
 

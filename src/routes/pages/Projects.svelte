@@ -149,9 +149,9 @@
 	}
 
 	.name {
-		font-size: 3vw;
+		font-size: max(3vw, 2rem);
 		font-weight: 500;
-		letter-spacing: -2px;
+		letter-spacing: -0.1vw;
 	}
 
 	.link {
