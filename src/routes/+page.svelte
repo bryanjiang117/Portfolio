@@ -50,7 +50,7 @@
 			trigger: projectsPage,
 			endTrigger: travelPage,
 			start: 'top top', 
-			end: 'top top', 
+			end: 'bottom top', 
 			pin: photographyPage, 
 			pinSpacing: false, 
 			immediateRender: false
@@ -60,7 +60,8 @@
 			trigger: travelPage,
 			start: 'top bottom', 
 			end: 'bottom+=50% top', 
-			pinSpacing: true
+			pinSpacing: true,
+			immediateRender: false,
 		});
 
 		return () => {
