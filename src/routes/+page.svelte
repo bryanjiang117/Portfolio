@@ -49,19 +49,19 @@
 		ScrollTrigger.create({
 			trigger: projectsPage,
 			endTrigger: travelPage,
-			start: 'top top', 
-			end: 'bottom top', 
-			pin: photographyPage, 
-			pinSpacing: false, 
+			start: 'top top',
+			end: 'bottom top',
+			pin: photographyPage,
+			pinSpacing: false,
 			immediateRender: false
 		});
 
 		ScrollTrigger.create({
 			trigger: travelPage,
-			start: 'top bottom', 
-			end: 'bottom+=50% top', 
+			start: 'top bottom',
+			end: 'bottom+=50% top',
 			pinSpacing: true,
-			immediateRender: false,
+			immediateRender: false
 		});
 
 		return () => {
@@ -120,6 +120,8 @@
 	:global(.page) {
 		position: relative;
 		transition: transform 0.3s ease;
+		scroll-snap-align: start;
+		overflow: hidden;
 	}
 
 	.background-1 {
@@ -156,5 +158,6 @@
 	.main-container {
 		transition: background-color 0.5s ease;
 		overflow-x: hidden;
+		scroll-snap-type: y mandatory;
 	}
 </style>
