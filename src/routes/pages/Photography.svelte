@@ -7,7 +7,7 @@
 			<source src="/lib/videos/leaves-background.mp4" type="video/mp4" />
 			<track kind="captions" />
 		</video>
-		<a href="https://example.com" target="_blank"> VIEW PHOTOGRAPHY </a>
+		<a href="https://www.example.com/" target="_blank"> VIEW PHOTOGRAPHY </a>
 	</div>
 </section>
 
