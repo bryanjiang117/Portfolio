@@ -87,23 +87,23 @@
 <div class="main-container {initialBackground ? 'background-1' : 'background-2'}">
 	<Landing bind:nameElement />
 
-	<div class="page-divider"></div>
+	<div class="page-divider page-divider-sm"></div>
 
 	<AboutMe />
 
-	<div class="page-divider-lg"></div>
+	<div class="page-divider page-divider-lg"></div>
 
 	<Work />
-
-	<div class="page-divider"></div>
 
 	<Projects />
 
 	<Photography />
 
-	<div class="pin-spacer background-2"></div>
+	<div class="pin-spacer"></div>
 
 	<Travel />
+
+	<div class="page-divider page-divider-lg"></div>
 
 	<ContactMe bind:contactElement />
 </div>
@@ -134,25 +134,22 @@
 		color: $color-text-2;
 	}
 
-	.background-3 {
-		background: $color-bg-3;
-		color: $color-text-2;
-	}
-
 	.pin-spacer {
 		height: 150vh;
 	}
 
 	.page-divider {
+		position: relative;
+		z-index: 5000;
+		background: inherit;
+	}
+
+	.page-divider-sm {
 		height: 30vh;
 	}
 
 	.page-divider-lg {
 		height: 50vh;
-	}
-
-	.page-divider-xl {
-		height: 100vh;
 	}
 
 	.main-container {

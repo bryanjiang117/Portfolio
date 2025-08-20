@@ -5,11 +5,11 @@
 <section id="page-3" class="page">
 	<div class="container">
 		<Marquee />
-		<img
+		<!-- <img
 			class="scribble"
 			src="/lib/images/scribbles/work-scribble.png"
 			alt="These are the companies that I've worked at before! (all as a web dev)"
-		/>
+		/> -->
 	</div>
 </section>
 
@@ -17,7 +17,7 @@
 	@use '/src/global.scss' as *;
 
 	#page-3 {
-		padding-bottom: max(50vh, 25vw);
+		padding-bottom: max(20vh, 10vw);
 		background: inherit;
 	}
 

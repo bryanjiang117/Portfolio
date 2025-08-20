@@ -125,7 +125,7 @@
 	@use '/src/global.scss' as *;
 
 	#page-6 {
-		height: 120vh;
+		height: 150vh;
 
 		display: flex;
 		justify-content: center;
