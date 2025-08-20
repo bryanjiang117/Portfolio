@@ -59,7 +59,7 @@
 		ScrollTrigger.create({
 			trigger: travelPage,
 			start: 'top bottom',
-			end: 'bottom+=50% top',
+			end: 'bottom top',
 			pinSpacing: true,
 			immediateRender: false
 		});
@@ -135,7 +135,7 @@
 	}
 
 	.pin-spacer {
-		height: 150vh;
+		height: 200vh;
 	}
 
 	.page-divider {
