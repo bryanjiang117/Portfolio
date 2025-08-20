@@ -52,12 +52,16 @@
 		};
 
 		const animateIn = (i) => {
-			const randomX = Math.random() * 10 - 5;
+			if (!imgRefs[i]) return;
+
+			const randomX = Math.random() * 10 - 7;
 			imgRefs[i].style.left = 40 + randomX + 'vw';
 			animate(imgRefs[i], { opacity: 1, y: startingYs[i] + 5 + '%' }, { duration: 0.25 });
 		};
 
 		const animateOut = (i) => {
+			if (!imgRefs[i]) return;
+
 			animate(
 				imgRefs[i],
 				{ opacity: 0, y: startingYs[i] + '%' },
@@ -88,6 +92,7 @@
 
 <section id="page-4" class="page">
 	<div class="projects-container">
+		<h1 class="projects-title">Projects</h1>
 		<ul>
 			{#each projects as project, i}
 				<li key={i} bind:this={refs[i]}>
@@ -110,22 +115,33 @@
 
 	#page-4 {
 		position: absolute;
+		height: 100vh;
 		display: flex;
 		justify-content: center;
-		align-items: start;
+		align-items: center;
 		z-index: 1;
 		background: inherit;
 	}
 
 	.projects-container {
-		margin-bottom: 0vh;
+		position: relative;
+		margin: 0 8vw 0 8vw;
 		width: 100%;
-		height: 100%;
 		user-select: none;
 	}
 
+	.projects-title {
+		position: relative;
+		top: -4vh;
+		right: 0;
+		text-align: right;
+		font-size: max(1.5rem, 1vw);
+		font-weight: 300;
+		letter-spacing: 0.2vw;
+	}
+
 	ul {
-		padding: 0 8vw 0 8vw;
+		padding: 0;
 	}
 
 	li {
@@ -151,7 +167,6 @@
 	.name {
 		font-size: max(3vw, 2rem);
 		font-weight: 500;
-		letter-spacing: -0.1vw;
 	}
 
 	.link {
