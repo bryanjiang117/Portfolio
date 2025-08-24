@@ -55,7 +55,7 @@
 			if (!imgRefs[i]) return;
 
 			const randomX = Math.random() * 10 - 7;
-			imgRefs[i].style.left = 40 + randomX + 'vw';
+			imgRefs[i].style.left = 30 + randomX + 'vw';
 			animate(imgRefs[i], { opacity: 1, y: startingYs[i] + 5 + '%' }, { duration: 0.25 });
 		};
 
@@ -132,10 +132,10 @@
 
 	.projects-title {
 		position: relative;
-		top: -4vh;
-		right: 0;
-		text-align: right;
-		font-size: max(1.5rem, 1vw);
+		top: 0vh;
+		left: 0;
+		text-align: left;
+		font-size: max(1rem, 1vw);
 		font-weight: 300;
 		letter-spacing: 0.2vw;
 	}
@@ -146,7 +146,7 @@
 
 	li {
 		position: relative;
-		padding: 6vh 0 5vh 3vw;
+		padding: 7vh 0 7vh 2vw;
 		width: 100%;
 		display: flex;
 		flex-direction: column;
@@ -156,8 +156,6 @@
 
 	img {
 		position: absolute;
-		left: 35vw;
-		top: 50%;
 		max-height: 65vh;
 		max-width: 50vw;
 		object-fit: contain;
@@ -165,8 +163,8 @@
 	}
 
 	.name {
-		font-size: max(3vw, 2rem);
-		font-weight: 500;
+		font-size: max(3vw, 2.5rem);
+		font-weight: 400;
 	}
 
 	.link {
