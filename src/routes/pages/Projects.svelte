@@ -37,83 +37,78 @@
 	const imgRefs = [];
 	const descRefs = [];
 	let startingYs = []; // cluster the images toward the center of the list so they fit on the screen
-	let selectedProjectIndex = -1;
-	let expandedProject = -1; // Track which project is expanded
+	let hoveredProj = -1;
+	let expandedProject = -1;
+	let lastCollapsedProj = -1;
 
-	const animateIn = (i) => {
-		if (!imgRefs[i] || expandedProject === i) return; // Don't animate in if this project is expanded
+	const animateInImg = (i) => {
+		if (!imgRefs[i] || expandedProject === i || lastCollapsedProj === i) return;
 
 		const randomX = Math.random() * 10 - 7;
 		imgRefs[i].style.left = 30 + randomX + 'vw';
 		animate(imgRefs[i], { opacity: 1, y: startingYs[i] + 5 + '%' }, { duration: 0.25 });
 	};
 
-	const animateOut = (i) => {
-		if (!imgRefs[i] || expandedProject === i) return; // Don't animate out if this project is expanded
+	const animateOutImg = (i) => {
+		if (!imgRefs[i] || expandedProject === i || lastCollapsedProj === i) return;
 
 		animate(imgRefs[i], { opacity: 0, y: startingYs[i] + '%' }, { duration: 0.2, ease: 'easeOut' });
 	};
 
-	function toggleProject(index) {
-		if (expandedProject === index) {
+	const animateCollapseProj = (i) => {
+		animate(
+			descRefs[i],
+			{ scale: 0.95, opacity: 0, y: -5 },
+			{ duration: 0.2, ease: 'easeOut' }
+		).then(() => {
+			descRefs[i].style.display = 'none';
+		});
+	};
+
+	function toggleProject(i) {
+		if (expandedProject === i) {
 			// Collapse current project
+
+			if (descRefs[i]) {
+				animateCollapseProj(i);
+			}
+
+			if (imgRefs[i]) {
+				imgRefs[i].style.opacity = '0';
+			}
+
+			hoveredProj = -1;
 			expandedProject = -1;
-			if (descRefs[index]) {
-				animate(
-					descRefs[index],
-					{ scale: 0.95, opacity: 0, y: -5 },
-					{ duration: 0.2, ease: 'easeOut' }
-				).then(() => {
-					descRefs[index].style.display = 'none';
-				});
-			}
-			// Reset image positioning when collapsed
-			if (imgRefs[index]) {
-				imgRefs[index].style.opacity = '0';
-				imgRefs[index].style.right = '';
-				imgRefs[index].style.zIndex = '';
-			}
+			lastCollapsedProj = i;
 		} else {
-			// Collapse previously expanded project
+			// Collapse other expanded project if it exists
+
 			if (expandedProject !== -1 && descRefs[expandedProject]) {
-				animate(
-					descRefs[expandedProject],
-					{ scale: 0.95, opacity: 0, y: -5 },
-					{ duration: 0.2, ease: 'easeOut' }
-				).then(() => {
-					descRefs[expandedProject].style.display = 'none';
-				});
-				// Reset image positioning for previously expanded project
-				if (imgRefs[expandedProject]) {
-					imgRefs[expandedProject].style.opacity = '0';
-					imgRefs[expandedProject].style.right = '';
-					imgRefs[expandedProject].style.zIndex = '';
-				}
+				animateCollapseProj(expandedProject);
+			}
+
+			if (imgRefs[expandedProject]) {
+				imgRefs[expandedProject].style.opacity = '0';
 			}
 
 			// Expand new project
-			expandedProject = index;
-			// if (selectedProjectIndex > -1) {
-			// 	animateOut(selectedProjectIndex);
-			// 	selectedProjectIndex = -1;
-			// }
-			if (descRefs[index]) {
-				descRefs[index].style.display = 'block';
-				descRefs[index].style.opacity = '0';
-				descRefs[index].style.transform = 'scale(0.95) translateY(-5px)';
 
-				// Force a reflow
-				descRefs[index].offsetHeight;
+			if (descRefs[i]) {
+				descRefs[i].style.display = 'block';
+				descRefs[i].style.opacity = '0';
+				descRefs[i].style.transform = 'scale(0.95) translateY(-5px)';
 
-				animate(
-					descRefs[index],
-					{ scale: 1, opacity: 1, y: 0 },
-					{ duration: 0.3, ease: 'easeOut' }
-				);
+				animate(descRefs[i], { scale: 1, opacity: 1, y: 0 }, { duration: 0.3, ease: 'easeOut' });
 			}
 
-			// Position image on the far right when expanded - CSS class will handle the styling
-			// The class is added via the template binding: class={expandedProject === i ? 'expanded' : ''}
+			expandedProject = i;
+			hoveredProj = -1;
+		}
+	}
+
+	function handleKeyDownProject(event, i) {
+		if (event.key === 'Enter' || event.key === ' ') {
+			toggleProject(i);
 		}
 	}
 
@@ -130,71 +125,84 @@
 			return x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom;
 		};
 
-		window.addEventListener('mousemove', (event) => {
-			let indexHovered = -1;
+		function handleMouseMove(event) {
+			let newHoveredProj = -1;
 			for (let i = 0; i < projects.length; i++) {
 				if (withinElement(event.clientX, event.clientY, refs[i])) {
-					indexHovered = i;
+					newHoveredProj = i;
 					break;
 				}
 			}
 
-			if (indexHovered !== selectedProjectIndex) {
-				if (selectedProjectIndex > -1 && selectedProjectIndex !== expandedProject) {
-					animateOut(selectedProjectIndex);
-				}
-				if ((indexHovered > -1) & (indexHovered !== expandedProject)) {
-					animateIn(indexHovered);
+			if (newHoveredProj !== lastCollapsedProj) {
+				lastCollapsedProj = -1;
+			}
+
+			if (newHoveredProj === expandedProject || newHoveredProj === lastCollapsedProj) {
+				newHoveredProj = -1;
+			}
+
+			if (newHoveredProj !== hoveredProj) {
+				animateOutImg(hoveredProj);
+				if (newHoveredProj > -1) {
+					animateInImg(newHoveredProj);
 				}
 			}
-			selectedProjectIndex = indexHovered;
-		});
+
+			hoveredProj = newHoveredProj;
+		}
+
+		window.addEventListener('mousemove', handleMouseMove);
+
+		return () => {
+			window.removeEventListener('mousemove', handleMouseMove);
+		};
 	});
 </script>
 
 <section id="page-4" class="page">
 	<div class="projects-container">
 		<h1 class="projects-title">Projects</h1>
-		<ul>
-			{#each projects as project, i}
-				<li key={i} bind:this={refs[i]}>
-					<button
-						class="project-button"
-						on:click={() => toggleProject(i)}
-						on:keydown={() => toggleProject(i)}
+		{#each projects as project, i}
+			<button
+				bind:this={refs[i]}
+				class="project"
+				key={i}
+				on:click={() => toggleProject(i)}
+				on:keydown={(event) => handleKeyDownProject(event, i)}
+			>
+				<div class="project-header" class:collapsed={expandedProject !== i}>
+					<div class="project-name">{project.name}</div>
+					<div class="expand-icon">{expandedProject === i ? '−' : '+'}</div>
+				</div>
+
+				<div class="project-content">
+					<div
+						class="project-description"
+						bind:this={descRefs[i]}
+						style="opacity: 0; transform: scale(0.95) translateY(-5px); display: none;"
 					>
-						<div class="project-header">
-							<div class="name">{project.name}</div>
-							<div class="expand-icon">{expandedProject === i ? '−' : '+'}</div>
+						<p class="desc">{project.desc}</p>
+						<div class="tech-stack">
+							{#each project.techStack as tech}
+								<span class="tech-tag">{tech}</span>
+							{/each}
 						</div>
+						<a href={project.link} target="_blank" rel="noopener noreferrer" class="project-link">
+							View Project →
+						</a>
+					</div>
 
-						<div
-							class="project-description"
-							bind:this={descRefs[i]}
-							style="opacity: 0; transform: scale(0.95) translateY(-5px); display: none;"
-						>
-							<p class="desc">{project.desc}</p>
-							<div class="tech-stack">
-								{#each project.techStack as tech}
-									<span class="tech-tag">{tech}</span>
-								{/each}
-							</div>
-							<a href={project.link} target="_blank" rel="noopener noreferrer" class="project-link">
-								View Project →
-							</a>
-						</div>
-
-						<img
-							src={project.src}
-							alt={`${project.name} visual`}
-							bind:this={imgRefs[i]}
-							class={expandedProject === i && 'expanded'}
-						/>
-					</button>
-				</li>
-				<hr class="divider" />
-			{/each}
-		</ul>
+					<img
+						src={project.src}
+						alt={`${project.name} visual`}
+						bind:this={imgRefs[i]}
+						class={expandedProject === i && 'expanded'}
+					/>
+				</div>
+			</button>
+			<hr class="divider" />
+		{/each}
 	</div>
 </section>
 
@@ -228,23 +236,12 @@
 		letter-spacing: 0.2vw;
 	}
 
-	ul {
-		padding: 0;
-	}
-
-	li {
-		position: relative;
-		width: 100%;
-		list-style: none;
-		transition: all 0.2s ease;
-	}
-
-	.project-button {
+	.project {
 		display: flex;
 		flex-direction: column;
 		background: none;
 		border: none;
-		padding: 7vh 0 7vh 2vw;
+		padding: 7vh 2vw 7vh 2vw;
 		margin: 0;
 		width: 100%;
 		gap: 10px;
@@ -252,6 +249,35 @@
 		cursor: pointer;
 		font-family: inherit;
 		color: inherit;
+		transition: all 0.2s ease;
+	}
+
+	.project:hover .project-header.collapsed {
+		opacity: 0.8;
+	}
+
+	.project-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.project-name {
+		font-size: max(3vw, 2.2rem);
+		font-weight: 400;
+	}
+
+	.expand-icon {
+		font-size: max(2.5vw, 1.5rem);
+		font-weight: 300;
+		color: $color-text-2;
+		transition: transform 0.3s ease;
+	}
+
+	.project-content {
+		position: relative;
+		display: flex;
+		justify-content: space-between;
 	}
 
 	img {
@@ -259,52 +285,33 @@
 		max-height: max(50vh, 15rem);
 		max-width: max(50vw, 20rem);
 		object-fit: contain;
-		pointer-events: none;
 		opacity: 0;
+		pointer-events: none;
+		z-index: 2;
 		transform: translateY(-50%);
 	}
 
 	img.expanded {
+		position: relative !important;
+		margin-top: 2vh;
 		left: auto !important;
-		top: 0 !important;
-		right: 0 !important;
 		max-height: 100% !important;
-		max-width: 45vw !important;
+		max-width: 47% !important;
 		opacity: 1 !important;
+		z-index: 1;
 		transform: none !important;
 	}
 
-	.name {
-		font-size: max(3vw, 2.2rem);
-		font-weight: 400;
-	}
-
-	.project-header {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		padding: 5px 0;
-	}
-
-	.project-header:hover {
-		opacity: 0.8;
-	}
-
-	.expand-icon {
-		font-size: max(2vw, 1.5rem);
-		font-weight: 300;
-		color: $color-text-2;
-		transition: transform 0.3s ease;
-	}
-
 	.project-description {
+		position: relative;
 		margin-top: 2vh;
 		padding: 2vh 0;
+		width: 47%;
 		border-top: 1px solid rgba(255, 255, 255, 0.1);
 	}
 
 	.desc {
-		font-size: max(1.2vw, 1rem);
+		font-size: max(1.1vw, 1.1rem);
 		line-height: 1.6;
 		margin-bottom: 2vh;
 		color: $color-text-2;
@@ -331,11 +338,11 @@
 		display: inline-block;
 		color: $color-text-2;
 		text-decoration: none;
-		font-size: max(1vw, 0.9rem);
+		font-size: max(1vw, 1rem);
 		padding: 8px 16px;
 		border: 1px solid rgba(255, 255, 255, 0.3);
 		border-radius: 4px;
-		transition: all 0.2s ease;
+		transition: all 0.3s ease;
 	}
 
 	.project-link:hover {
