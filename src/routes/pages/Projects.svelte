@@ -1,6 +1,7 @@
 <script>
 	import { onMount } from 'svelte';
-	import { animate, animateMini } from 'motion';
+	import { animate } from 'motion';
+	import { ChevronDown, ChevronUp } from 'lucide-svelte';
 
 	const projects = [
 		// {
@@ -193,7 +194,13 @@
 			>
 				<div class="project-header" class:collapsed={expandedProject !== i}>
 					<div class="project-name">{project.name}</div>
-					<div class="expand-icon">{expandedProject === i ? '−' : '+'}</div>
+					<div class="expand-icon">
+						{#if expandedProject === i}
+							<ChevronUp />
+						{:else}
+							<ChevronDown />
+						{/if}
+					</div>
 				</div>
 
 				<div class="project-content" bind:this={contentRefs[i]}>
