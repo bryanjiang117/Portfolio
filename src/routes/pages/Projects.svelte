@@ -35,80 +35,99 @@
 
 	const refs = [];
 	const imgRefs = [];
-	const descRefs = [];
+	const contentRefs = [];
 	let startingYs = []; // cluster the images toward the center of the list so they fit on the screen
 	let hoveredProj = -1;
 	let expandedProject = -1;
 	let lastCollapsedProj = -1;
 
-	const animateInImg = (i) => {
-		if (!imgRefs[i] || expandedProject === i || lastCollapsedProj === i) return;
+	const animateInImg = (index) => {
+		if (!imgRefs[index] || expandedProject === index || lastCollapsedProj === index) return;
 
 		const randomX = Math.random() * 10 - 7;
-		imgRefs[i].style.left = 30 + randomX + 'vw';
-		animate(imgRefs[i], { opacity: 1, y: startingYs[i] + 5 + '%' }, { duration: 0.25 });
+		imgRefs[index].style.left = 30 + randomX + 'vw';
+		animate(imgRefs[index], { opacity: 1, y: startingYs[index] + 5 + '%' }, { duration: 0.25 });
 	};
 
-	const animateOutImg = (i) => {
-		if (!imgRefs[i] || expandedProject === i || lastCollapsedProj === i) return;
+	const animateOutImg = (index) => {
+		if (!imgRefs[index] || expandedProject === index || lastCollapsedProj === index) return;
 
-		animate(imgRefs[i], { opacity: 0, y: startingYs[i] + '%' }, { duration: 0.2, ease: 'easeOut' });
-	};
-
-	const animateCollapseProj = (i) => {
 		animate(
-			descRefs[i],
-			{ scale: 0.95, opacity: 0, y: -5 },
+			imgRefs[index],
+			{ opacity: 0, y: startingYs[index] + '%' },
+			{ duration: 0.2, ease: 'easeOut' }
+		);
+	};
+
+	const collapseProj = (index) => {
+		if (!contentRefs[index]) {
+			return;
+		}
+
+		animate(
+			contentRefs[index],
+			{ scale: 0.95, opacity: 0, y: -5, height: 0, margin: 0, padding: 0 },
 			{ duration: 0.2, ease: 'easeOut' }
 		).then(() => {
-			descRefs[i].style.display = 'none';
+			const children = contentRefs[index].children;
+			Array.from(children).forEach((child) => {
+				child.classList.add('hidden');
+			});
 		});
+
+		if (imgRefs[index]) {
+			imgRefs[index].style.opacity = '0';
+		}
+
+		hoveredProj = -1;
+		expandedProject = -1;
+		lastCollapsedProj = index;
 	};
 
-	function toggleProject(i) {
-		if (expandedProject === i) {
-			// Collapse current project
+	const expandProj = (index) => {
+		if (!contentRefs[index]) {
+			return;
+		}
 
-			if (descRefs[i]) {
-				animateCollapseProj(i);
-			}
+		contentRefs[index].style.opacity = '0';
+		contentRefs[index].style.transform = 'scale(0.95) translateY(-5px)';
 
-			if (imgRefs[i]) {
-				imgRefs[i].style.opacity = '0';
-			}
+		const children = contentRefs[index].children;
+		Array.from(children).forEach((child) => {
+			child.classList.remove('hidden');
+		});
 
-			hoveredProj = -1;
-			expandedProject = -1;
-			lastCollapsedProj = i;
+		animate(
+			contentRefs[index],
+			{ scale: 1, opacity: 1, y: 0, height: 'fit-content' },
+			{ duration: 0.3, ease: 'easeOut' }
+		).then(() => {
+			const projectElement = document.querySelector(`.project[data-key="${index}"]`);
+			projectElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+		});
+
+		if (imgRefs[expandedProject]) {
+			imgRefs[expandedProject].style.opacity = '0';
+		}
+
+		hoveredProj = -1;
+		expandedProject = index;
+	};
+
+	function toggleProject(index) {
+		if (expandedProject === index) {
+			collapseProj(index);
 		} else {
-			// Collapse other expanded project if it exists
-
-			if (expandedProject !== -1 && descRefs[expandedProject]) {
-				animateCollapseProj(expandedProject);
+			if (expandedProject !== -1 && contentRefs[expandedProject]) {
+				collapseProj(expandedProject);
 			}
-
-			if (imgRefs[expandedProject]) {
-				imgRefs[expandedProject].style.opacity = '0';
-			}
-
-			// Expand new project
-
-			if (descRefs[i]) {
-				descRefs[i].style.display = 'block';
-				descRefs[i].style.opacity = '0';
-				descRefs[i].style.transform = 'scale(0.95) translateY(-5px)';
-
-				animate(descRefs[i], { scale: 1, opacity: 1, y: 0 }, { duration: 0.3, ease: 'easeOut' });
-			}
-
-			expandedProject = i;
-			hoveredProj = -1;
+			expandProj(index);
 		}
 	}
 
-	function handleKeyDownProject(event, i) {
+	function handleKeyDownProject(event, index) {
 		if (event.key === 'Enter' || event.key === ' ') {
-			toggleProject(i);
+			toggleProject(index);
 		}
 	}
 
@@ -167,6 +186,7 @@
 			<button
 				bind:this={refs[i]}
 				class="project"
+				data-key={i}
 				key={i}
 				on:click={() => toggleProject(i)}
 				on:keydown={(event) => handleKeyDownProject(event, i)}
@@ -176,12 +196,8 @@
 					<div class="expand-icon">{expandedProject === i ? '−' : '+'}</div>
 				</div>
 
-				<div class="project-content">
-					<div
-						class="project-description"
-						bind:this={descRefs[i]}
-						style="opacity: 0; transform: scale(0.95) translateY(-5px); display: none;"
-					>
+				<div class="project-content" bind:this={contentRefs[i]}>
+					<div class="project-description">
 						<p class="desc">{project.desc}</p>
 						<div class="tech-stack">
 							{#each project.techStack as tech}
@@ -192,14 +208,13 @@
 							View Project →
 						</a>
 					</div>
-
-					<img
-						src={project.src}
-						alt={`${project.name} visual`}
-						bind:this={imgRefs[i]}
-						class={expandedProject === i && 'expanded'}
-					/>
 				</div>
+				<img
+					src={project.src}
+					alt={`${project.name} visual`}
+					bind:this={imgRefs[i]}
+					class={expandedProject === i && 'expanded'}
+				/>
 			</button>
 			<hr class="divider" />
 		{/each}
@@ -230,13 +245,15 @@
 		position: relative;
 		top: 0vh;
 		left: 0;
+		margin-bottom: 5vh;
 		text-align: left;
-		font-size: max(1rem, 1vw);
+		font-size: max(1rem, 1.5vw);
 		font-weight: 300;
 		letter-spacing: 0.2vw;
 	}
 
 	.project {
+		position: relative;
 		display: flex;
 		flex-direction: column;
 		background: none;
@@ -277,41 +294,26 @@
 	.project-content {
 		position: relative;
 		display: flex;
-		justify-content: space-between;
-	}
-
-	img {
-		position: absolute;
-		max-height: max(50vh, 15rem);
-		max-width: max(50vw, 20rem);
-		object-fit: contain;
+		justify-content: start;
+		height: 0;
 		opacity: 0;
 		pointer-events: none;
-		z-index: 2;
-		transform: translateY(-50%);
-	}
-
-	img.expanded {
-		position: relative !important;
-		margin-top: 2vh;
-		left: auto !important;
-		max-height: 100% !important;
-		max-width: 47% !important;
-		opacity: 1 !important;
-		z-index: 1;
-		transform: none !important;
 	}
 
 	.project-description {
 		position: relative;
 		margin-top: 2vh;
-		padding: 2vh 0;
-		width: 47%;
+		padding-top: 2vh;
+		width: 55%;
 		border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+		@media (max-width: 1200px) {
+			width: 100%;
+		}
 	}
 
 	.desc {
-		font-size: max(1.1vw, 1.1rem);
+		font-size: max(1.1vw, 1rem);
 		line-height: 1.6;
 		margin-bottom: 2vh;
 		color: $color-text-2;
@@ -322,7 +324,7 @@
 		display: flex;
 		flex-wrap: wrap;
 		gap: 8px;
-		margin-bottom: 2vh;
+		margin-bottom: 3vh;
 	}
 
 	.tech-tag {
@@ -350,12 +352,40 @@
 		border-color: rgba(255, 255, 255, 0.5);
 	}
 
-	.link {
-		font-size: 0.8vw;
-	}
-
 	.divider {
 		margin: 0;
 		width: 100%;
+	}
+
+	img {
+		position: absolute;
+		max-height: max(50vh, 15rem);
+		max-width: max(50vw, 20rem);
+		object-fit: contain;
+		opacity: 0;
+		pointer-events: none;
+		z-index: 2;
+		transform: translateY(-50%);
+	}
+
+	img.expanded {
+		top: 50%;
+		right: 2vw;
+		left: auto !important;
+		max-height: calc(100% - 7vh) !important;
+		max-width: 40% !important;
+		opacity: 1 !important;
+		z-index: 1;
+		transform: translateY(-50%) !important;
+
+		@media (max-width: 1200px) {
+			display: none;
+		}
+	}
+
+	.hidden {
+		height: 0 !important;
+		margin: 0 !important;
+		padding: 0 !important;
 	}
 </style>
