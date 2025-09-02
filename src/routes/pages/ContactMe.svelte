@@ -1,12 +1,17 @@
 <script>
+	import { tooltip } from 'svooltip';
+	import 'svooltip/styles.css';
 	import 'iconify-icon';
 
 	let { contactElement = $bindable() } = $props();
 
 	const iconSize = 'max(2vw, 2rem)';
 
+	let emailTooltipContent = $state('Copy Email');
+
 	const copyEmail = () => {
 		navigator.clipboard.writeText('haozhoujiang@gmail.com');
+		emailTooltipContent = 'Email Copied!';
 	};
 </script>
 
@@ -16,26 +21,45 @@
 	</div>
 
 	<div class="links">
-		<button class="link" onclick={copyEmail} aria-label="Copy Email">
-			<iconify-icon icon="line-md:email" width={iconSize} height={iconSize}
-			></iconify-icon>
+		<button
+			aria-label="Copy Email"
+			class="link"
+			onclick={copyEmail}
+			use:tooltip={{
+				content: emailTooltipContent,
+				onDestroy: () => {
+					emailTooltipContent = 'Copy Email';
+				}
+			}}
+		>
+			<iconify-icon icon="line-md:email" width={iconSize} height={iconSize}></iconify-icon>
 		</button>
-		<a class="link" href="https://github.com/bryanjiang117" target="_blank" aria-label="GitHub">
-			<iconify-icon icon="line-md:github" width={iconSize} height={iconSize}
-			></iconify-icon>
-		</a>
-		<a class="link" href="/lib/resume.pdf" download="Bryan_Jiang_Resume.pdf" aria-label="Resume">
-			<iconify-icon icon="line-md:document-list" width={iconSize} height={iconSize}
-			></iconify-icon>
+		<a
+			aria-label="GitHub"
+			class="link"
+			href="https://github.com/bryanjiang117"
+			target="_blank"
+			use:tooltip={{ content: 'Visit GitHub' }}
+		>
+			<iconify-icon icon="line-md:github" width={iconSize} height={iconSize}></iconify-icon>
 		</a>
 		<a
+			aria-label="Resume"
+			class="link"
+			href="/lib/resume.pdf"
+			download="Bryan_Jiang_Resume.pdf"
+			use:tooltip={{ content: 'Download Resume' }}
+		>
+			<iconify-icon icon="line-md:document-list" width={iconSize} height={iconSize}></iconify-icon>
+		</a>
+		<a
+			aria-label="LinkedIn"
 			class="link"
 			href="https://linkedin.com/in/bryanjiang117"
 			target="_blank"
-			aria-label="LinkedIn"
+			use:tooltip={{ content: 'Visit LinkedIn' }}
 		>
-			<iconify-icon icon="line-md:linkedin" width={iconSize} height={iconSize}
-			></iconify-icon>
+			<iconify-icon icon="line-md:linkedin" width={iconSize} height={iconSize}></iconify-icon>
 		</a>
 	</div>
 </div>
@@ -80,5 +104,14 @@
 
 	iconify-icon {
 		color: $color-text-1;
+	}
+
+	:global(.svooltip),
+	:global(.svooltip-arrow) {
+		background: $color-bg-2;
+	}
+
+	:global(.svooltip-content) {
+		color: $color-text-2;
 	}
 </style>
