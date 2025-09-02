@@ -114,6 +114,7 @@
 	html,
 	body {
 		min-width: 400px;
+		min-height: 400px;
 		overflow-x: hidden;
 	}
 

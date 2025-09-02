@@ -27,6 +27,7 @@
 		"debug": "^4.3.7",
 		"dynamic-marquee": "^2.6.5",
 		"gsap": "^3.12.5",
+		"iconify-icon": "^3.0.0",
 		"leaflet": "^1.9.4",
 		"locomotive-scroll": "^4.1.4",
 		"lodash.debounce": "^4.0.8",
