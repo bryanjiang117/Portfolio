@@ -10,7 +10,8 @@
 	let bioContainer;
 	let splitText;
 	let previousContainerWidth;
-	let observer;
+	let entryObserver;
+	let exitObserver;
 
 	// An event handler that will be called when the container element is resized.
 	function handleResizeText(entry) {
@@ -61,7 +62,7 @@
 		const resizeObserver = new ResizeObserver(debounce(handleResizeText, 100));
 		resizeObserver.observe(bioContainer);
 
-		observer = new IntersectionObserver(
+		entryObserver = new IntersectionObserver(
 			(entries) => {
 				entries.forEach((entry) => {
 					if (entry.isIntersecting) {
@@ -76,21 +77,37 @@
 			{ threshold: 0.5 }
 		);
 
+		exitObserver = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((entry) => {
+					if (!entry.isIntersecting) {
+						gsap.to(entry.target.querySelector('span'), {
+							y: '100%',
+							opacity: 0,
+							duration: 1
+						});
+					}
+				});
+			}
+		);
+
 		// window observer
 		window.addEventListener('resize', handleResizeWindow);
 
 		return () => {
 			resizeObserver.disconnect();
-			observer.disconnect();
+			entryObserver.disconnect();
+			exitObserver.disconnect();
 			window.removeEventListener('resize', handleResizeWindow);
 		};
 	});
 
-	$: if (observer) {
+	$: if (entryObserver && exitObserver) {
 		const lines = gsap.utils.toArray('.line');
 		lines.forEach((line) => {
 			gsap.set(line.querySelector('span'), { y: '100%', opacity: 1 });
-			observer.observe(line);
+			entryObserver.observe(line);
+			exitObserver.observe(line);
 		});
 	}
 </script>
