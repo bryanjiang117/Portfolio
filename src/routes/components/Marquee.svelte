@@ -2,7 +2,8 @@
 	import { onMount } from 'svelte';
 	import { Marquee, loop } from 'dynamic-marquee';
 
-	const marqueeElements = Array.from({ length: 6 }, () => null);
+	const N_MARQUEES = 6;
+	const marqueeElements = Array.from({ length: N_MARQUEES }, () => null);
 
 	onMount(() => {
 		marqueeElements.forEach((marqueeElement, i) => {
@@ -11,23 +12,7 @@
 				startOnScreen: true
 			});
 
-			const offset = i * 50;
-			let firstCycle = true;
-			// The first callback returns a spacer element once to create an offset
 			loop(marquee, [
-				() => {
-					if (firstCycle) {
-						firstCycle = false;
-						const spacer = document.createElement('div');
-						spacer.style.width = `${offset}px`;
-						spacer.style.flexShrink = '0';
-						return spacer;
-					}
-					const empty = document.createElement('div');
-					empty.style.width = '0';
-					empty.style.height = '0';
-					return empty;
-				},
 				() => {
 					const el = document.createElement('div');
 					el.innerHTML = `
@@ -75,7 +60,11 @@
 </script>
 
 {#each marqueeElements as _, i}
-	<div class="marquee" bind:this={marqueeElements[i]}></div>
+	<div
+		class="marquee"
+		style="transform: translateX({(i - N_MARQUEES) * 50}px);"
+		bind:this={marqueeElements[i]}
+	></div>
 {/each}
 
 <style lang="scss">
@@ -87,6 +76,7 @@
 		position: static;
 		overflow: hidden;
 		height: $marquee-height;
+		width: calc(100vw + 6 * 50px); // must change this when changing N_MARQUEES
 		margin: 0;
 		padding: 0;
 	}

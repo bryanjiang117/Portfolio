@@ -28,11 +28,11 @@
 		gap: 1vw;
 	}
 
-	.scribble {
-		position: absolute;
-		right: 10vw;
-		bottom: calc(min(-20vw, -10rem) + min(-2vw, -1rem));
+	// .scribble {
+	// 	position: absolute;
+	// 	right: 10vw;
+	// 	bottom: calc(min(-20vw, -10rem) + min(-2vw, -1rem));
 
-		height: max(20vw, 10rem);
-	}
+	// 	height: max(20vw, 10rem);
+	// }
 </style>
