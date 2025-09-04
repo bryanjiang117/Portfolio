@@ -270,7 +270,7 @@
 		font-size: max(1.5vw, 1.5rem);
 		font-weight: 300;
 		letter-spacing: max(0.3vw, 4px);
-		z-index: 3001;
+		z-index: 3001; // must be > 3000 because the map is 3000
 	}
 
 	.map-cover {
@@ -278,7 +278,7 @@
 		transition: opacity 0.5s;
 		z-index: 2;
 		cursor: pointer;
-		z-index: 3000;
+		z-index: 3000; // must be > 3000 because the map is 3000
 	}
 
 	.hide-cover {
