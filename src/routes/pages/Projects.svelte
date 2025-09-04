@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import { animate } from 'motion';
 	import { ChevronDown, ChevronUp } from 'lucide-svelte';
+	import gsap from 'gsap';
 
 	const projects = [
 		// {
@@ -37,13 +38,14 @@
 	const refs = [];
 	const imgRefs = [];
 	const contentRefs = [];
+	let observer;
 	let startingYs = []; // cluster the images toward the center of the list so they fit on the screen
 	let hoveredProj = -1;
-	let expandedProject = -1;
+	let expandedProj = -1;
 	let lastCollapsedProj = -1;
 
 	const animateInImg = (index) => {
-		if (!imgRefs[index] || expandedProject === index || lastCollapsedProj === index) return;
+		if (!imgRefs[index] || expandedProj === index || lastCollapsedProj === index) return;
 
 		const randomX = Math.random() * 10 - 7;
 		imgRefs[index].style.left = 30 + randomX + 'vw';
@@ -51,7 +53,7 @@
 	};
 
 	const animateOutImg = (index) => {
-		if (!imgRefs[index] || expandedProject === index || lastCollapsedProj === index) return;
+		if (!imgRefs[index] || expandedProj === index || lastCollapsedProj === index) return;
 
 		animate(
 			imgRefs[index],
@@ -81,7 +83,7 @@
 		}
 
 		hoveredProj = -1;
-		expandedProject = -1;
+		expandedProj = -1;
 		lastCollapsedProj = index;
 	};
 
@@ -107,20 +109,20 @@
 			projectElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
 		});
 
-		if (imgRefs[expandedProject]) {
-			imgRefs[expandedProject].style.opacity = '0';
+		if (imgRefs[expandedProj]) {
+			imgRefs[expandedProj].style.opacity = '0';
 		}
 
 		hoveredProj = -1;
-		expandedProject = index;
+		expandedProj = index;
 	};
 
 	function toggleProject(index) {
-		if (expandedProject === index) {
+		if (expandedProj === index) {
 			collapseProj(index);
 		} else {
-			if (expandedProject !== -1 && contentRefs[expandedProject]) {
-				collapseProj(expandedProject);
+			if (expandedProj !== -1 && contentRefs[expandedProj]) {
+				collapseProj(expandedProj);
 			}
 			expandProj(index);
 		}
@@ -158,7 +160,7 @@
 				lastCollapsedProj = -1;
 			}
 
-			if (newHoveredProj === expandedProject || newHoveredProj === lastCollapsedProj) {
+			if (newHoveredProj === expandedProj || newHoveredProj === lastCollapsedProj) {
 				newHoveredProj = -1;
 			}
 
@@ -172,17 +174,56 @@
 			hoveredProj = newHoveredProj;
 		}
 
+		observer = new IntersectionObserver((entries) => {
+			if (entries[0].isIntersecting) {
+				entries.forEach((entry, i) => {
+					const letter = entry.target;
+					gsap.to(letter, {
+						opacity: 1,
+						duration: 0,
+						delay: i * 0.075
+					});
+				});
+			} else if (expandedProj === -1) {
+				entries.forEach((entry) => {
+					const letter = entry.target;
+					gsap.killTweensOf(letter);
+					gsap.set(letter, {
+						opacity: 0
+					});
+				});
+			}
+		});
+
 		window.addEventListener('mousemove', handleMouseMove);
 
 		return () => {
+			observer.disconnect();
 			window.removeEventListener('mousemove', handleMouseMove);
 		};
 	});
+
+	$: if (observer) {
+		const letters = gsap.utils.toArray('.projects-title span');
+		letters.forEach((letter) => {
+			gsap.set(letter, { opacity: 0 });
+			observer.observe(letter);
+		});
+	}
 </script>
 
 <section id="page-4" class="page">
 	<div class="projects-container">
-		<h1 class="projects-title">Projects</h1>
+		<h1 class="projects-title">
+			<span>P</span>
+			<span>r</span>
+			<span>o</span>
+			<span>j</span>
+			<span>e</span>
+			<span>c</span>
+			<span>t</span>
+			<span>s</span>
+		</h1>
 		{#each projects as project, i}
 			<button
 				bind:this={refs[i]}
@@ -192,10 +233,10 @@
 				on:click={() => toggleProject(i)}
 				on:keydown={(event) => handleKeyDownProject(event, i)}
 			>
-				<div class="project-header" class:collapsed={expandedProject !== i}>
+				<div class="project-header" class:collapsed={expandedProj !== i}>
 					<div class="project-name">{project.name}</div>
 					<div class="expand-icon">
-						{#if expandedProject === i}
+						{#if expandedProj === i}
 							<ChevronUp />
 						{:else}
 							<ChevronDown />
@@ -220,7 +261,7 @@
 					src={project.src}
 					alt={`${project.name} visual`}
 					bind:this={imgRefs[i]}
-					class={expandedProject === i && 'expanded'}
+					class={expandedProj === i && 'expanded'}
 				/>
 			</button>
 			<hr class="divider" />
@@ -254,9 +295,8 @@
 		left: 0;
 		margin-bottom: 5vh;
 		text-align: left;
-		font-size: max(1rem, 1.5vw);
+		font-size: max(1rem, 1.2vw);
 		font-weight: 300;
-		letter-spacing: 0.2vw;
 	}
 
 	.project {
