@@ -1,5 +1,6 @@
 <script>
-	import { onDestroy, onMount } from 'svelte';
+	import { onMount } from 'svelte';
+	import gsap from 'gsap';
 
 	const places = [
 		{ name: 'Tokyo', latlng: [35.652832, 139.839478] },
@@ -47,7 +48,9 @@
 		{ name: 'Ottawa', latlng: [45.4215, -75.6972] }
 	];
 
+	let map;
 	let coverClass = 'map-cover';
+	let observer;
 
 	function handleClickCover() {
 		coverClass = 'map-cover hide-cover';
@@ -63,7 +66,13 @@
 		coverClass = 'map-cover';
 	}
 
-	let map;
+	function onClickOutsideMap(event) {
+		const mapContainer = document.querySelector('.map-container');
+
+		if (!mapContainer.contains(event.target)) {
+			handleScroll();
+		}
+	}
 
 	onMount(async () => {
 		const L = await import('leaflet');
@@ -99,14 +108,47 @@
 		});
 
 		map.fitWorld();
+
+		observer = new IntersectionObserver(
+			(entries) => {
+				if (!entries.length) return;
+
+				const initialCover = entries[0];
+				if (initialCover.isIntersecting) {
+					gsap.to(initialCover.target, {
+						left: '-100%',
+						duration: 1.5,
+						ease: 'power1.in'
+					});
+				}
+			},
+			{ threshold: 1 }
+		);
+
+		window.addEventListener('click', onClickOutsideMap);
+
+		return () => {
+			observer.disconnect();
+			window.removeEventListener('click', onClickOutsideMap);
+		};
 	});
+
+	$: if (observer) {
+		const initialCover = document.querySelector('.initial-cover');
+
+		if (initialCover) {
+			observer.observe(initialCover);
+		}
+	}
 </script>
 
 <svelte:window on:scroll={handleScroll} />
 
 <section id="page-6" class="page">
 	<div class="container">
+		<div class="initial-cover-hider"></div>
 		<div class="map-container">
+			<span class="initial-cover">Travel</span>
 			<div
 				class={coverClass}
 				on:click={handleClickCover}
@@ -139,16 +181,15 @@
 	}
 
 	.container {
-		width: 100%;
-		height: 100%;
-		display: flex;
-		justify-content: center;
-		align-items: center;
+		position: relative;
+		background: inherit;
 	}
 
 	.map-container {
 		position: relative;
 		width: fit-content;
+		background: inherit;
+		z-index: 1;
 	}
 
 	#map {
@@ -200,6 +241,17 @@
 		transform: translate(-50%, -50%); /* center dot in hitbox */
 	}
 
+	.initial-cover-hider {
+		position: absolute;
+		top: 0;
+		transform: translateX(-100%);
+		height: 100%;
+		width: 100%;
+		background: inherit;
+		z-index: 2;
+	}
+
+	.initial-cover,
 	.map-cover {
 		position: absolute;
 		top: 0;
@@ -211,12 +263,24 @@
 
 		width: 100%;
 		height: 100%;
-		background: #21201f;
+		background: inherit;
+	}
+
+	.initial-cover {
+		font-size: max(1.5vw, 1.5rem);
+		font-weight: 300;
+		letter-spacing: max(0.3vw, 4px);
+		z-index: 3001;
+	}
+
+	.map-cover {
 		opacity: 0.8;
 		transition: opacity 0.5s;
-		z-index: 3000;
+		z-index: 2;
 		cursor: pointer;
+		z-index: 3000;
 	}
+
 	.hide-cover {
 		opacity: 0;
 		pointer-events: none;
