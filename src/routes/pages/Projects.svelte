@@ -63,19 +63,17 @@
 	};
 
 	const collapseProj = (index) => {
-		if (!contentRefs[index]) {
+		const projectContent = contentRefs[index];
+		if (!projectContent) {
 			return;
 		}
 
 		animate(
-			contentRefs[index],
-			{ scale: 0.95, opacity: 0, y: -5, height: 0, margin: 0, padding: 0 },
-			{ duration: 0.2, ease: 'easeOut' }
+			projectContent,
+			{ scale: 0.95, y: -5, height: 0, margin: 0, padding: 0 },
+			{ duration: 0.3, ease: 'easeOut' }
 		).then(() => {
-			const children = contentRefs[index].children;
-			Array.from(children).forEach((child) => {
-				child.classList.add('hidden');
-			});
+			projectContent.classList.add('hidden');
 		});
 
 		if (imgRefs[index]) {
@@ -88,20 +86,18 @@
 	};
 
 	const expandProj = (index) => {
-		if (!contentRefs[index]) {
+		const projectContent = contentRefs[index];
+		if (!projectContent) {
 			return;
 		}
 
-		contentRefs[index].style.opacity = '0';
-		contentRefs[index].style.transform = 'scale(0.95) translateY(-5px)';
-
-		const children = contentRefs[index].children;
-		Array.from(children).forEach((child) => {
-			child.classList.remove('hidden');
-		});
-
+		projectContent.classList.remove('hidden');
+    
+    projectContent.style.height = '0';
+		projectContent.style.transform = 'scale(0.95) translateY(-5px)';
+		
 		animate(
-			contentRefs[index],
+			projectContent,
 			{ scale: 1, opacity: 1, y: 0, height: 'fit-content' },
 			{ duration: 0.3, ease: 'easeOut' }
 		).then(() => {
@@ -109,13 +105,19 @@
 			projectElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
 		});
 
-		if (imgRefs[expandedProj]) {
-			imgRefs[expandedProj].style.opacity = '0';
-		}
-
 		hoveredProj = -1;
 		expandedProj = index;
 	};
+
+	function handleClickProject(index) {
+		toggleProject(index);
+	}
+
+	function handleKeyDownProject(event, index) {
+		if (event.key === 'Enter' || event.key === ' ') {
+			toggleProject(index);
+		}
+	}
 
 	function toggleProject(index) {
 		if (expandedProj === index) {
@@ -125,12 +127,6 @@
 				collapseProj(expandedProj);
 			}
 			expandProj(index);
-		}
-	}
-
-	function handleKeyDownProject(event, index) {
-		if (event.key === 'Enter' || event.key === ' ') {
-			toggleProject(index);
 		}
 	}
 
@@ -230,7 +226,7 @@
 				class="project"
 				data-key={i}
 				key={i}
-				on:click={() => toggleProject(i)}
+				on:click={() => handleClickProject(i)}
 				on:keydown={(event) => handleKeyDownProject(event, i)}
 			>
 				<div class="project-header" class:collapsed={expandedProj !== i}>
@@ -244,7 +240,7 @@
 					</div>
 				</div>
 
-				<div class="project-content" bind:this={contentRefs[i]}>
+				<div class="project-content hidden" bind:this={contentRefs[i]}>
 					<div class="project-description">
 						<p class="desc">{project.desc}</p>
 						<div class="tech-stack">
@@ -342,9 +338,8 @@
 		position: relative;
 		display: flex;
 		justify-content: start;
-		height: 0;
-		opacity: 0;
-		pointer-events: none;
+		height: fit-content;
+		overflow: hidden;
 	}
 
 	.project-description {
@@ -431,8 +426,9 @@
 	}
 
 	.hidden {
-		height: 0 !important;
-		margin: 0 !important;
-		padding: 0 !important;
+		height: 0;
+		margin: 0;
+		padding: 0;
+		pointer-events: none;
 	}
 </style>
