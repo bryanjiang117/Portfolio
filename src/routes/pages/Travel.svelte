@@ -45,7 +45,9 @@
 		{ name: 'Watertown', latlng: [43.9748, -75.9108] },
 		{ name: 'Kingston', latlng: [44.2312, -76.486] },
 		{ name: 'Montreal', latlng: [45.5019, -73.5674] },
-		{ name: 'Ottawa', latlng: [45.4215, -75.6972] }
+		{ name: 'Ottawa', latlng: [45.4215, -75.6972] },
+		{ name: 'Mexico City', latlng: [19.4326, -99.1332] },
+		{ name: 'Teotihuacan', latlng: [19.6861, -98.8716] }
 	];
 
 	let map;
@@ -100,7 +102,7 @@
 
 		places.forEach((place) => {
 			const markerIcon = L.divIcon({
-				iconSize: [10, 10],
+				iconSize: [15, 15],
 				html: '<div class="dot"></div>'
 			});
 			const marker = L.marker(place.latlng, { title: '', icon: markerIcon }).addTo(map);
@@ -125,11 +127,11 @@
 			{ threshold: 1 }
 		);
 
-		window.addEventListener('click', onClickOutsideMap);
+		window.addEventListener('mousedown', onClickOutsideMap);
 
 		return () => {
 			observer.disconnect();
-			window.removeEventListener('click', onClickOutsideMap);
+			window.removeEventListener('mousedown', onClickOutsideMap);
 		};
 	});
 

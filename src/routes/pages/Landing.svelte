@@ -1,7 +1,7 @@
 <script>
 	import Typed from 'typed.js';
 	import gsap from 'gsap';
-	import { onMount } from 'svelte';
+	import { onMount, tick } from 'svelte';
 	import { getNameMetrics } from '../../utils/util.js';
 
 	const NAME = 'BRYAN JIANG';
@@ -10,6 +10,7 @@
 	let typing = true;
 	export let nameElement;
 	let isNameHovered = false;
+	let showDesu = false;
 
 	const changeGreeting = () => {
 		if (greeting && !typing) {
@@ -71,15 +72,18 @@
 						self.typeSpeed = 100;
 						break;
 				}
+				showDesu = false;
+
 				if (desu) {
 					desu.destroy();
 				}
 			},
-			onStringTyped: (arrayPos, self) => {
+			onStringTyped: async (arrayPos, self) => {
 				greeting.stop();
 				typing = false;
 				if (arrayPos === 2) {
 					self.cursor.style.display = 'none';
+					showDesu = true;
 					desu = new Typed('#desu', {
 						strings: ['です'],
 						typeSpeed: 100
@@ -125,7 +129,7 @@
 				>
 					{NAME}
 				</h1>
-				<div class="desu-wrapper">
+				<div class={`desu-wrapper ${showDesu ? '' : 'hidden'}`}>
 					<span id="desu"></span>
 				</div>
 			</div>
@@ -177,6 +181,10 @@
 		transition: all 0.15s ease;
 		font-size: 1vw;
 		transform: translateY(-1vh);
+	}
+
+	.hidden {
+		display: none !important;
 	}
 
 	.job {
